@@ -1,8 +1,5 @@
 package com.akjava.gwt.three.client.java;
 
-import java.util.Arrays;
-import java.util.List;
-
 public  class MaterialTypeValue{
 	public static final MaterialTypeValue BASIC=new MaterialTypeValue(0,"Basic");
 	public static final MaterialTypeValue LAMBERT=new MaterialTypeValue(1,"Lambert");

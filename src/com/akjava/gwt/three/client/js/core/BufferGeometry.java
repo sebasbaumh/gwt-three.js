@@ -40,7 +40,6 @@ package com.akjava.gwt.three.client.js.core;
 import com.akjava.gwt.three.client.gwt.core.Offsets;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
-import com.google.gwt.core.client.JsArrayNumber;
 import com.google.gwt.typedarrays.shared.ArrayBuffer;
 
 

@@ -38,10 +38,8 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.loaders;
 
 import com.akjava.gwt.three.client.js.core.BufferGeometry;
-import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.loaders.JSONLoader.JSONLoadHandler;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.json.client.JSONObject;
 
 
 /**

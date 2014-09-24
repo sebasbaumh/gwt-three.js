@@ -1,6 +1,5 @@
 package com.akjava.gwt.three.client.gwt.animation;
 
-import com.akjava.gwt.lib.client.LogUtils;
 import com.akjava.gwt.three.client.js.math.Vector3;
 
 public class BoneLimit {

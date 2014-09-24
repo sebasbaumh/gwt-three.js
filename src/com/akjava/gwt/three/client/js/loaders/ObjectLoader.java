@@ -39,7 +39,6 @@ package com.akjava.gwt.three.client.js.loaders;
 
 import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.core.Object3D;
-import com.akjava.gwt.three.client.js.loaders.MaterialLoader.MaterialLoadHandler;
 import com.akjava.gwt.three.client.js.materials.Material;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;

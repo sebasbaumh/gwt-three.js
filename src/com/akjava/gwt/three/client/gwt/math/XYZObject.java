@@ -1,7 +1,5 @@
 package com.akjava.gwt.three.client.gwt.math;
 
-import com.google.gwt.core.client.JavaScriptObject;
-
 /**
  * @deprecated
  * @author aki

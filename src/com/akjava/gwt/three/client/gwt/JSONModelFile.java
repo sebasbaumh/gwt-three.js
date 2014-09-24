@@ -1,6 +1,5 @@
 package com.akjava.gwt.three.client.gwt;
 
-import com.akjava.gwt.lib.client.LogUtils;
 import com.akjava.gwt.three.client.js.core.Face3;
 import com.akjava.gwt.three.client.js.math.Vector2;
 import com.akjava.gwt.three.client.js.math.Vector3;

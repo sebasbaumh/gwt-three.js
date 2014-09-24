@@ -37,8 +37,6 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.cameras;
 
-import com.akjava.gwt.three.client.js.core.Object3D;
-
 
 public class OrthographicCamera extends Camera{
 	protected OrthographicCamera() {

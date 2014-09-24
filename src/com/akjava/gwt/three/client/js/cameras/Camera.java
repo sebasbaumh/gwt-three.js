@@ -39,7 +39,6 @@ package com.akjava.gwt.three.client.js.cameras;
 
 import com.akjava.gwt.three.client.js.core.Object3D;
 import com.akjava.gwt.three.client.js.math.Matrix4;
-import com.akjava.gwt.three.client.js.math.Vector3;
 
 
 public class Camera extends Object3D{

@@ -1,7 +1,6 @@
 package com.akjava.gwt.three.client.js.renderers;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.dom.client.Element;
 
 public class CanvasRenderer extends WebGLRenderer{
 	protected CanvasRenderer(){}

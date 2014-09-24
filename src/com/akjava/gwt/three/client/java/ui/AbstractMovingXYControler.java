@@ -2,7 +2,6 @@ package com.akjava.gwt.three.client.java.ui;
 
 import java.util.List;
 
-import com.akjava.gwt.lib.client.LogUtils;
 import com.akjava.gwt.three.client.gwt.math.XYObject;
 import com.akjava.gwt.three.client.java.GWTSpline;
 

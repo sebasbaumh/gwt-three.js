@@ -38,7 +38,6 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.materials;
 
 import com.akjava.gwt.three.client.js.math.Color;
-import com.akjava.gwt.three.client.js.math.Vector2;
 import com.akjava.gwt.three.client.js.textures.Texture;
 
 

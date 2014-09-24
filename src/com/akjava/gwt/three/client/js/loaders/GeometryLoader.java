@@ -38,7 +38,6 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.loaders;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.json.client.JSONObject;
 
 /**
  * i dont's know how to use this.

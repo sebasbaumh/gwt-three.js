@@ -38,7 +38,6 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.extras.curves;
 
 import com.akjava.gwt.three.client.js.extras.core.Curve;
-import com.akjava.gwt.three.client.js.math.Vector2;
 
 
 public class EllipseCurve extends Curve{

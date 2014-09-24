@@ -38,7 +38,6 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.math;
 
 import com.akjava.gwt.three.client.gwt.math.XY;
-import com.akjava.gwt.three.client.js.extras.curves.SplineCurve;
 import com.google.gwt.core.client.*;
 
 
