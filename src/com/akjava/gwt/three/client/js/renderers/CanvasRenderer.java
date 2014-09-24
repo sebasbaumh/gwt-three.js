@@ -4,6 +4,8 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Element;
 
 public class CanvasRenderer extends WebGLRenderer{
+	protected CanvasRenderer(){}
+	
 	public final native JavaScriptObject getParameters()/*-{
 	return this.parameters;
 	}-*/;
