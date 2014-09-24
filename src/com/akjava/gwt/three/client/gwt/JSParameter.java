@@ -5,26 +5,26 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class JSParameter extends JavaScriptObject{
 	protected JSParameter(){}
 	public final static JSParameter createParameter(){
-		return (JSParameter) JSParameter.createObject();
+		return (JSParameter) JavaScriptObject.createObject();
 	}
 	public final native String getString(String key)/*-{
-	return this[key]=value;
+	return this[key];
 	}-*/;
 	public final native int getInt(String key)/*-{
-	return this[key]=value;
+	return this[key];
 	}-*/;
 	public final native double getDouble(String key)/*-{
-	return this[key]=value;
+	return this[key];
 	}-*/;
 	public final native boolean getBoolean(String key)/*-{
-	return this[key]=value;
+	return this[key];
 	}-*/;
 	public final native JavaScriptObject getObject(String key)/*-{
-	return this[key]=value;
+	return this[key];
 	}-*/;
 	
 	public final native void set(String key,String value)/*-{
-	return this[key]=value;
+	this[key]=value;
 	}-*/;
 	
 	
