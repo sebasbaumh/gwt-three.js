@@ -38,16 +38,17 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.math;
 
 import com.akjava.gwt.three.client.gwt.math.XY;
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArrayInteger;
-import com.google.gwt.core.client.JsArrayNumber;
+import com.akjava.gwt.three.client.js.extras.curves.SplineCurve;
+import com.google.gwt.core.client.*;
 
 
 public class Vector2 extends XY{
 	protected Vector2() {
 	}
 
-
+public static final native Vector2 create(double x,double y)/*-{
+return new $wnd.THREE.Vector2(x,y);
+}-*/;
 
 public final native Vector2 set(double x,double y)/*-{
 return this.set(x,y);
