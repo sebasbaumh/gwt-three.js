@@ -13,9 +13,9 @@ import com.akjava.gwt.three.client.js.THREE;
 import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.akjava.gwt.three.client.js.math.Vector4;
-import com.google.common.base.Functions;
-import com.google.common.collect.ImmutableSortedMap;
-import com.google.common.collect.Ordering;
+//import com.google.common.base.Functions;
+//import com.google.common.collect.ImmutableSortedMap;
+//import com.google.common.collect.Ordering;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.user.client.Window;
 
@@ -451,15 +451,15 @@ public static void autoWeight(Geometry geometry,JsArray<AnimationBone> bones,Lis
   }
   
   
-    //is this slow?
-  	public static Set<NameAndVector3>  sortNameAndPosition(List<NameAndVector3> nameAndPositions,Vector3 vertexPos){
-  		
-  		Map<NameAndVector3,Integer> map=new HashMap<NameAndVector3, Integer>();
-  		final Ordering<NameAndVector3> orders=Ordering.natural().reverse().nullsLast().onResultOf(Functions.forMap(map, null));
-  		LogUtils.log(ImmutableSortedMap.copyOf(map, orders));
-  		
-  		return ImmutableSortedMap.copyOf(map, orders).keySet();
-  	}
+//    //is this slow?
+//  	public static Set<NameAndVector3>  sortNameAndPosition(List<NameAndVector3> nameAndPositions,Vector3 vertexPos){
+//  		
+//  		Map<NameAndVector3,Integer> map=new HashMap<NameAndVector3, Integer>();
+//  		final Ordering<NameAndVector3> orders=Ordering.natural().reverse().nullsLast().onResultOf(Functions.forMap(map, null));
+//  		LogUtils.log(ImmutableSortedMap.copyOf(map, orders));
+//  		
+//  		return ImmutableSortedMap.copyOf(map, orders).keySet();
+//  	}
   
 	public static int  findClosedBone(List<NameAndVector3> nameAndPositions,Vector3 vertexPos,int ignoreIndex){
 		int minIndex=-1;
