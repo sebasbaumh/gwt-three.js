@@ -1,13 +1,12 @@
 package com.akjava.gwt.three.client.js.extras.controls;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.ui.HasEnabled;
 
 /**
  * Controls for changing the position and angle of an object, e.g. a camera.
  * @author sbaumhekel
  */
-public class TrackballControls extends JavaScriptObject implements HasEnabled
+public class TrackballControls extends JavaScriptObject
 {
 
 	/**
@@ -73,11 +72,10 @@ public class TrackballControls extends JavaScriptObject implements HasEnabled
 		this.handleResize();
 	}-*/;
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.google.gwt.user.client.ui.HasEnabled#isEnabled()
+	/**
+	 * Is this instance enabled?
+	 * @return true on success, else false
 	 */
-	@Override
 	public final native boolean isEnabled()/*-{
 		return this.enabled;
 	}-*/;
@@ -121,11 +119,10 @@ public class TrackballControls extends JavaScriptObject implements HasEnabled
 		this.noZoom = !allow;
 	}-*/;
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.google.gwt.user.client.ui.HasEnabled#setEnabled(boolean)
+	/**
+	 * Enable this instance?
+	 * @param enabled enable?
 	 */
-	@Override
 	public final native void setEnabled(boolean enabled)/*-{
 		this.enabled = enabled;
 	}-*/;

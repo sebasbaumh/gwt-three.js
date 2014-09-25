@@ -4,10 +4,6 @@ import com.akjava.gwt.three.client.gwt.collada.ColladaData;
 import com.google.gwt.core.client.JavaScriptObject;
 
 public class ColladaLoader extends JavaScriptObject{
-
-	/*
-	 * dont workd on r46,only work on dev
-	 */
 	protected ColladaLoader(){}
 	
 	
