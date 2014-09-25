@@ -27,6 +27,14 @@ public class TrackballControls extends JavaScriptObject implements HasEnabled
 	}-*/;
 
 	/**
+	 * Gets whether rolling is allowed.
+	 * @return true on success, else false
+	 */
+	public final native double getAllowRoll()/*-{
+		return !this.noRoll;
+	}-*/;
+
+	/**
 	 * Gets whether rotation is allowed.
 	 * @return true on success, else false
 	 */
@@ -87,6 +95,14 @@ public class TrackballControls extends JavaScriptObject implements HasEnabled
 	 */
 	public final native void setAllowPan(boolean allow)/*-{
 		this.noPan = !allow;
+	}-*/;
+
+	/**
+	 * Sets whether rolling is allowed.
+	 * @param allow allow rolling
+	 */
+	public final native void setAllowRoll(boolean allow)/*-{
+		this.noRoll = !allow;
 	}-*/;
 
 	/**
