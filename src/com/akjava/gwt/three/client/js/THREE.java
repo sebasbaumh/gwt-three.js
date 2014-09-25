@@ -66,6 +66,7 @@ import com.akjava.gwt.three.client.js.extras.animation.AnimationMorphTarget;
 import com.akjava.gwt.three.client.js.extras.animation.KeyFrameAnimation;
 import com.akjava.gwt.three.client.js.extras.cameras.CombinedCamera;
 import com.akjava.gwt.three.client.js.extras.cameras.CubeCamera;
+import com.akjava.gwt.three.client.js.extras.controls.TrackballControls;
 import com.akjava.gwt.three.client.js.extras.core.Gyroscope;
 import com.akjava.gwt.three.client.js.extras.core.Path;
 import com.akjava.gwt.three.client.js.extras.core.Shape;
@@ -889,6 +890,25 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.Projector();
 	}-*/;
 	
+	/**
+	 * Constructs a new {@link TrackballControls} instance.
+	 * @param object object to move/rotate
+	 * @param domElement element (can be null)
+	 * @return {@link TrackballControls} instance
+	 */
+	public static native final TrackballControls TrackballControls(Object3D object,
+			com.google.gwt.dom.client.Element domElement)/*-{
+		return new $wnd.THREE.TrackballControls(object, domElement);
+	}-*/;
+
+	/**
+	 * Constructs a new {@link TrackballControls} instance.
+	 * @param object object to move/rotate
+	 * @return {@link TrackballControls} instance
+	 */
+	public static native final TrackballControls TrackballControls(Object3D object)/*-{
+		return new $wnd.THREE.TrackballControls(object);
+	}-*/;
 	
 	/*
 	public static final int FrontSide = 0;
