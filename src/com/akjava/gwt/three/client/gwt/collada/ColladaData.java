@@ -1,6 +1,6 @@
 package com.akjava.gwt.three.client.gwt.collada;
 
-import com.akjava.gwt.three.client.js.core.Geometry;
+import com.akjava.gwt.three.client.js.core.*;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayString;
@@ -21,6 +21,12 @@ public native final JsArray<JsArray<WeightData>> getWeights()/*-{
 return this.skins[0].skinController.skin.weights;
 }-*/;
 
-
+	/**
+	 * Gets the scene containing all elements in the collada data.
+	 * @return scene
+	 */
+	public native final Object3D getScene()/*-{
+		return this.scene;
+	}-*/;
 
 }
