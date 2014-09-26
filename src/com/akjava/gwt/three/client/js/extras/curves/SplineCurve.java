@@ -37,8 +37,8 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.extras.curves;
 
-import com.akjava.gwt.three.client.gwt.math.XY;
 import com.akjava.gwt.three.client.js.extras.core.Curve;
+import com.akjava.gwt.three.client.js.math.Vector2;
 import com.google.gwt.core.client.JsArray;
 
 
@@ -46,7 +46,7 @@ public class SplineCurve extends Curve{
 	protected SplineCurve() {
 	}
 
-public final native JsArray<XY> getPoints()/*-{
+public final native JsArray<Vector2> getPoints()/*-{
 return this.points;
 }-*/;
 

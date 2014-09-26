@@ -2,18 +2,19 @@ package com.akjava.gwt.three.client.java.ui;
 
 import java.util.List;
 
-import com.akjava.gwt.three.client.gwt.math.XYObject;
+import com.akjava.gwt.three.client.gwt.math.*;
 import com.akjava.gwt.three.client.java.GWTSpline;
+import com.akjava.gwt.three.client.js.math.Vector2;
 
 public abstract class AbstractMovingXYControler {
 	protected long duration;
 	protected long total;
 	protected boolean moving;
-	protected List<XYObject> points;
+	protected List<Vector2> points;
 
 	
 
-public AbstractMovingXYControler(List<XYObject> points,long duration){
+public AbstractMovingXYControler(List<Vector2> points,long duration){
 	this.points=points;
 	this.duration=duration;
 	moving=true;
@@ -50,12 +51,12 @@ public void setMoving(boolean moving) {
 }
 
 
-public List<XYObject> getPoints() {
+public List<Vector2> getPoints() {
 	return points;
 }
 
 
-public void setPoints(List<XYObject> points) {
+public void setPoints(List<Vector2> points) {
 	this.points = points;
 }
 
@@ -68,7 +69,7 @@ if(!moving){
 }
 total+=delta;
 if(total<duration){
-	XYObject pt=GWTSpline.get2DPoint(points, (double)total/duration);
+	Vector2 pt=GWTSpline.get2DPoint(points, (double)total/duration);
 	moveTo(pt.getX(),pt.getY());
 }else{
 	moving=false;

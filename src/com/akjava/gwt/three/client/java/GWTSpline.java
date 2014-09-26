@@ -2,7 +2,8 @@ package com.akjava.gwt.three.client.java;
 
 import java.util.List;
 
-import com.akjava.gwt.three.client.gwt.math.XYObject;
+import com.akjava.gwt.three.client.js.THREE;
+import com.akjava.gwt.three.client.js.math.Vector2;
 
 
 /**
@@ -13,7 +14,7 @@ import com.akjava.gwt.three.client.gwt.math.XYObject;
  */
 public class GWTSpline {
 
-	public static XYObject get2DPoint(List<XYObject> points,double value){
+	public static Vector2 get2DPoint(List<Vector2> points,double value){
 		double point = ( points.size() - 1 ) * value;
 		int intPoint = (int) java.lang.Math.floor( point );
 		double weight = point - intPoint;
@@ -27,7 +28,7 @@ public class GWTSpline {
 		double x = GWTSpline.interpolate( points.get(c[0]).getX(), points.get(c[1]).getX(),points.get(c[2]).getX(),points.get(c[3]).getX(), weight );
 		double y = GWTSpline.interpolate( points.get(c[0]).getY(), points.get(c[1]).getY(),points.get(c[2]).getY(),points.get(c[3]).getY(), weight );
 	
-		return XYObject.create(x, y);
+		return THREE.Vector2(x, y);
 	}
 	
 	// Catmull-Rom

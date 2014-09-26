@@ -37,13 +37,35 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.math;
 
-import com.akjava.gwt.three.client.gwt.math.XYZ;
 import com.akjava.gwt.three.client.js.THREE;
-import com.google.gwt.core.client.JsArrayNumber;
+import com.google.gwt.core.client.*;
 
-public class Vector3 extends XYZ{
+public class Vector3 extends JavaScriptObject {
 	protected Vector3(){};
 	
+	
+/**
+ * Converts this vector to a {@link Vector2}.
+ * @return {@link Vector2}
+ */
+public final Vector2 toVector2()
+{
+	//just cast as this is kind of a superset of a vector 2
+	return this.cast();
+}
+	
+public   final native double getX()/*-{
+return this.x;
+}-*/;
+
+public   final native double getY()/*-{
+return this.y;
+}-*/;
+
+public   final native double getZ()/*-{
+return this.z;
+}-*/;
+
 public final native Vector3 set(double x,double y,double z)/*-{
 return this.set(x,y,z);
 }-*/;

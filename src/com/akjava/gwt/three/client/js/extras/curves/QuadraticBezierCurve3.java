@@ -37,7 +37,6 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.extras.curves;
 
-import com.akjava.gwt.three.client.gwt.math.XYZ;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.google.gwt.core.client.JavaScriptObject;
 
@@ -46,29 +45,29 @@ public class QuadraticBezierCurve3 extends JavaScriptObject{
 	protected QuadraticBezierCurve3() {
 	}
 
-	public final native XYZ getV0()/*-{
+	public final native Vector3 getV0()/*-{
 	return this.v0;
 	}-*/;
 
-	public final native void setV0(XYZ v0)/*-{
+	public final native void setV0(Vector3 v0)/*-{
 	this.v0 = v0;
 	}-*/;
 
 
-	public final native XYZ getV1()/*-{
+	public final native Vector3 getV1()/*-{
 	return this.v1;
 	}-*/;
 
-	public final native void setV1(XYZ v1)/*-{
+	public final native void setV1(Vector3 v1)/*-{
 	this.v1 = v1;
 	}-*/;
 
 
-	public final native XYZ getV2()/*-{
+	public final native Vector3 getV2()/*-{
 	return this.v2;
 	}-*/;
 
-	public final native void setV2(XYZ v2)/*-{
+	public final native void setV2(Vector3 v2)/*-{
 	this.v2 = v2;
 	}-*/;
 

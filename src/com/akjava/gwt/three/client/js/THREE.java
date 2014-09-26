@@ -41,9 +41,6 @@ import com.akjava.gwt.lib.client.JavaScriptUtils;
 import com.akjava.gwt.three.client.examples.ColladaLoader;
 import com.akjava.gwt.three.client.examples.modifiers.SubdivisionModifier;
 import com.akjava.gwt.three.client.examples.renderers.CSS3DRenderer;
-import com.akjava.gwt.three.client.gwt.math.XY;
-import com.akjava.gwt.three.client.gwt.math.XYZ;
-import com.akjava.gwt.three.client.gwt.math.XYZObject;
 import com.akjava.gwt.three.client.gwt.renderers.GWTRenderObject;
 import com.akjava.gwt.three.client.java.LineBasicMaterialBuilder;
 import com.akjava.gwt.three.client.java.MeshBasicMaterialBuilder;
@@ -321,7 +318,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static final native OctahedronGeometry OctahedronGeometry(double radius,int detail)/*-{
 	return new $wnd.THREE.OctahedronGeometry(radius, detail);
 	}-*/;
-	public static final native LatheGeometry LatheGeometry(JsArray<XYZ> points,int segments,double phiStart,double phiLength)/*-{
+	public static final native LatheGeometry LatheGeometry(JsArray<Vector3> points,int segments,double phiStart,double phiLength)/*-{
 	return new $wnd.THREE.LatheGeometry(points, segments, phiStart, phiLength);
 	}-*/;
 	public static final native IcosahedronGeometry IcosahedronGeometry(double radius,int detail)/*-{
@@ -339,19 +336,19 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static final native CircleGeometry CircleGeometry(double radius,int segments,double thetaStart,double thetaLength)/*-{
 	return new $wnd.THREE.CircleGeometry(radius, segments, thetaStart, thetaLength);
 	}-*/;
-	public static final native SplineCurve3 SplineCurve3(JsArray<XYZ> points)/*-{
+	public static final native SplineCurve3 SplineCurve3(JsArray<Vector3> points)/*-{
 	return new $wnd.THREE.SplineCurve3(points);
 	}-*/;
 	
-	public static final native SplineCurve SplineCurve(JsArray<XY> points)/*-{
+	public static final native SplineCurve SplineCurve(JsArray<Vector2> points)/*-{
 	return new $wnd.THREE.SplineCurve(points);
 	}-*/;
 	
-	public static final native QuadraticBezierCurve3 QuadraticBezierCurve3(XYZ v0,XYZ v1,XYZ v2)/*-{
+	public static final native QuadraticBezierCurve3 QuadraticBezierCurve3(Vector3 v0,Vector3 v1,Vector3 v2)/*-{
 	return new $wnd.THREE.QuadraticBezierCurve3(v0, v1, v2);
 	}-*/;
 	
-	public static final native QuadraticBezierCurve QuadraticBezierCurve(XY v0,XY v1,XY v2)/*-{
+	public static final native QuadraticBezierCurve QuadraticBezierCurve(Vector2 v0,Vector2 v1,Vector2 v2)/*-{
 	return new $wnd.THREE.QuadraticBezierCurve(v0, v1, v2);
 	}-*/;
 	
@@ -367,15 +364,15 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.EllipseCurve(aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise);
 	}-*/;
 	
-	public static final native CubicBezierCurve3 CubicBezierCurve3(XYZ v0,XYZ v1,XYZ v2,XYZ v3)/*-{
+	public static final native CubicBezierCurve3 CubicBezierCurve3(Vector3 v0,Vector3 v1,Vector3 v2,Vector3 v3)/*-{
 	return new $wnd.THREE.CubicBezierCurve3(v0, v1, v2, v3);
 	}-*/;
 	
-	public static final native CubicBezierCurve CubicBezierCurve(XY v0,XY v1,XY v2,XY v3)/*-{
+	public static final native CubicBezierCurve CubicBezierCurve(Vector2 v0,Vector2 v1,Vector2 v2,Vector2 v3)/*-{
 	return new $wnd.THREE.CubicBezierCurve(v0, v1, v2, v3);
 	}-*/;
 	
-	public static final native ClosedSplineCurve3 ClosedSplineCurve3(JsArray<XYZ> points)/*-{
+	public static final native ClosedSplineCurve3 ClosedSplineCurve3(JsArray<Vector3> points)/*-{
 	return new $wnd.THREE.ClosedSplineCurve3(points);
 	}-*/;
 	public static final native ArcCurve ArcCurve(double aX,double  aY,double  aRadius,double  aStartAngle,double  aEndAngle,boolean aClockwise)/*-{
@@ -421,7 +418,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.Triangle(a,b,c);
 	}-*/;
 	
-	public static final native Spline Spline(JsArray<XYZObject> points)/*-{
+	public static final native Spline Spline(JsArray<Vector3> points)/*-{
 	return new $wnd.THREE.Spline(points);
 	}-*/;
 	
@@ -817,6 +814,13 @@ return new $wnd.THREE.ArrowHelper(size);
 	 */
 	public static native final Vertex Vertex(Vector3 vector3f )/*-{
 	return new $wnd.THREE.Vertex( vector3f);
+	}-*/;
+	
+	public static native final Vector2 Vector2(double x,double y)/*-{
+	return new $wnd.THREE.Vector2(x,y);
+	}-*/;
+	public static native final Vector2 Vector2()/*-{
+	return new $wnd.THREE.Vector3(0,0);
 	}-*/;
 	
 	public static native final Vector3 Vector3(double x,double y,double z)/*-{

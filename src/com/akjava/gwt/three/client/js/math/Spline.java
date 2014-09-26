@@ -37,8 +37,7 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.math;
 
-import com.akjava.gwt.three.client.gwt.math.GWTSplineLength;
-import com.akjava.gwt.three.client.gwt.math.XYZObject;
+import com.akjava.gwt.three.client.gwt.math.*;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayNumber;
@@ -48,7 +47,7 @@ public class Spline extends JavaScriptObject{
 	protected Spline() {
 	}
 
-public final native JsArray<XYZObject> getPoints()/*-{
+public final native JsArray<Vector3> getPoints()/*-{
 return this.points;
 }-*/;
 
@@ -56,7 +55,7 @@ public final native void initFromArray(JsArray<JsArrayNumber> a)/*-{
 this.initFromArray(a);
 }-*/;
 
-public final native XYZObject getPoint(double k)/*-{
+public final native Vector3 getPoint(double k)/*-{
 return this.getPoint(k);
 }-*/;
 

@@ -37,8 +37,7 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.extras.core;
 
-import com.akjava.gwt.three.client.gwt.math.XYZObject;
-import com.akjava.gwt.three.client.js.math.Vector2;
+import com.akjava.gwt.three.client.js.math.*;
 import com.google.gwt.core.client.JsArray;
 
 
@@ -82,10 +81,10 @@ this.ellipse( aX, aY, xRadius, yRadius,aStartAngle, aEndAngle, aClockwise);
 public final native void absellipse(double   aX,double aY,double xRadius,double yRadius,double aStartAngle,double aEndAngle,boolean aClockwise)/*-{
 this.absellipse( aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwise);
 }-*/;
-public final native JsArray<XYZObject> getSpacedPoints(int divisions,boolean closedPath)/*-{
+public final native JsArray<Vector3> getSpacedPoints(int divisions,boolean closedPath)/*-{
 return this.getSpacedPoints( divisions, closedPath);
 }-*/;
-public final native JsArray<XYZObject> getPoints(int divisions,boolean closedPath)/*-{
+public final native JsArray<Vector3> getPoints(int divisions,boolean closedPath)/*-{
 this.getPoints( divisions, closedPath);
 }-*/;
 public final native JsArray<Shape> toShapes(boolean isCCW)/*-{

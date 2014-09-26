@@ -37,14 +37,41 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.math;
 
-import com.akjava.gwt.three.client.gwt.math.XY;
+import com.akjava.gwt.three.client.js.THREE;
 import com.google.gwt.core.client.*;
 
 
-public class Vector2 extends XY{
+public class Vector2 extends JavaScriptObject {
 	protected Vector2() {
 	}
 
+	/**
+	 * Converts this vector to a {@link Vector3}.
+	 * @return {@link Vector3}
+	 */
+	public final Vector3 toVector3()
+	{
+		//check if this is actually a vector3
+		if(hasZ())
+		{
+			return this.cast();
+		}
+		//create a new one
+		return THREE.Vector3(getX(), getY(),0);
+	}
+		
+	private static final native boolean hasZ()/*-{
+	return this.z!==undefined;
+	}-*/;
+	
+
+	public   final native double getX()/*-{
+	return this.x;
+	}-*/;
+	public   final native double getY()/*-{
+	return this.y;
+	}-*/;
+	
 public static final native Vector2 create(double x,double y)/*-{
 return new $wnd.THREE.Vector2(x,y);
 }-*/;
