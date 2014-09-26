@@ -43,18 +43,42 @@ import com.akjava.gwt.three.client.js.math.Quaternion;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.google.gwt.core.client.JsArray;
 
+/**
+ * A 3d object, the underlying class for most three.js objects.
+ */
 public class Object3D extends EventDispatcher{
-protected Object3D(){}
+	protected Object3D()
+	{
+	}
+
+	/**
+	 * Get current position.
+	 * @return position
+	 */
 	public final native Vector3 getPosition()/*-{
 		return this.position;
 	}-*/;
+
+	/**
+	 * Set current position.
+	 * @param vector position
+	 */
+	public final void setPosition(Vector3 vector)
+	{
+		getPosition().set(vector.getX(), vector.getY(), vector.getZ());
+	}
+
+	/**
+	 * Set current position.
+	 * @param x x
+	 * @param y y
+	 * @param z z
+	 */
+	public final void setPosition(double x, double y, double z)
+	{
+		getPosition().set(x, y, z);
+	}
 	
-	public final void setPosition(Vector3 vector){
-		getPosition().set(vector.getX(),vector.getY(),vector.getZ());
-	}
-	public final void setPosition(double x,double y,double z){
-		getPosition().set(x,y,z);
-	}
 	public final native Euler getRotation()/*-{
 	return this.rotation;
 }-*/;
