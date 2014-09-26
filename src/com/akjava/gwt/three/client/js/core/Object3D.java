@@ -63,27 +63,9 @@ protected Object3D(){}
 	this.rotation=rotation;
 	}-*/;
 
-
-	
-	/**
-	 * @deprecated
-	 * @param vector
-	 */
-	public final void setRotation(Vector3 vector){
-		setRotation(vector.getX(),vector.getY(),vector.getZ());
-	}
-	/**
-	 * @deprecated
-	 * @param vector
-	 */
-public final void setRotation(double x,double y,double z){
-	getRotation().set(x,y,z,"XYZ");
-}
 public final void setScale(double x,double y,double z){
 	getScale().set(x,y,z);
 }
-
-
 
 public final native void setQuaternion(Quaternion quaternion)/*-{
  this.quaternion=q;
@@ -101,16 +83,6 @@ return this.matrixRotationWorld;
 public final native Quaternion getQuaternion()/*-{
 return this.quaternion;
 }-*/;
-
-public final native void setUseQuaternion(boolean useQuaternion)/*-{
-this.useQuaternion=useQuaternion;
-}-*/;
-
-public final native boolean isUseQuaternion()/*-{
-return this.useQuaternion;
-}-*/;
-
-
 
 public final native Vector3 getScale()/*-{
 return this.scale;
@@ -134,11 +106,6 @@ public final native JsArray<Object3D> getChildren()/*-{
 return this.children;
 }-*/;
 
-
-public final native void lookAt(Vector3 vec)/*-{	
-this.lookAt(vec);
-}-*/;
-
 public final native void add(Object3D mesh)/*-{	
 this.add(mesh);
 }-*/;
@@ -154,22 +121,6 @@ return this.name;
 public final native void setName(String name)/*-{
 this.name=name;
 }-*/;
-/**
- * @deprecated
- * @param eulerOrder
- */
-public final native String getEulerOrder()/*-{
-return this.eulerOrder;
-}-*/;
-
-/**
- * @deprecated
- * @param eulerOrder
- */
-public final native void setEulerOrder(String eulerOrder)/*-{
-this.eulerOrder=eulerOrder;
-}-*/;
-
 
 public final native void updateMatrix()/*-{
 this.updateMatrix();
@@ -202,10 +153,6 @@ return this.matrixAutoUpdate ;
 public final native void setMatrixAutoUpdate (boolean bool)/*-{
 this.matrixAutoUpdate=bool;  
 }-*/;
-
-
-
-
 
 public final native String getUuid()/*-{
 return this.uuid;
@@ -355,41 +302,79 @@ public final native void setRotationFromQuaternion(Object q)/*-{
 this.setRotationFromQuaternion(q);
 }-*/;
 
-public final native Object rotateOnAxis()/*-{
-return this.rotateOnAxis();
-}-*/;
+	/**
+	 * Rotates this object on the given axis.
+	 * @param axis axis to rotate on
+	 * @param angle angle to rotate in radian
+	 * @return this instance
+	 */
+	public final native Object3D rotateOnAxis(Vector3 axis, double angle)/*-{
+		return this.rotateOnAxis(axis, angle);
+	}-*/;
 
-public final native Object rotateX()/*-{
-return this.rotateX();
-}-*/;
+	/**
+	 * Rotates this object on the x-axis (points right).
+	 * @param angle angle to rotate in radian
+	 * @return this instance
+	 */
+	public final native Object3D rotateX(double angle)/*-{
+		return this.rotateX(angle);
+	}-*/;
 
-public final native Object rotateY()/*-{
-return this.rotateY();
-}-*/;
+	/**
+	 * Rotates this object on the y-axis (points up!).
+	 * @param angle angle to rotate in radian
+	 * @return this instance
+	 */
+	public final native Object3D rotateY(double angle)/*-{
+		return this.rotateY(angle);
+	}-*/;
 
-public final native Object rotateZ()/*-{
-return this.rotateZ();
-}-*/;
+	/**
+	 * Rotates this object on the z-axis (points towards observer, not up!).
+	 * @param angle angle to rotate in radian
+	 * @return this instance
+	 */
+	public final native Object3D rotateZ(double angle)/*-{
+		return this.rotateZ(angle);
+	}-*/;
 
-public final native Object translateOnAxis()/*-{
-return this.translateOnAxis();
-}-*/;
+	/**
+	 * Translates this object on the given axis.
+	 * @param axis axis to translate on
+	 * @param distance distance to translate
+	 * @return this instance
+	 */
+	public final native Object3D translateOnAxis(Vector3 axis, double distance)/*-{
+		return this.translateOnAxis(axis, distance);
+	}-*/;
 
-public final native Object translate(Object distance,Object axis)/*-{
-return this.translate(distance,axis);
-}-*/;
+	/**
+	 * Translates this object on the x-axis (points right).
+	 * @param distance distance to translate
+	 * @return this instance
+	 */
+	public final native Object3D translateX(double distance)/*-{
+		return this.translateX(distance);
+	}-*/;
 
-public final native Object translateX()/*-{
-return this.translateX();
-}-*/;
+	/**
+	 * Translates this object on the y-axis (points up!).
+	 * @param distance distance to translate
+	 * @return this instance
+	 */
+	public final native Object3D translateY(double distance)/*-{
+		return this.translateY(distance);
+	}-*/;
 
-public final native Object translateY()/*-{
-return this.translateY();
-}-*/;
-
-public final native Object translateZ()/*-{
-return this.translateZ();
-}-*/;
+	/**
+	 * Translates this object on the z-axis (points towards observer, not up!).
+	 * @param distance distance to translate
+	 * @return this instance
+	 */
+	public final native Object3D translateZ(double distance)/*-{
+		return this.translateZ(distance);
+	}-*/;
 
 public final native Object localToWorld(Object vector)/*-{
 return this.localToWorld(vector);
@@ -399,17 +384,13 @@ public final native Object worldToLocal()/*-{
 return this.worldToLocal();
 }-*/;
 
-public final native Object lookAt()/*-{
-return this.lookAt();
-}-*/;
-
-public final native Object add(Object object)/*-{
-return this.add(object);
-}-*/;
-
-public final native void remove(Object object)/*-{
-this.remove(object);
-}-*/;
+	/**
+	 * Look at the given vector.
+	 * @param vector vector
+	 */
+	public final native void lookAt(Vector3 vector)/*-{
+		this.lookAt(vector);
+	}-*/;
 
 public final native void traverse(Object callback)/*-{
 this.traverse(callback);
