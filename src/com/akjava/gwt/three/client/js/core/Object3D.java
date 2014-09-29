@@ -214,16 +214,21 @@ public final native void setUp(Vector3 up)/*-{
 this.up = up;
 }-*/;
 
+	/**
+	 * Scales this object.
+	 * @param scale scale vector
+	 */
+	public final native void setScale(Vector3 scale)/*-{
+		this.scale = scale;
+	}-*/;
 
-
-
-
-
-
-public final native void setScale(Vector3 scale)/*-{
-this.scale = scale;
-}-*/;
-
+	/**
+	 * Scales this object.
+	 * @param scale scale factor
+	 */
+	public final native void setScale(double scale)/*-{
+		this.scale.x = this.scale.y = this.scale.z = scale;
+	}-*/;
 
 public final native Object getRenderDepth()/*-{
 return this.renderDepth;
@@ -442,8 +447,23 @@ public final native void updateMatrixWorld(Object force)/*-{
 this.updateMatrixWorld(force);
 }-*/;
 
-public final native Object3D clone(Object3D object,boolean recursive)/*-{
-return this.clone(object,recursive);
-}-*/;
+	/**
+	 * Clones the object.
+	 * @param object {@link Object3D}
+	 * @param recursive clone recursively?
+	 * @return the cloned {@link Object3D}
+	 */
+	public final native Object3D clone(Object3D object, boolean recursive)/*-{
+		return this.clone(object, recursive);
+	}-*/;
+
+	/**
+	 * Clones the object recursively.
+	 * @param object {@link Object3D}
+	 * @return the cloned {@link Object3D}
+	 */
+	public final native Object3D clone(Object3D object)/*-{
+		return this.clone(object);
+	}-*/;
 
 }

@@ -299,18 +299,22 @@ public final native void enableScissorTest(boolean enable)/*-{
 this.enableScissorTest(enable);
 }-*/;
 
-public final native void setClearColor(int color,double alpha)/*-{
-this.setClearColor(color,alpha);
-}-*/;
+	/**
+	 * Sets the color used to clear the scene.
+	 * @param color color
+	 * @param alpha alpha value
+	 */
+	public final native void setClearColor(int color, double alpha)/*-{
+		this.setClearColor(color, alpha);
+	}-*/;
 
-/**
- * @deprecated
- * @param hex
- * @param alpha
- */
-public final native void setClearColorHex(String hex,double alpha)/*-{
-this.setClearColorHex(hex,alpha);
-}-*/;
+	/**
+	 * Sets the color used to clear the scene.
+	 * @param color color
+	 */
+	public final native void setClearColor(int color)/*-{
+		this.setClearColor(color);
+	}-*/;
 
 public final native Color getClearColor()/*-{
 return this.getClearColor();
