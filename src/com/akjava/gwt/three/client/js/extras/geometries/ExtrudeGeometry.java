@@ -37,20 +37,18 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.extras.geometries;
 
-import com.akjava.gwt.three.client.gwt.core.BoundingBox;
 import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.extras.core.Shape;
 import com.google.gwt.core.client.JavaScriptObject;
 
 
+/**
+ * This object extrudes an 2D shape to an 3D geometry.
+ */
 public class ExtrudeGeometry extends Geometry{
 	protected ExtrudeGeometry() {
 	}
 	
-public final native BoundingBox getShapebb()/*-{
-return this.shapebb;
-}-*/;
-
 public final native Object addShape(Shape shape,JavaScriptObject options)/*-{
 return this.addShape(shape,options);
 }-*/;

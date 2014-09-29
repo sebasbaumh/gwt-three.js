@@ -43,6 +43,9 @@ import com.akjava.gwt.three.client.js.math.Vector3;
 import com.google.gwt.core.client.JsArray;
 
 
+/**
+ * Creates a tube which extrudes along a 3d spline.
+ */
 public class TubeGeometry extends Geometry{
 	protected TubeGeometry() {
 	}

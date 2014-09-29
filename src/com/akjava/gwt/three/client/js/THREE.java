@@ -64,9 +64,7 @@ import com.akjava.gwt.three.client.js.extras.animation.KeyFrameAnimation;
 import com.akjava.gwt.three.client.js.extras.cameras.CombinedCamera;
 import com.akjava.gwt.three.client.js.extras.cameras.CubeCamera;
 import com.akjava.gwt.three.client.js.extras.controls.*;
-import com.akjava.gwt.three.client.js.extras.core.Gyroscope;
-import com.akjava.gwt.three.client.js.extras.core.Path;
-import com.akjava.gwt.three.client.js.extras.core.Shape;
+import com.akjava.gwt.three.client.js.extras.core.*;
 import com.akjava.gwt.three.client.js.extras.curves.ArcCurve;
 import com.akjava.gwt.three.client.js.extras.curves.ClosedSplineCurve3;
 import com.akjava.gwt.three.client.js.extras.curves.CubicBezierCurve;
@@ -278,13 +276,31 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.WireframeHelper(object,lineColor);
 	}-*/;
 	
-	
-	
-
-	 
-	public static final native TubeGeometry TubeGeometry(Path path,int segments,double radius,double radialSegments,boolean closed )/*-{
-	return new $wnd.THREE.TubeGeometry(path, segments, radius, radialSegments, closed );
+	/**
+	 * Creates a tube which extrudes along a 3d spline.
+	 * @param path path
+	 * @param radius radiuse
+	 * @return {@link TubeGeometry}
+	 */
+	public static final native TubeGeometry TubeGeometry(Curve path, double radius)/*-{
+		return new $wnd.THREE.TubeGeometry(path, undefined, radius);
 	}-*/;
+
+	/**
+	 * Creates a tube which extrudes along a 3d spline.
+	 * @param path path
+	 * @param segments
+	 * @param radius
+	 * @param radialSegments
+	 * @param closed
+	 * @return {@link TubeGeometry}
+	 */
+	public static final native TubeGeometry TubeGeometry(Curve path, int segments, double radius, double radialSegments,
+			boolean closed)/*-{
+		return new $wnd.THREE.TubeGeometry(path, segments, radius,
+				radialSegments, closed);
+	}-*/;
+
 	public static final native TorusKnotGeometry TorusKnotGeometry(double radius,double tube,int radialSegments,int tubularSegments,double p,double q,double heightScale)/*-{
 	return new $wnd.THREE.TorusKnotGeometry(radius, tube, radialSegments, tubularSegments, p, q, heightScale);
 	}-*/;
