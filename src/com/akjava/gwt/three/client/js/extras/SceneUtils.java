@@ -21,14 +21,6 @@ public class SceneUtils {
 	public static native final Object3D createMultiMaterialObject(Geometry geometry, JsArray<Material> materials)/*-{
 	return $wnd.THREE.SceneUtils.createMultiMaterialObject(geometry,materials);
 	}-*/;
-	public static final Object3D createMultiMaterialObject(Geometry geometry, Iterable<Material> materials){
-		@SuppressWarnings("unchecked")
-		JsArray<Material> jsmaterials=THREE.createJsArray();
-		for(Material m:materials){
-			jsmaterials.push(m);
-		}
-		return createMultiMaterialObject(geometry, jsmaterials);
-	}
 	
 	/**
 	 * @deprecated

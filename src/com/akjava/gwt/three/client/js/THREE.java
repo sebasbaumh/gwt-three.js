@@ -37,7 +37,6 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js;
 
-import com.akjava.gwt.lib.client.JavaScriptUtils;
 import com.akjava.gwt.three.client.examples.ColladaLoader;
 import com.akjava.gwt.three.client.examples.modifiers.SubdivisionModifier;
 import com.akjava.gwt.three.client.examples.renderers.CSS3DRenderer;
@@ -703,61 +702,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static final  AmbientLight AmbientLight(double color){
 	return AmbientLight((int)color);
 	}
-	
-	
-	
-	public static  final BoxGeometry BoxGeometry(double x,double y,double z,int xpart,int ypart,int zpart,Material[] material ){
-		JsArray<Material> arrays=(JsArray<Material>) JsArray.createArray();
-		for(Material m:material){
-			arrays.push(m);
-		}
-		
-		return Box(x,y,z,xpart,ypart,zpart,arrays);
-	}
-	
-	public static  final BoxGeometry Box(double x,double y,double z,int xpart,int ypart,int zpart,Material[] material ){
-		JsArray<Material> arrays=(JsArray<Material>) JsArray.createArray();
-		for(Material m:material){
-			arrays.push(m);
-		}
-		
-		return Box(x,y,z,xpart,ypart,zpart,arrays);
-	
-	}
-	
-	//TODO support generic
-	@SuppressWarnings("unchecked")
-	public static final JsArray createJsArray(){
-		return JavaScriptUtils.createJSArray();
-	}
-	
-	public static native final BoxGeometry BoxGeometry(double x,double y,double z,int xpart,int ypart,int zpart,JsArray<Material> materials)/*-{
-	
-	
-    var ms= $wnd.eval("new Array()");
-    for (var i = 0; i < materials.length; i++) {
-		ms.push(materials[i]);
-        }
-        
-	return new $wnd.THREE.BoxGeometry( x, y, z ,xpart,ypart,zpart,ms);
-	}-*/;
-	
-	
-
-	
-	//I'm happy to fix array problem.
-	public static native final BoxGeometry Box(double x,double y,double z,int xpart,int ypart,int zpart,JsArray<Material> materials)/*-{
-	
-	material = new $wnd.THREE.MeshBasicMaterial({color: 0xff0000, wireframe: false});
-    var ms=new $wnd.Array();
-    for (var i = 0; i < materials.length; i++) {
-		ms.push(materials[i]);
-        }
-        
-	return new $wnd.THREE.BoxGeometry( x, y, z ,xpart,ypart,zpart,ms);
-	}-*/;
-	
-	
 	
 	public static native final Geometry Geometry()/*-{
 	return new $wnd.THREE.Geometry();
