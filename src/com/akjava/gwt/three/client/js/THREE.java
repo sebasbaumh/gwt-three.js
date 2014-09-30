@@ -741,10 +741,32 @@ return new $wnd.THREE.ArrowHelper(size);
 	}
 	
 	
-	
-	
+	/**
+	 * This is a helper function to avoid issues with the way arrays are created. It's a nasty workaround, but
+	 * MeshFaceMaterial for instance is unusable without it (the "materials instanceof Array" check fails).
+	 * @param o array
+	 * @return array, which always works with three.js
+	 */
+	public static native final <T extends JavaScriptObject> JavaScriptObject buildArray(JsArray<T> o)/*-{
+		var a = new $wnd.Array();
+		for (var i = 0; i < o.length; i++) {
+			a.push(o[i]);
+		}
+		return a;
+	}-*/;
+
+	/**
+	 * Constructs a material with different materials for different faces of a mesh. Uses a nasty workaround for the
+	 * array, but MeshFaceMaterial is unusable without it (the "materials instanceof Array" check fails).
+	 * @param materials
+	 * @return material
+	 */
 	public static native final MeshFaceMaterial MeshFaceMaterial(JsArray<Material> materials)/*-{
-	return new $wnd.THREE.MeshFaceMaterial(materials);
+		var a = new $wnd.Array();
+		for (var i = 0; i < materials.length; i++) {
+			a.push(materials[i]);
+		}
+		return new $wnd.THREE.MeshFaceMaterial(a);
 	}-*/;
 	
 	/**
