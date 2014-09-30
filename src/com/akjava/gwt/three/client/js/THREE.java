@@ -250,7 +250,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static final native FaceNormalsHelper FaceNormalsHelper(Object3D object,double size,int hex,double linewidth)/*-{
 	return new $wnd.THREE.FaceNormalsHelper(object, size, hex, linewidth);
 	}-*/;
-	public static final native GridHelper GridHelper(int size,int step )/*-{
+	public static final native GridHelper GridHelper(double size,double step )/*-{
 	return new $wnd.THREE.GridHelper(size, step );
 	}-*/;
 	public static final native HemisphereLightHelper HemisphereLightHelper(HemisphereLight light,double sphereSize,double arrowLength,double domeSize)/*-{

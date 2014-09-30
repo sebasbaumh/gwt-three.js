@@ -40,26 +40,51 @@ package com.akjava.gwt.three.client.js.extras.helpers;
 import com.akjava.gwt.three.client.js.math.Color;
 import com.akjava.gwt.three.client.js.objects.Line;
 
-
-public class GridHelper extends Line{
-	protected GridHelper() {
+/**
+ * The GridHelper is an object to define grids. Grids are two-dimensional arrays of lines.
+ */
+public class GridHelper extends Line
+{
+	protected GridHelper()
+	{
 	}
 
-public final native Color getColor1()/*-{
-return this.color1;
-}-*/;
+	/**
+	 * Gets the color of the centerline. This can be a Color, a hexadecimal value and an CSS-Color name.
+	 * @return {@link Color}
+	 */
+	public final native Color getColor1()/*-{
+		return this.color1;
+	}-*/;
 
+	/**
+	 * Gets the color of the lines of the grid. This can be a Color, a hexadecimal value and an CSS-Color name.
+	 * @return {@link Color}
+	 */
+	public final native Color getColor2()/*-{
+		return this.color2;
+	}-*/;
 
+	/**
+	 * Sets the colors.
+	 * @param colorCenterLine The color of the centerline. This can be a Color, a hexadecimal value and an CSS-Color
+	 *            name.
+	 * @param colorGrid The color of the lines of the grid. This can be a Color, a hexadecimal value and an CSS-Color
+	 *            name.
+	 */
+	public final native void setColors(int colorCenterLine, int colorGrid)/*-{
+		this.setColors(colorCenterLine, colorGrid);
+	}-*/;
 
-public final native Color getColor2()/*-{
-return this.color2;
-}-*/;
-
-
-
-public final native void setColors(int colorCenterLine,int colorGrid)/*-{
-this.setColors(colorCenterLine,colorGrid);
-}-*/;
-
+	/**
+	 * Sets the colors.
+	 * @param colorCenterLine The color of the centerline. This can be a Color, a hexadecimal value and an CSS-Color
+	 *            name.
+	 * @param colorGrid The color of the lines of the grid. This can be a Color, a hexadecimal value and an CSS-Color
+	 *            name.
+	 */
+	public final native void setColors(Color colorCenterLine, Color colorGrid)/*-{
+		this.setColors(colorCenterLine, colorGrid);
+	}-*/;
 
 }

@@ -5,7 +5,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class JSParameter extends JavaScriptObject{
 	protected JSParameter(){}
 	public final static JSParameter createParameter(){
-		return (JSParameter) JavaScriptObject.createObject();
+		return JavaScriptObject.createObject().cast();
 	}
 	public final native String getString(String key)/*-{
 	return this[key];
