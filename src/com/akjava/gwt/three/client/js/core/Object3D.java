@@ -421,9 +421,28 @@ return this.worldToLocal();
 		this.lookAt(vector);
 	}-*/;
 
-public final native void traverse(Object callback)/*-{
-this.traverse(callback);
-}-*/;
+	/**
+	 * Traverse this {@link Object3D} and all children.
+	 * @param handler handler to be called for each found {@link Object3D}
+	 */
+	public final native void traverse(ObjectTraverseHandler handler)/*-{
+		this
+				.traverse(function(o) {
+					handler.@com.akjava.gwt.three.client.js.core.Object3D$ObjectTraverseHandler::process(Lcom/akjava/gwt/three/client/js/core/Object3D;)(o);
+				});
+	}-*/;
+
+	/**
+	 * Handler for traversing an {@link Object3D}.
+	 */
+	public static interface ObjectTraverseHandler
+	{
+		/**
+		 * Process the given {@link Object3D}
+		 * @param o {@link Object3D}
+		 */
+		public void process(Object3D o);
+	}
 
 public final native Object getObjectById(Object id,Object recursive)/*-{
 return this.getObjectById(id,recursive);
