@@ -962,6 +962,37 @@ return new $wnd.THREE.ArrowHelper(size);
 		}-*/;
 		
 	}
+
+	/**
+	 * Defines shadow map type. Default is THREE.PCFShadowMap.
+	 */
+	public static final class ShadowMapType
+	{
+		/**
+		 * unfiltered.
+		 * @return ShadowMapType
+		 */
+		public static native final int BasicShadowMap()/*-{
+			return $wnd.THREE.BasicShadowMap;
+		}-*/;
+
+		/**
+		 * percentage close filtering (default).
+		 * @return ShadowMapType
+		 */
+		public static native final int PCFShadowMap()/*-{
+			return $wnd.THREE.PCFShadowMap;
+		}-*/;
+
+		/**
+		 * percentage close filtering with bilinear filtering in shader.
+		 * @return ShadowMapType
+		 */
+		public static native final int PCFSoftShadowMap()/*-{
+			return $wnd.THREE.PCFSoftShadowMap;
+		}-*/;
+	}
+	
 	public static final class Blending{
 		public static native final int NoBlending()/*-{
 		return $wnd.THREE.NoBlending;
