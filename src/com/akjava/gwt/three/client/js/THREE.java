@@ -696,12 +696,14 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.Scene();
 	}-*/;
 	
+	/**
+	 * This light's color gets applied to all the objects in the scene globally.
+	 * @param color Numeric value of the RGB component of the color.
+	 * @return {@link AmbientLight}
+	 */
 	public static native final AmbientLight AmbientLight(int color)/*-{
-	return new $wnd.THREE.AmbientLight(color);
+		return new $wnd.THREE.AmbientLight(color);
 	}-*/;
-	public static final  AmbientLight AmbientLight(double color){
-	return AmbientLight((int)color);
-	}
 	
 	public static native final Geometry Geometry()/*-{
 	return new $wnd.THREE.Geometry();
