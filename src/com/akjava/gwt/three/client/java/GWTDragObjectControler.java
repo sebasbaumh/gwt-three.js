@@ -79,7 +79,7 @@ public Vector3 moveSelectionPosition(int mouseX,int mouseY,int screenWidth, int 
 		JsArray<Intersect> intersects = ray.intersectObject( mouseCatchPlane );
 		
 		
-		Vector3 newPos=intersects.get(0).getPoint().subSelf( draggableOffset );
+		Vector3 newPos=intersects.get(0).getPoint().sub( draggableOffset );
 		log="newPos-raw:"+ThreeLog.get(newPos);
 		Vector3 parentPos=THREE.Vector3();
 		if(selectedDraggablekObject.getParent()!=null){
@@ -88,7 +88,7 @@ public Vector3 moveSelectionPosition(int mouseX,int mouseY,int screenWidth, int 
 			//LogUtils.log("parent:"+ThreeLog.get(parentPos));
 			log+="parentPos:"+ThreeLog.get(parentPos);
 		}
-		newPos.subSelf(parentPos);
+		newPos.sub(parentPos);
 		
 		
 		
@@ -157,7 +157,7 @@ public void selectObject(Object3D target,int mouseX,int mouseY,int screenWidth, 
 	mouseCatchPlane.updateMatrixWorld(true);//very important
 	
 	JsArray<Intersect> pintersects=ray.intersectObject(mouseCatchPlane);
-	draggableOffset.copy(pintersects.get(0).getPoint()).subSelf(mouseCatchPlane.getPosition());
+	draggableOffset.copy(pintersects.get(0).getPoint()).sub(mouseCatchPlane.getPosition());
 	/*
 	 * make a problem?
 	if(draggableOffset.getX()<0.0001){

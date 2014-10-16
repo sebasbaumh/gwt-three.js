@@ -114,7 +114,7 @@ public class GWTGeometryUtils {
 	public static final void centerOfVertices(JsArray<Vector3> vertices){
 		Vector3 center=getCenter(vertices);
 		for(int i=0;i<vertices.length();i++){
-			vertices.get(i).subSelf(center);
+			vertices.get(i).sub(center);
 		}
 	}
 	

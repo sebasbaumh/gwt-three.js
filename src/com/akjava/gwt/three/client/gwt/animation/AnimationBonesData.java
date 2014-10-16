@@ -72,7 +72,7 @@ public class AnimationBonesData {
 			
 			if(bone.getParent()!=-1){
 				Vector3 parentPos=positions.get(bone.getParent());
-				bpos.addSelf(parentPos);
+				bpos.add(parentPos);
 			}
 			
 			positions.add(bpos);
@@ -119,7 +119,7 @@ public class AnimationBonesData {
 		
 		Matrix4 matrix=THREE.Matrix4();
 		for(int j=0;j<path.size()-1;j++){//last is boneself
-			angle.addSelf(bonesMatrixs.get(path.get(j)).getAngle());
+			angle.add(bonesMatrixs.get(path.get(j)).getAngle());
 		}
 		return angle;
 	}

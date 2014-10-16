@@ -40,9 +40,14 @@ package com.akjava.gwt.three.client.js.math;
 import com.akjava.gwt.three.client.js.THREE;
 import com.google.gwt.core.client.*;
 
-public class Vector3 extends JavaScriptObject {
-	protected Vector3(){};
-	
+/**
+ * 3D vector.
+ */
+public class Vector3 extends JavaScriptObject
+{
+	protected Vector3()
+	{
+	}
 	
 /**
  * Converts this vector to a {@link Vector2}.
@@ -98,16 +103,6 @@ public final native Vector3 add(Vector3 v)/*-{
 return this.add(v);
 }-*/;
 
-/**
- * @deprecated
- * @param v
- * @param w
- * @return
- */
-public final native Vector3 add(Vector3 v,Vector3 w)/*-{
-return this.add(v,w);
-}-*/;
-
 public final native Vector3 addScalar(double s)/*-{
 return this.addScalar(s);
 }-*/;
@@ -116,35 +111,27 @@ public final native Vector3 addVectors(Vector3 a,Vector3 b)/*-{
 return this.addVectors(a,b);
 }-*/;
 
-public final native Vector3 sub(Vector3 v)/*-{
-return this.sub(v);
-}-*/;
+	/**
+	 * Subtracts v from this vector.
+	 * @param v vector
+	 * @return this vector
+	 */
+	public final native Vector3 sub(Vector3 v)/*-{
+		return this.sub(v);
+	}-*/;
 
-/**
- * @deprecated
- * @param v
- * @param w
- * @return
- */
-public final native Vector3 sub(Vector3 v,Vector3 w)/*-{
-return this.sub(v,w);
-}-*/;
-
-public final native Vector3 subVectors(Vector3 a,Vector3 b)/*-{
-return this.subVectors(a,b);
-}-*/;
+	/**
+	 * Sets this vector to a - b.
+	 * @param a
+	 * @param b
+	 * @return this vector
+	 */
+	public final native Vector3 subVectors(Vector3 a, Vector3 b)/*-{
+		return this.subVectors(a, b);
+	}-*/;
 
 public final native Vector3 multiply(Vector3 v)/*-{
 return this.multiply(v);
-}-*/;
-/**
- * @deprecated
- * @param v
- * @param w
- * @return
- */
-public final native Vector3 multiply(Vector3 v,Vector3 w)/*-{
-return this.multiply(v,w);
 }-*/;
 
 public final native Vector3 multiplyScalar(double scalar)/*-{
@@ -215,9 +202,13 @@ public final native double lengthManhattan()/*-{
 return this.lengthManhattan();
 }-*/;
 
-public final native Vector3 normalize()/*-{
-return this.normalize();
-}-*/;
+	/**
+	 * Normalizes this vector. Transforms this Vector into a Unit vector by dividing the vector by it's length.
+	 * @return normalized vector
+	 */
+	public final native Vector3 normalize()/*-{
+		return this.normalize();
+	}-*/;
 
 public final native Vector3 setLength(double l)/*-{
 return this.setLength(l);
@@ -231,16 +222,6 @@ public final native Vector3 cross(Vector3 v)/*-{
 return this.cross(v);
 }-*/;
 
-
-/**
- * @deprecated
- * @param v
- * @param w
- * @return
- */
-public final native Vector3 cross(Vector3 v,Vector3 w)/*-{
-return this.cross(v,w);
-}-*/;
 
 public final native Vector3 crossVectors(Vector3 a,Vector3 b)/*-{
 return this.crossVectors(a,b);
@@ -256,34 +237,6 @@ return this.distanceTo(v);
 
 public final native double distanceToSquared(Vector3 v)/*-{
 return this.distanceToSquared(v);
-}-*/;
-
-/**
- * @deprecated
- * @param m
- * @param order
- */
-public final native void setEulerFromRotationMatrix(Vector3 m,String order)/*-{
-this.setEulerFromRotationMatrix(m,order);
-}-*/;
-
-/**
- * @deprecated
- * @param q
- * @param order
- */
-public final native void setEulerFromQuaternion(Quaternion q,String order)/*-{
-this.setEulerFromQuaternion(q,order);
-}-*/;
-
-/**
- * @deprecated after r64
- * use setFromMatrixPosition
- * @param m
- * @return
- */
-public final native Vector3 getPositionFromMatrix(Matrix4 m)/*-{
-return this.getPositionFromMatrix(m);
 }-*/;
 
 public final native Vector3 setFromMatrixPosition(Matrix4 m)/*-{
@@ -367,54 +320,6 @@ public native final void gwtIncrementZ(double z)/*-{
 this.z+=z;
 }-*/;
 
-
-
-
-
-
-
-
-
-
-/**
- * @deprecated
- * @param vec3
- * @return
- */
-public native final Vector3 addSelf(Vector3 vec3)/*-{
-return this.add(vec3);
-}-*/;
-
-/**
- * @deprecated
- * @return
- */
-public native final Vector3 subSelf(Vector3 vec3)/*-{
-return this.sub(vec3);
-}-*/;
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * @deprecated
- * @return
- */
-public native final Vector3 crossSelf(Vector3 vec3)/*-{
-return this.cross(vec3);
-}-*/;
-
-
-
-
 public final Vector3 getRotationFromMatrix(Matrix4 matrix){
 	return getRotationFromMatrix(matrix,"XYZ");
 }
@@ -439,14 +344,6 @@ public  final synchronized Vector3 getRotationFromMatrix(Matrix4 matrix,String o
 //public native final Vector3 setEulerFromRotationMatrix(Matrix4 matrix,String order)/*-{
 //return this.setEulerFromRotationMatrix(matrix,order);
 //}-*/;
-
-/**
- * @deprecated
- * @param vec3
- */
-public native final void divideSelf(Vector3 vec3)/*-{
-this.divide(vec3);
-}-*/;
 
 public final native Vector3 clampScalar(double minVal,double maxVal)/*-{
 return this.clampScalar(minVal,maxVal);

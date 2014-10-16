@@ -41,11 +41,8 @@ import com.akjava.gwt.three.client.gwt.animation.AnimationBone;
 import com.akjava.gwt.three.client.gwt.animation.AnimationData;
 import com.akjava.gwt.three.client.gwt.core.BoundingBox;
 import com.akjava.gwt.three.client.gwt.core.MorphTarget;
-import com.akjava.gwt.three.client.js.math.Color;
-import com.akjava.gwt.three.client.js.math.Matrix4;
-import com.akjava.gwt.three.client.js.math.Vector2;
-import com.akjava.gwt.three.client.js.math.Vector3;
-import com.akjava.gwt.three.client.js.math.Vector4;
+import com.akjava.gwt.three.client.js.math.*;
+import com.akjava.gwt.three.client.js.objects.Mesh;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayNumber;
@@ -156,10 +153,14 @@ public final native boolean getDynamic()/*-{
 return this.dynamic;
 }-*/;
 
-public final native void setDynamic(boolean bool)/*-{
-this.dynamic=bool;
-}-*/;
-
+	/**
+	 * Set to true if attribute buffers will need to change in runtime (using "dirty" flags). Unless set to true
+	 * internal typed arrays corresponding to buffers will be deleted once sent to GPU. Defaults to true.
+	 * @param bool the intermediate typed arrays will be deleted when set to false
+	 */
+	public final native void setDynamic(boolean bool)/*-{
+		this.dynamic = bool;
+	}-*/;
 
 public final native void applyMatrix(Matrix4 matrix)/*-{
 this.applyMatrix(matrix);
@@ -343,20 +344,6 @@ this.hasTangents = hasTangents;
 }-*/;
 
 
-
-
-public final native void setDynamic(Object dynamic)/*-{
-this.dynamic = dynamic;
-}-*/;
-
-
-
-
-
-
-
-
-
 public final native boolean isLineDistancesNeedUpdate()/*-{
 return this.lineDistancesNeedUpdate;
 }-*/;
@@ -388,13 +375,49 @@ public final native void computeMorphNormals()/*-{
 this.computeMorphNormals();
 }-*/;
 
+	/**
+	 * Merges two {@link Geometry}s.
+	 * @param geom {@link Geometry}
+	 */
+	public final native void merge(Geometry geom)/*-{
+		this.merge(geom);
+	}-*/;
 
+	/**
+	 * Merges two {@link Geometry}s.
+	 * @param geom {@link Geometry}
+	 * @param matrix
+	 */
+	public final native void merge(Geometry geom, Matrix4 matrix)/*-{
+		this.merge(geom, matrix);
+	}-*/;
 
-public final native Object mergeVertices()/*-{
-return this.mergeVertices();
-}-*/;
+	/**
+	 * Merges two {@link Geometry}s.
+	 * @param geom {@link Geometry}
+	 * @param matrix
+	 * @param materialIndexOffset
+	 */
+	public final native void merge(Geometry geom, Matrix4 matrix, int materialIndexOffset)/*-{
+		this.merge(geom, matrix, materialIndexOffset);
+	}-*/;
 
+	/**
+	 * Merges the {@link Geometry} with the given {@link Mesh}.
+	 * @param mesh mesh
+	 */
+	public final native void merge(Mesh mesh)/*-{
+		mesh.matrixAutoUpdate && mesh.updateMatrix();
+		this.merge(mesh.geometry, mesh.matrix);
+	}-*/;
 
+	/**
+	 * Checks for duplicate vertices with hashmap. Duplicated vertices are removed and faces' vertices are updated.
+	 * @return number of removed vertices
+	 */
+	public final native int mergeVertices()/*-{
+		return this.mergeVertices();
+	}-*/;
 
 public final native void dispose()/*-{
 this.dispose();
