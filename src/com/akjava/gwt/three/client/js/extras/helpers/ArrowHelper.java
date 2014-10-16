@@ -42,39 +42,61 @@ import com.akjava.gwt.three.client.js.math.Vector3;
 import com.akjava.gwt.three.client.js.objects.Line;
 import com.akjava.gwt.three.client.js.objects.Mesh;
 
-
-public class ArrowHelper extends Object3D{
-	protected ArrowHelper() {
+/**
+ * An 3D arrow Object.
+ */
+public class ArrowHelper extends Object3D
+{
+	protected ArrowHelper()
+	{
 	}
 
+	/**
+	 * @return line part of the arrowHelper
+	 */
+	public final native Line getLine()/*-{
+		return this.line;
+	}-*/;
 
+	/**
+	 * @return cone part of the arrowHelper
+	 */
+	public final native Mesh getCone()/*-{
+		return this.cone;
+	}-*/;
 
-public final native Line getLine()/*-{
-return this.line;
-}-*/;
+	/**
+	 * Sets the direction of the arrow.
+	 * @param vec direction, is assumed to be normalized
+	 */
+	public final native void setDirection(Vector3 vec)/*-{
+		this.setDirection(vec);
+	}-*/;
 
+	/**
+	 * Sets the length of the arrow.
+	 * @param length
+	 */
+	public final native void setLength(double length)/*-{
+		this.setLength(length);
+	}-*/;
 
+	/**
+	 * Sets the length of the arrow.
+	 * @param length
+	 * @param headLength The length of the head of the arrow
+	 * @param headWidth The width of the head of the arrow
+	 */
+	public final native void setLength(double length, double headLength, double headWidth)/*-{
+		this.setLength(length, headLength, headWidth);
+	}-*/;
 
-
-public final native Mesh getCone()/*-{
-return this.cone;
-}-*/;
-
-
-public final native Object setDirection(Vector3 vec)/*-{
-return this.setDirection(vec);
-}-*/;
-
-public final native void setLength(double length)/*-{
-this.setLength(length);
-}-*/;
-public final native void setLength(double length,double headLength,double headWidth)/*-{
-this.setLength(length,headLength, headWidth);
-}-*/;
-
-public final native void setColor(int hex)/*-{
-this.setColor(hex);
-}-*/;
-
+	/**
+	 * Sets the color of the arrow.
+	 * @param hex hexadecimal value to define color ex:0xffff00
+	 */
+	public final native void setColor(int hex)/*-{
+		this.setColor(hex);
+	}-*/;
 
 }

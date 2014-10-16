@@ -217,14 +217,37 @@ public class THREE {
 	return new $wnd.THREE.MorphBlendMesh(geometry, material);
 	}-*/;
 	
-	public static final native ArrowHelper ArrowHelper(Vector3 dir,Vector3 origin,double length,int hex,double headLength,double headWidth)/*-{
-	return new $wnd.THREE.ArrowHelper( dir, origin, length, hex,headLength, headWidth);
-	}-*/;
-	public static final native ArrowHelper ArrowHelper(Vector3 dir,Vector3 origin,double length,int hex)/*-{
-	return new $wnd.THREE.ArrowHelper( dir, origin, length, hex);
+	/**
+	 * This creates an arrow starting in origin in the direction dir for a certain length. It is also possible to change
+	 * color.
+	 * @param dir direction from origin
+	 * @param origin {@link Vector3}
+	 * @param length scalar
+	 * @param hex hexadecimal value to define color ex:0xffff00
+	 * @param headLength The length of the head of the arrow
+	 * @param headWidth The length of the width of the arrow
+	 * @return {@link ArrowHelper}
+	 */
+	public static final native ArrowHelper ArrowHelper(Vector3 dir, Vector3 origin, double length, int hex,
+			double headLength, double headWidth)/*-{
+		return new $wnd.THREE.ArrowHelper(dir, origin, length, hex, headLength,
+				headWidth);
 	}-*/;
 
-public static final native AxisHelper AxisHelper(double size)/*-{
+	/**
+	 * This creates an arrow starting in origin in the direction dir for a certain length. It is also possible to change
+	 * color.
+	 * @param dir direction from origin
+	 * @param origin {@link Vector3}
+	 * @param length scalar
+	 * @param hex hexadecimal value to define color ex:0xffff00
+	 * @return {@link ArrowHelper}
+	 */
+	public static final native ArrowHelper ArrowHelper(Vector3 dir, Vector3 origin, double length, int hex)/*-{
+		return new $wnd.THREE.ArrowHelper(dir, origin, length, hex);
+	}-*/;
+
+	public static final native AxisHelper AxisHelper(double size)/*-{
 return new $wnd.THREE.ArrowHelper(size);
 }-*/;
 
