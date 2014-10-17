@@ -45,36 +45,14 @@ import com.akjava.gwt.three.client.js.scenes.Scene;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 
-public class Projector extends JavaScriptObject{
-protected Projector(){}
-
 /**
- * temporaly fixed ,now just pick from scene.child() array,not recursive
- * @deprecated no more scene support
+ * Projects points between spaces.
  */
-public final native JsArray<Intersect> gwtPickIntersects(int mx,int my,int sw,int sh,Camera camera,Scene scene)/*-{	
-	var vector = new $wnd.THREE.Vector3( ( mx / sw ) * 2 - 1, - ( my / sh ) * 2 + 1, 0.5 );
-				this.unprojectVector( vector, camera );
-
-				var ray = new $wnd.THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-				return  ray.intersectObjects( scene.children );
-
-}-*/;
-
-/**
- * @deprecated no more scene support r49
- * emporaly fixed ,now  just pick from scene.child() array,not recursive
- */
-public final native JsArray<Intersect> gwtPickIntersects(int mx,int my,int sw,int sh,Camera camera,Vector3 position,Scene scene)/*-{
-
-var vector = new $wnd.THREE.Vector3( ( mx / sw ) * 2 - 1, - ( my / sh ) * 2 + 1, 0.5 );
-			this.unprojectVector( vector, camera );
-
-			var ray = new $wnd.THREE.Raycaster(position, vector.sub(position ).normalize() );
-			
-			return  ray.intersectScene( scene.children );
-
-}-*/;
+public class Projector extends JavaScriptObject
+{
+	protected Projector()
+	{
+	}
 
 public final native Ray gwtCreateRay(int mx,int my,int sw,int sh,Camera camera)/*-{
 
@@ -116,28 +94,51 @@ var vector = new $wnd.THREE.Vector3( ( mx / sw ) * 2 - 1, - ( my / sh ) * 2 + 1,
 
 }-*/;
 
-public final native Vector3 projectVector(Vector3 vector,Camera camera)/*-{
+	/**
+	 * Projects a vector with the camera. Caution, this method changes 'vector'.
+	 * @param vector
+	 * @param camera
+	 * @return projected vector
+	 */
+	public final native Vector3 projectVector(Vector3 vector, Camera camera)/*-{
+		return this.projectVector(vector, camera);
+	}-*/;
 
-return this.projectVector(vector,camera);
+	/**
+	 * Unprojects a vector with the camera. Caution, this method changes 'vector'.
+	 * @param vector
+	 * @param camera
+	 * @return unprojected vector
+	 */
+	public final native Vector3 unprojectVector(Vector3 vector, Camera camera)/*-{
+		return this.unprojectVector(vector, camera);
+	}-*/;
 
-}-*/;
-public final native Vector3 unprojectVector(Vector3 vector,Camera camera)/*-{
+	/**
+	 * Translates a 2D point from NDC (Normalized Device Coordinates) to a Raycaster that can be used for picking. NDC
+	 * range from [-1..1] in x (left to right) and [1.0 .. -1.0] in y (top to bottom).
+	 * @param vector
+	 * @param camera
+	 * @return {@link Raycaster}
+	 */
+	public final native Raycaster pickingRay(Vector3 vector, Camera camera)/*-{
+		return this.pickingRay(vector, camera);
+	}-*/;
 
-return this.unprojectVector(vector,camera);
-
-}-*/;
-
-public final native Raycaster pickingRay(Vector3 vector,Camera camera)/*-{
-return this.pickingRay(vector,camera);
-}-*/;
-
-/**
- * FUTURE
- * @return
- */
-public final native JavaScriptObject projectScene(Scene scene,Camera camera,Object sortObjects,Object sortElements)/*-{
-return this.projectScene(scene,camera,sortObjects,sortElements);
-}-*/;
-
+	/**
+	 * Transforms a 3D scene object into 2D render data that can be rendered in a screen with your renderer of choice,
+	 * projecting and clipping things out according to the used camera. If the scene were a real scene, this method
+	 * would be the equivalent of taking a picture with the camera (and developing the film would be the next step,
+	 * using a Renderer).
+	 * @param scene scene to project.
+	 * @param camera camera to use in the projection.
+	 * @param sortObjects
+	 * @param sortElements select whether to sort elements using the Painter's algorithm.
+	 * @return projected scene
+	 */
+	public final native JavaScriptObject projectScene(Scene scene, Camera camera, Object sortObjects,
+			Object sortElements)/*-{
+		return this.projectScene(scene, camera, sortObjects, sortElements);
+	}-*/;
 
 }
