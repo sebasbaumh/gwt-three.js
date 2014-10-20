@@ -41,14 +41,29 @@ import com.akjava.gwt.three.client.js.core.Object3D;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class Intersect extends JavaScriptObject{
-protected Intersect(){}
+/**
+ * Result of an intersection.
+ */
+public class Intersect extends JavaScriptObject
+{
+	protected Intersect()
+	{
+	}
 
-public final native Object3D getObject()/*-{
-return this.object;
-}-*/;
+	/**
+	 * Object.
+	 * @return {@link Object3D}
+	 */
+	public final native Object3D getObject()/*-{
+		return this.object;
+	}-*/;
 
-public final native Vector3 getPoint()/*-{
-return this.point;
-}-*/;
+	/**
+	 * Intersection point.
+	 * @return {@link Vector3}
+	 */
+	public final native Vector3 getPoint()/*-{
+		return this.point;
+	}-*/;
+
 }
