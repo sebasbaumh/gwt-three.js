@@ -125,27 +125,4 @@ public final native Ray clone()/*-{
 return this.clone();
 }-*/;
 
-/**
- * @deprecated?
- */
-public final native JsArray<Intersect> intersectScene(Scene scene)/*-{
-				return  this.intersectScene( scene );
-}-*/;
-
-/**
- * @deprecated?
- */
-public final native JsArray<Intersect> intersectObjects(JsArray<Object3D> objects)/*-{
-			return  this.intersectObjects( objects );
-}-*/;
-
-/**
- * @deprecated?
- */
-public final native JsArray<Intersect> intersectObject(Object3D object)/*-{
-			return  this.intersectObject( object );
-
-}-*/;
-
-
 }

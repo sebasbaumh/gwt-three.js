@@ -37,13 +37,10 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.core;
 
-import com.akjava.gwt.three.client.gwt.core.Intersect;
 import com.akjava.gwt.three.client.js.cameras.Camera;
-import com.akjava.gwt.three.client.js.math.Ray;
-import com.akjava.gwt.three.client.js.math.Vector3;
+import com.akjava.gwt.three.client.js.math.*;
 import com.akjava.gwt.three.client.js.scenes.Scene;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 
 /**
  * Projects points between spaces.
@@ -54,45 +51,23 @@ public class Projector extends JavaScriptObject
 	{
 	}
 
-public final native Ray gwtCreateRay(int mx,int my,int sw,int sh,Camera camera)/*-{
-
-var vector = new $wnd.THREE.Vector3( ( mx / sw ) * 2 - 1, - ( my / sh ) * 2 + 1, 0.5 );
-			this.unprojectVector( vector, camera );
-
-			var ray = new $wnd.THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-			return  ray;
-
-}-*/;
-public final JsArray<Intersect> gwtPickIntersectsByList(int mx,int my,int sw,int sh,Camera camera,Iterable<Object3D> objects){
-	@SuppressWarnings("unchecked")
-	JsArray<Object3D> array=(JsArray<Object3D>) JsArray.createArray();
-	for(Object3D obj:objects){
-		array.push(obj);
-	}
-	return gwtPickIntersects(mx, my, sw, sh, camera, array);
-}
-public final native JsArray<Intersect> gwtPickIntersects(int mx,int my,int sw,int sh,Camera camera,JsArray<Object3D> objects)/*-{
-
-var vector = new $wnd.THREE.Vector3( ( mx / sw ) * 2 - 1, - ( my / sh ) * 2 + 1, 0.5 );
-			this.unprojectVector( vector, camera );
-
-			var ray = new $wnd.THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-			return  ray.intersectObjects( objects );
-
-}-*/;
-
-public final native JsArray<Intersect> gwtPickIntersectsByObject(int mx,int my,int sw,int sh,Camera camera,Object3D object)/*-{
-
-var vector = new $wnd.THREE.Vector3( ( mx / sw ) * 2 - 1, - ( my / sh ) * 2 + 1, 0.5 );
-			this.unprojectVector( vector, camera );
-
-			var ray = new $wnd.THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-
-			return  ray.intersectObject( object );
-
-}-*/;
+	/**
+	 * Creates a ray using the given coordinates.
+	 * @param mouseX mouse position X
+	 * @param mouseY mouse position Y
+	 * @param screenWidth screen width
+	 * @param screenHeight screen height
+	 * @param camera camera
+	 * @return {@link Ray}
+	 */
+	public final native Raycaster gwtCreateRay(int mouseX, int mouseY, int screenWidth, int screenHeight, Camera camera)/*-{
+		var vector = new $wnd.THREE.Vector3((mouseX / screenWidth) * 2 - 1,
+				-(mouseY / screenHeight) * 2 + 1, 0.5);
+		this.unprojectVector(vector, camera);
+		var ray = new $wnd.THREE.Raycaster(camera.position, vector.sub(
+				camera.position).normalize());
+		return ray;
+	}-*/;
 
 	/**
 	 * Projects a vector with the camera. Caution, this method changes 'vector'.

@@ -9,8 +9,7 @@ import com.akjava.gwt.three.client.gwt.core.Intersect;
 import com.akjava.gwt.three.client.java.utils.GWTThreeUtils;
 import com.akjava.gwt.three.client.js.THREE;
 import com.akjava.gwt.three.client.js.cameras.Camera;
-import com.akjava.gwt.three.client.js.core.Object3D;
-import com.akjava.gwt.three.client.js.core.Projector;
+import com.akjava.gwt.three.client.js.core.*;
 import com.akjava.gwt.three.client.js.math.Matrix4;
 import com.akjava.gwt.three.client.js.math.Ray;
 import com.akjava.gwt.three.client.js.math.Vector3;
@@ -75,7 +74,7 @@ public Vector3 getDraggableOffset() {
 public Vector3 moveSelectionPosition(int mouseX,int mouseY,int screenWidth, int screenHeight,Camera camera){
 	if(isSelected()){
 		try{
-		Ray ray=projector.gwtCreateRay(mouseX, mouseY, screenWidth, screenHeight, camera);
+		Raycaster ray=projector.gwtCreateRay(mouseX, mouseY, screenWidth, screenHeight, camera);
 		JsArray<Intersect> intersects = ray.intersectObject( mouseCatchPlane );
 		
 		
@@ -143,7 +142,7 @@ public String getLog() {
 public void selectObject(Object3D target,int mouseX,int mouseY,int screenWidth, int screenHeight,Camera camera){
 	try{
 	selectedDraggablekObject=target;
-	Ray ray=projector.gwtCreateRay(mouseX, mouseY, screenWidth, screenHeight, camera);
+	Raycaster ray=projector.gwtCreateRay(mouseX, mouseY, screenWidth, screenHeight, camera);
 	
 	
 	
