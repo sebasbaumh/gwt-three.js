@@ -852,10 +852,28 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static native final SkinnedMesh SkinnedMesh(Geometry geometry,Material material )/*-{
 	return new $wnd.THREE.SkinnedMesh( geometry, material );
 	}-*/;
-	public static native final Line Line(Geometry geometry,Material material )/*-{
-	return new $wnd.THREE.Line( geometry, material );
-	}-*/;
 	
+	/**
+	 * A line or a series of lines.
+	 * @param geometry Vertices representing the line segment(s).
+	 * @param material Material for the line. Default is LineBasicMaterial.
+	 * @return {@link Line}
+	 */
+	public static native final Line Line(Geometry geometry, Material material)/*-{
+		return new $wnd.THREE.Line(geometry, material);
+	}-*/;
+
+	/**
+	 * A line or a series of lines.
+	 * @param geometry Vertices representing the line segment(s).
+	 * @param material Material for the line. Default is LineBasicMaterial.
+	 * @param type Connection type between vertices. Default is THREE.LineStrip.
+	 * @return {@link Line}
+	 */
+	public static native final Line Line(Geometry geometry, Material material, int type)/*-{
+		return new $wnd.THREE.Line(geometry, material, type);
+	}-*/;
+
 	public static native final Color Color(int hex)/*-{
 	return new $wnd.THREE.Color(hex);
 	}-*/;
@@ -958,9 +976,29 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static final int CubeReflectionMapping =2;
 	public static final int SphericalReflectionMapping =3;
 	*/
-	/*
 
-	*/
+	/**
+	 * Connection type between vertices. Default is THREE.LineStrip.
+	 */
+	public static final class LineType
+	{
+		/**
+		 * THREE.LineStrip will draw a series of segments connecting each point (first connected to the second, the second connected to the third, and so on and so forth);
+		 * @return LineType
+		 */
+		public static native final int LineStrip()/*-{
+			return $wnd.THREE.LineStrip;
+		}-*/;
+
+		/**
+		 * THREE.LinePieces will draw a series of pairs of segments (first connected to the second, the third connected to the fourth, and so on and so forth).
+		 * @return LineType
+		 */
+		public static native final int LinePieces()/*-{
+			return $wnd.THREE.LinePieces;
+		}-*/;
+	}
+	
 	public static final class Side{
 		public static native final int FrontSide()/*-{
 		return $wnd.THREE.FrontSide;

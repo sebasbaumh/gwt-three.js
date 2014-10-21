@@ -376,6 +376,13 @@ this.computeMorphNormals();
 }-*/;
 
 	/**
+	 * Compute distances between vertices for Line geometries.
+	 */
+	public final native void computeLineDistances()/*-{
+		this.computeLineDistances();
+	}-*/;
+
+	/**
 	 * Merges two {@link Geometry}s.
 	 * @param geom {@link Geometry}
 	 */
@@ -419,9 +426,12 @@ this.computeMorphNormals();
 		return this.mergeVertices();
 	}-*/;
 
-public final native void dispose()/*-{
-this.dispose();
-}-*/;
-
+	/**
+	 * Removes The object from memory. Don't forget to call this method when you remove a geometry because it can cause
+	 * memory leaks.
+	 */
+	public final native void dispose()/*-{
+		this.dispose();
+	}-*/;
 
 }
