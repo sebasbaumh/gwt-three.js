@@ -85,24 +85,6 @@ public final native void computeBoundingBox()/*-{
  this.computeBoundingBox();
 }-*/;
 
-/**
- * @deprecated
- * @return
- */
-public final native boolean getDirtyVertices()/*-{
-return this.verticesNeedUpdate;
-}-*/;
-
-
-
-/**
- * @deprecated
- * @param bool
- */
-public final native void setDirtyVertices(boolean bool)/*-{
-this.verticesNeedUpdate=bool;
-}-*/;
-
 public final native boolean isVerticesNeedUpdate()/*-{
 return this.verticesNeedUpdate;
 }-*/;
@@ -146,12 +128,14 @@ public final native boolean isTangentsNeedUpdate ()/*-{
 return this.tangentsNeedUpdate ;
 }-*/;
 
-
- 
-
-public final native boolean getDynamic()/*-{
-return this.dynamic;
-}-*/;
+	/**
+	 * Set to true if attribute buffers will need to change in runtime (using "dirty" flags). Unless set to true
+	 * internal typed arrays corresponding to buffers will be deleted once sent to GPU. Defaults to true.
+	 * @return bool the intermediate typed arrays will be deleted when set to false
+	 */
+	public final native boolean getDynamic()/*-{
+		return this.dynamic;
+	}-*/;
 
 	/**
 	 * Set to true if attribute buffers will need to change in runtime (using "dirty" flags). Unless set to true
