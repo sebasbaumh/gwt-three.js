@@ -41,8 +41,38 @@ import com.akjava.gwt.three.client.gwt.math.HSL;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayNumber;
 
-public class Color extends JavaScriptObject{
-protected Color(){}
+/**
+ * Represents a color.
+ */
+public class Color extends JavaScriptObject
+{
+	protected Color()
+	{
+	}
+
+	/**
+	 * Red channel value between 0 and 1. Default is 1.
+	 * @return red channel
+	 */
+	public final native double getR()/*-{
+		return this.r;
+	}-*/;
+
+	/**
+	 * Green channel value between 0 and 1. Default is 1.
+	 * @return green channel
+	 */
+	public final native double getG()/*-{
+		return this.g;
+	}-*/;
+
+	/**
+	 * Blue channel value between 0 and 1. Default is 1.
+	 * @return blue channel
+	 */
+	public final native double getB()/*-{
+		return this.b;
+	}-*/;
 
 public final native Color set(Color value)/*-{
 return this.set( value );
@@ -64,24 +94,11 @@ public final native int getHex()/*-{
 return this.getHex();
 }-*/;
 
-public final  void setIntRGB(int r,int g,int b){
-	r=r%256;
-	g=g%256;
-	b=b%256;
-	setRGB((double)r/255,(double)g/255,(double)b/255);
-}
-
 public final native Color setRGB(double r,double g,double b)/*-{
 return this.setRGB(r,g,b);
 }-*/;
-/**
- * @deprecated ?
- */
-public final native void setHSV(double h,double s,double v)/*-{
-return this.setHSV(h,s,v);
-}-*/;
 
-public final native Object setHSL(double h,double s,double l)/*-{
+public final native Color setHSL(double h,double s,double l)/*-{
 return this.setHSL(h,s,l);
 }-*/;
 
@@ -134,7 +151,7 @@ public final native Color add(Color color)/*-{
 return this.add(color);
 }-*/;
 
-public final native Object addColors(Color color1,Color color2)/*-{
+public final native Color addColors(Color color1,Color color2)/*-{
 return this.addColors(color1,color2);
 }-*/;
 
@@ -146,7 +163,7 @@ public final native Color multiply(Color color)/*-{
 return this.multiply(color);
 }-*/;
 
-public final native Object multiplyScalar(double s)/*-{
+public final native Color multiplyScalar(double s)/*-{
 return this.multiplyScalar(s);
 }-*/;
 
