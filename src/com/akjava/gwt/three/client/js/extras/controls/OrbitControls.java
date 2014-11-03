@@ -1,5 +1,6 @@
 package com.akjava.gwt.three.client.js.extras.controls;
 
+import com.akjava.gwt.three.client.js.math.Vector3;
 import com.google.gwt.core.client.JavaScriptObject;
 
 //@formatter:off
@@ -111,6 +112,14 @@ public class OrbitControls extends JavaScriptObject
 	}-*/;
 
 	/**
+	 * Gets the location of focus, where the control orbits around and where it pans with respect to.
+	 * @return target
+	 */
+	public final native Vector3 getTarget()/*-{
+		return this.target;
+	}-*/;
+
+	/**
 	 * Is this instance enabled?
 	 * @return true on success, else false
 	 */
@@ -213,6 +222,14 @@ public class OrbitControls extends JavaScriptObject
 	 */
 	public final native void setMinPolarAngle(double angle)/*-{
 		this.minPolarAngle = angle;
+	}-*/;
+
+	/**
+	 * Sets the location of focus, where the control orbits around and where it pans with respect to.
+	 * @param target target
+	 */
+	public final native void setTarget(Vector3 target)/*-{
+		this.target = target;
 	}-*/;
 
 	/**
