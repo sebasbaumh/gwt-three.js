@@ -44,21 +44,32 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.user.client.ui.FocusWidget;
 
-public class WebGLRenderer extends JavaScriptObject{
+/**
+ * The WebGL renderer displays your beautifully crafted scenes using WebGL, if your device supports it. This renderer
+ * has way better performance than CanvasRenderer.
+ */
+public class WebGLRenderer extends JavaScriptObject
+{
 
 	protected WebGLRenderer(){}
 	
 	//**public properties
-	public  native final Element getDomElement()/*-{
-	return this.domElement;
+	/**
+	 * A Canvas where the renderer draws its output. This is automatically created by the renderer in the constructor
+	 * (if not provided already); you just need to add it to your page.
+	 * @return DOM element
+	 */
+	public native final Element getDomElement()/*-{
+		return this.domElement;
 	}-*/;
-	
-	
-	//i have no idea
+
+	/**
+	 * Get the underlying WebGL context.
+	 * @return WebGL context.
+	 */
 	public final native JavaScriptObject getContext()/*-{
-	return this.context;
+		return this.context;
 	}-*/;
 	
 	public final native double getDevicePixelRatio()/*-{
@@ -251,8 +262,6 @@ return this.info;
 }-*/;
 
 //APIS
-
-
 public final native boolean supportsVertexTextures()/*-{
 return this.supportsVertexTextures;
 }-*/;
@@ -278,14 +287,24 @@ public final native String getPrecision()/*-{
 return this.getPrecision;
 }-*/;
 	
-	public native final void setSize(int w,int h)/*-{
-	this.setSize(w,h);
+	/**
+	 * Resizes the output canvas to (width, height), and also sets the viewport to fit that size, starting in (0, 0).
+	 * @param width
+	 * @param height
+	 */
+	public native final void setSize(int width, int height)/*-{
+		this.setSize(width, height);
 	}-*/;
-	public native final void setSize(int w,int h,boolean updateStyle)/*-{
-	this.setSize(w,h,updateStyle);
+
+	/**
+	 * Resizes the output canvas to (width, height), and also sets the viewport to fit that size, starting in (0, 0).
+	 * @param width
+	 * @param height
+	 * @param updateStyle update canvas style attributes?
+	 */
+	public native final void setSize(int width, int height, boolean updateStyle)/*-{
+		this.setSize(width, height, updateStyle);
 	}-*/;
-	
-	
 
 public final native void setViewport(double x,double y,double width,double height)/*-{
 this.setViewport(x,y,width,height);
@@ -357,33 +376,34 @@ public final native void updateShadowMap(Scene scene,Camera camera)/*-{
 return this.updateShadowMap(scene,camera);
 }-*/;
 	
-	/*
-	 * if flick background use Canvas setClearColor()
+	/**
+	 * Render a scene using a camera. The render is done to the renderTarget (if specified) or to the canvas as usual.
+	 * @param scene
+	 * @param camera
 	 */
-	public  native final void render(Scene scene,Camera camera)/*-{
-	this.render(scene,camera);
+	public native final void render(Scene scene, Camera camera)/*-{
+		this.render(scene, camera);
 	}-*/;
-	
-	public  native final void render(Scene scene,Camera camera,WebGLRenderTarget target,boolean forceUpdate)/*-{
-	this.render(scene,camera,target,forceUpdate);
+
+	/**
+	 * Render a scene using a camera. The render is done to the renderTarget (if specified) or to the canvas as usual.
+	 * If forceClear is true, the depth, stencil and color buffers will be cleared before rendering even if the
+	 * renderer's autoClear property is false. Even with forceClear set to true you can prevent certain buffers being
+	 * cleared by setting either the .autoClearColor, .autoClearStencil or .autoClearDepth properties to false.
+	 * @param scene
+	 * @param camera
+	 * @param target
+	 * @param forceClear If forceClear is true, the depth, stencil and color buffers will be cleared before rendering
+	 *            even if the renderer's autoClear property is false.
+	 */
+	public native final void render(Scene scene, Camera camera, WebGLRenderTarget target, boolean forceClear)/*-{
+		this.render(scene, camera, target, forceClear);
 	}-*/;
 	
 	public  native final void clear()/*-{
 	this.clear();
 	}-*/;
-	
-	/**
-	 * @deprecated
-	 * @param color
-	 * @param alpha
-	 */
-	public  native final void setClearColorHex(int color,double alpha)/*-{
-	this.setClearColor(color,alpha);
-	//this.setClearColorHex(color,alpha);
-	}-*/;
-	
-
-	
+		
 	public final native String gwtPngDataUrl ()/*-{
 	return this.domElement.toDataURL("image/png");
 	}-*/;
@@ -395,53 +415,5 @@ return this.updateShadowMap(scene,camera);
 	public final native CanvasElement gwtCanvas ()/*-{
 	return this.domElement;
 	}-*/;
-	
-	/**
-	 * you should set this by yourself
-	 * @param type
-	 * @return
-	 */
-	public final native String gwtSetType (String type)/*-{
-	this.gwtType=type;
-}-*/;
-	
-	public final native String gwtGetType ()/*-{
-		return this.gwtType;
-	}-*/;
-	
-	
-	/**
-	 * this is just container.should rename it
-	 * @author aki
-	 *
-	 */
-	public static final class WebGLCanvas extends FocusWidget{
-		private WebGLRenderer renderer;
-		public WebGLRenderer getRenderer() {
-			return renderer;
-		}
-		public WebGLCanvas(WebGLRenderer renderer){
-		super(renderer.getDomElement());
-		this.renderer=renderer;
-		}
-		public void setClearColor(int hex){
-			//getElement().getStyle().setBackgroundColor("#"+Integer.toHexString(hex));
-			renderer.setClearColor(hex, 1);
-		}
-		public void setClearColorHex(int hex){
-			
-			//getElement().getStyle().setBackgroundColor("#"+Integer.toHexString(hex));
-			renderer.setClearColorHex(hex, 1);
-		}
-		
-		/*
-		 * just set this div's bg color
-		 */
-		public void setBackground(int hex){
-			getElement().getStyle().setBackgroundColor("#"+Integer.toHexString(hex));
-		}
-		
-	}
-	
 	
 }
