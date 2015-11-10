@@ -39,6 +39,7 @@ package com.akjava.gwt.three.client.js.materials;
 
 import com.akjava.gwt.three.client.js.math.Color;
 import com.akjava.gwt.three.client.js.math.Vector3;
+import com.akjava.gwt.three.client.js.renderers.WebGLRenderTarget;
 import com.akjava.gwt.three.client.js.textures.Texture;
 
 
@@ -99,6 +100,9 @@ public final native void setMap(Texture map)/*-{
 this.map = map;
 }-*/;
 
+public final native void setMap(WebGLRenderTarget map)/*-{
+this.map = map;
+}-*/;
 
 public final native Texture getLightMap()/*-{
 return this.lightMap;
@@ -162,12 +166,17 @@ public final native void setFog(boolean fog)/*-{
 this.fog = fog;
 }-*/;
 
-
-public final native Object getShading()/*-{
+/**
+ * THREE.shading
+ */
+public final native int getShading()/*-{
 return this.shading;
 }-*/;
 
-public final native void setShading(Object shading)/*-{
+/**
+ * THREE.shading
+ */
+public final native void setShading(int shading)/*-{
 this.shading = shading;
 }-*/;
 

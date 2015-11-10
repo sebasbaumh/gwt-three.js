@@ -137,4 +137,20 @@ this.z=z;
 public native final void setW(double w)/*-{
 this.w=w;
 }-*/;
+
+public final native double dot(Vector4 vector)/*-{
+return this.dot(vector);
+}-*/;
+
+public final native Quaternion fromArray(JsArrayNumber array,int offset)/*-{
+return this.fromArray(array,offset);
+}-*/;
+
+public final native JsArrayNumber toArray(JsArrayNumber array)/*-{
+return this.toArray(array);
+}-*/;
+
+public final native JsArrayNumber toArray(JsArrayNumber array,int offset)/*-{
+return this.toArray(array,offset);
+}-*/;
 }

@@ -38,30 +38,36 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js;
 
 import com.akjava.gwt.three.client.examples.ColladaLoader;
+import com.akjava.gwt.three.client.examples.camera.CombinedCamera;
+import com.akjava.gwt.three.client.examples.loaders.SceneLoader;
 import com.akjava.gwt.three.client.examples.modifiers.SubdivisionModifier;
 import com.akjava.gwt.three.client.examples.renderers.CSS3DRenderer;
-import com.akjava.gwt.three.client.gwt.renderers.GWTRenderObject;
+import com.akjava.gwt.three.client.gwt.animation.AnimationData;
+import com.akjava.gwt.three.client.gwt.renderers.WebGLRendererParameter;
 import com.akjava.gwt.three.client.java.LineBasicMaterialBuilder;
 import com.akjava.gwt.three.client.java.MeshBasicMaterialBuilder;
 import com.akjava.gwt.three.client.java.MeshLambertMaterialBuilder;
 import com.akjava.gwt.three.client.java.ParticleBasicMaterialBuilder;
 import com.akjava.gwt.three.client.java.ShaderMaterialBuilder;
 import com.akjava.gwt.three.client.js.cameras.Camera;
+import com.akjava.gwt.three.client.js.cameras.CubeCamera;
 import com.akjava.gwt.three.client.js.cameras.OrthographicCamera;
 import com.akjava.gwt.three.client.js.cameras.PerspectiveCamera;
+import com.akjava.gwt.three.client.js.core.BufferAttribute;
 import com.akjava.gwt.three.client.js.core.BufferGeometry;
 import com.akjava.gwt.three.client.js.core.Clock;
 import com.akjava.gwt.three.client.js.core.EventDispatcher;
 import com.akjava.gwt.three.client.js.core.Face3;
 import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.core.Object3D;
-import com.akjava.gwt.three.client.js.core.Projector;
 import com.akjava.gwt.three.client.js.core.Raycaster;
+import com.akjava.gwt.three.client.js.extras.ImageUtils;
 import com.akjava.gwt.three.client.js.extras.animation.Animation;
 import com.akjava.gwt.three.client.js.extras.animation.AnimationMorphTarget;
 import com.akjava.gwt.three.client.js.extras.animation.KeyFrameAnimation;
-import com.akjava.gwt.three.client.js.extras.cameras.CombinedCamera;
-import com.akjava.gwt.three.client.js.extras.cameras.CubeCamera;
+import com.akjava.gwt.three.client.js.extras.animation.MorphAnimation;
+import com.akjava.gwt.three.client.js.extras.audio.Audio;
+import com.akjava.gwt.three.client.js.extras.audio.AudioListener;
 import com.akjava.gwt.three.client.js.extras.controls.*;
 import com.akjava.gwt.three.client.js.extras.core.*;
 import com.akjava.gwt.three.client.js.extras.curves.ArcCurve;
@@ -75,14 +81,16 @@ import com.akjava.gwt.three.client.js.extras.curves.QuadraticBezierCurve;
 import com.akjava.gwt.three.client.js.extras.curves.QuadraticBezierCurve3;
 import com.akjava.gwt.three.client.js.extras.curves.SplineCurve;
 import com.akjava.gwt.three.client.js.extras.curves.SplineCurve3;
-import com.akjava.gwt.three.client.js.extras.geometries.CircleGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.BoxGeometry;
+import com.akjava.gwt.three.client.js.extras.geometries.CircleGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.CylinderGeometry;
+import com.akjava.gwt.three.client.js.extras.geometries.DodecahedronGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.ExtrudeGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.IcosahedronGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.LatheGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.OctahedronGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.ParametricGeometry;
+import com.akjava.gwt.three.client.js.extras.geometries.PlaneBufferGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.PlaneGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.PolyhedronGeometry;
 import com.akjava.gwt.three.client.js.extras.geometries.RingGeometry;
@@ -104,6 +112,7 @@ import com.akjava.gwt.three.client.js.extras.helpers.FaceNormalsHelper;
 import com.akjava.gwt.three.client.js.extras.helpers.GridHelper;
 import com.akjava.gwt.three.client.js.extras.helpers.HemisphereLightHelper;
 import com.akjava.gwt.three.client.js.extras.helpers.PointLightHelper;
+import com.akjava.gwt.three.client.js.extras.helpers.SkeletonHelper;
 import com.akjava.gwt.three.client.js.extras.helpers.SpotLightHelper;
 import com.akjava.gwt.three.client.js.extras.helpers.VertexNormalsHelper;
 import com.akjava.gwt.three.client.js.extras.helpers.VertexTangentsHelper;
@@ -122,7 +131,9 @@ import com.akjava.gwt.three.client.js.lights.HemisphereLight;
 import com.akjava.gwt.three.client.js.lights.Light;
 import com.akjava.gwt.three.client.js.lights.PointLight;
 import com.akjava.gwt.three.client.js.lights.SpotLight;
+import com.akjava.gwt.three.client.js.loaders.BinaryTextureLoader;
 import com.akjava.gwt.three.client.js.loaders.BufferGeometryLoader;
+import com.akjava.gwt.three.client.js.loaders.CompressedTextureLoader;
 import com.akjava.gwt.three.client.js.loaders.GeometryLoader;
 import com.akjava.gwt.three.client.js.loaders.ImageLoader;
 import com.akjava.gwt.three.client.js.loaders.JSONLoader;
@@ -130,7 +141,6 @@ import com.akjava.gwt.three.client.js.loaders.LoadingManager;
 import com.akjava.gwt.three.client.js.loaders.LoadingManager.LoadingManagerHandler;
 import com.akjava.gwt.three.client.js.loaders.MaterialLoader;
 import com.akjava.gwt.three.client.js.loaders.ObjectLoader;
-import com.akjava.gwt.three.client.js.loaders.SceneLoader;
 import com.akjava.gwt.three.client.js.loaders.TextureLoader;
 import com.akjava.gwt.three.client.js.loaders.XHRLoader;
 import com.akjava.gwt.three.client.js.materials.LineBasicMaterial;
@@ -142,7 +152,7 @@ import com.akjava.gwt.three.client.js.materials.MeshFaceMaterial;
 import com.akjava.gwt.three.client.js.materials.MeshLambertMaterial;
 import com.akjava.gwt.three.client.js.materials.MeshNormalMaterial;
 import com.akjava.gwt.three.client.js.materials.MeshPhongMaterial;
-import com.akjava.gwt.three.client.js.materials.ParticleSystemMaterial;
+import com.akjava.gwt.three.client.js.materials.PointCloudMaterial;
 import com.akjava.gwt.three.client.js.materials.ShaderMaterial;
 import com.akjava.gwt.three.client.js.materials.SpriteCanvasMaterial;
 import com.akjava.gwt.three.client.js.materials.SpriteMaterial;
@@ -164,12 +174,14 @@ import com.akjava.gwt.three.client.js.math.Vector3;
 import com.akjava.gwt.three.client.js.math.Vector4;
 import com.akjava.gwt.three.client.js.math.Vertex;
 import com.akjava.gwt.three.client.js.objects.Bone;
+import com.akjava.gwt.three.client.js.objects.Group;
 import com.akjava.gwt.three.client.js.objects.LOD;
 import com.akjava.gwt.three.client.js.objects.Line;
 import com.akjava.gwt.three.client.js.objects.Mesh;
 import com.akjava.gwt.three.client.js.objects.MorphAnimMesh;
 import com.akjava.gwt.three.client.js.objects.Particle;
-import com.akjava.gwt.three.client.js.objects.ParticleSystem;
+import com.akjava.gwt.three.client.js.objects.PointCloud;
+import com.akjava.gwt.three.client.js.objects.Skeleton;
 import com.akjava.gwt.three.client.js.objects.SkinnedMesh;
 import com.akjava.gwt.three.client.js.renderers.WebGLRenderTarget;
 import com.akjava.gwt.three.client.js.renderers.WebGLRenderTargetCube;
@@ -177,13 +189,16 @@ import com.akjava.gwt.three.client.js.renderers.WebGLRenderer;
 import com.akjava.gwt.three.client.js.scenes.Fog;
 import com.akjava.gwt.three.client.js.scenes.Scene;
 import com.akjava.gwt.three.client.js.textures.CompressedTexture;
+import com.akjava.gwt.three.client.js.textures.CubeTexture;
 import com.akjava.gwt.three.client.js.textures.DataTexture;
 import com.akjava.gwt.three.client.js.textures.Texture;
+import com.akjava.gwt.three.client.js.textures.VideoTexture;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayNumber;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.dom.client.VideoElement;
 
 
 
@@ -307,7 +322,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static final native TubeGeometry TubeGeometry(Curve path, double radius)/*-{
 		return new $wnd.THREE.TubeGeometry(path, undefined, radius);
 	}-*/;
-
+	
 	/**
 	 * Creates a tube which extrudes along a 3d spline.
 	 * @param path path
@@ -347,6 +362,8 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static final native PolyhedronGeometry PolyhedronGeometry(JsArray<JsArrayNumber> vertices,JsArray<JsArrayNumber> faces,double radius,int detail)/*-{
 	return new $wnd.THREE.PolyhedronGeometry(vertices, faces, radius, detail);
 	}-*/;
+	
+	// on r69 recommending use PlaneBufferGeometry
 	public static final native PlaneGeometry PlaneGeometry(double width,double height,int widthSegments,int heightSegments)/*-{
 	return new $wnd.THREE.PlaneGeometry(width, height, widthSegments, heightSegments);
 	}-*/;
@@ -367,6 +384,9 @@ return new $wnd.THREE.ArrowHelper(size);
 	}-*/;
 	public static final native CylinderGeometry CylinderGeometry(double radiusTop,double  radiusBottom,double  height,int radialSegments,int heightSegments,boolean openEnded)/*-{
 	return new $wnd.THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded);
+	}-*/;
+	public static final native CylinderGeometry CylinderGeometry(double radiusTop,double  radiusBottom,double  height,int radialSegments,int heightSegments)/*-{
+	return new $wnd.THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments);
 	}-*/;
 	public static final native BoxGeometry BoxGeometry(double width,double height,double depth,int widthSegments,int heightSegments,int depthSegments )/*-{
 	return new $wnd.THREE.BoxGeometry( width, height, depth, widthSegments, heightSegments, depthSegments );
@@ -437,12 +457,16 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.FogExp2(hex,density);
 	}-*/;
 	
-	public static final native WebGLRenderTargetCube WebGLRenderTargetCube(double widht,double height,JavaScriptObject options)/*-{
+	public static final native WebGLRenderTargetCube WebGLRenderTargetCube(double width,double height,JavaScriptObject options)/*-{
 	return new $wnd.THREE.WebGLRenderTargetCube(width,height,options);
 	}-*/;
 	
-	public static final native WebGLRenderTarget WebGLRenderTarget(double widht,double height,JavaScriptObject options)/*-{
+	public static final native WebGLRenderTarget WebGLRenderTarget(double width,double height,JavaScriptObject options)/*-{
 	return new $wnd.THREE.WebGLRenderTarget(width,height,options);
+	}-*/;
+	
+	public static final native WebGLRenderTarget WebGLRenderTarget(double width,double height)/*-{
+	return new $wnd.THREE.WebGLRenderTarget(width,height);
 	}-*/;
 	public static final native LOD LOD()/*-{
 	return new $wnd.THREE.LOD();
@@ -468,10 +492,19 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.Plane(normal,constant);
 	}-*/;
 	
+
+	/**
+	 * @deprecated
+	 * on r69 ,use set()
+	 */
 	public static final native Matrix4 Matrix4(double n11,double n12,double n13,double n14,double n21,double n22,double n23,double n24,double n31,double n32,double n33,double n34,double n41,double n42,double n43,double n44)/*-{
 	return new $wnd.THREE.Matrix4(n11,n12,n13,n14,n21,n22,n23,n24,n31,n32,n33,n34,n41,n42,n43,n44);
 	}-*/;
 	
+	/**
+	 * @deprecated
+	 * on r69 ,use set()
+	 */
 	public static final native Matrix3 Matrix3(double n11,double n12,double n13,double n21,double n22,double n23,double n31,double n32,double n33)/*-{
 	return new $wnd.THREE.Matrix3(n11,n12,n13,n21,n22,n23,n31,n32,n33);
 	}-*/;
@@ -489,6 +522,10 @@ return new $wnd.THREE.ArrowHelper(size);
 	
 	public static native final Box3 Box3(Vector3 min,Vector3 max)/*-{
 	return new $wnd.THREE. Box3(min,max);
+	}-*/;
+	
+	public static native final Box3 Box3()/*-{
+	return new $wnd.THREE. Box3();
 	}-*/;
 	
 	public static native final Box2 Box2(Vector2 min,Vector2 max)/*-{
@@ -511,8 +548,8 @@ return new $wnd.THREE.ArrowHelper(size);
 	return  new $wnd.THREE.ShaderMaterial(parameter);
 	}-*/;
 	
-	public static  native final ParticleSystemMaterial ParticleSystemMaterial(JavaScriptObject parameter)/*-{
-	return  new $wnd.THREE.ParticleSystemMaterial(parameter);
+	public static  native final PointCloudMaterial PointCloudMaterial(JavaScriptObject parameter)/*-{
+	return  new $wnd.THREE.PointCloudMaterial(parameter);
 	}-*/;
 	
 	public static  native final MeshPhongMaterial MeshPhongMaterial(JavaScriptObject parameter)/*-{
@@ -561,6 +598,10 @@ return new $wnd.THREE.ArrowHelper(size);
 	return  new $wnd.THREE.GeometryLoader(manager);
 	}-*/;
 	
+	public static  native final ImageLoader ImageLoader()/*-{
+	return  new $wnd.THREE.ImageLoader();
+	}-*/;
+	
 	public static  native final ImageLoader ImageLoader(LoadingManager manager)/*-{
 	return  new $wnd.THREE.ImageLoader(manager);
 	}-*/;
@@ -570,19 +611,21 @@ return new $wnd.THREE.ArrowHelper(size);
 	}-*/;
 	
 	public static  native final ObjectLoader ObjectLoader(LoadingManager manager)/*-{
-	return  new $wnd.THREE.GeometryLoader(manager);
+	return  new $wnd.THREE.ObjectLoader(manager);
 	}-*/;
 	
 	public static  native final SceneLoader SceneLoader(LoadingManager manager)/*-{
-	return  new $wnd.THREE.ImageLoader(manager);
+	return  new $wnd.THREE.SceneLoader(manager);
 	}-*/;
 	
+	
+	
 	public static  native final TextureLoader TextureLoader(LoadingManager manager)/*-{
-	return  new $wnd.THREE.ImageLoader(manager);
+	return  new $wnd.THREE.TextureLoader(manager);
 	}-*/;
 	
 	public static  native final XHRLoader XHRLoader(LoadingManager manager)/*-{
-	return  new $wnd.THREE.ImageLoader(manager);
+	return  new $wnd.THREE.XHRLoader(manager);
 	}-*/;
 	
 	
@@ -614,6 +657,10 @@ return new $wnd.THREE.ArrowHelper(size);
 	return  new $wnd.THREE.AreaLight(hex,intensity);
 	}-*/;
 	
+	public static  native final Raycaster Raycaster()/*-{
+	return  new $wnd.THREE.Raycaster();
+	}-*/;
+	
 	public static  native final Raycaster Raycaster(Vector3 origin,Vector3 direction,double near,double far)/*-{
 	return  new $wnd.THREE.Raycaster(origin,direction,near,far);
 	}-*/;
@@ -629,10 +676,20 @@ return new $wnd.THREE.ArrowHelper(size);
 	return  new $wnd.THREE.Clock(autostart);
 	}-*/;
 	
+	public static  native final Clock Clock()/*-{
+	return  new $wnd.THREE.Clock();
+	}-*/;
+	
 	public static  native final Ray Ray(Vector3 camera,Vector3 vector)/*-{
 	return  new $wnd.THREE.Ray(camera,vector);
 	}-*/;
 	
+	/**
+	 * usually texture.setNeedsUpdate(true);
+	 * you can use ImageUtils.loadTexture("texture.jpg")
+	 * @param image
+	 * @return
+	 */
 	public static  native final Texture Texture(ImageElement image)/*-{
 	return  new $wnd.THREE.Texture(image);
 	}-*/;
@@ -672,6 +729,9 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static native final OrthographicCamera OrthographicCamera(double left,double right,double top,double bottom,double near,double far)/*-{
 	return new $wnd.THREE.OrthographicCamera( left, right,top,bottom, near, far ); 
 	}-*/;
+	public static native final OrthographicCamera OrthographicCamera()/*-{
+	return new $wnd.THREE.OrthographicCamera( ); 
+	}-*/;
 	
 	public static native final CombinedCamera CombinedCamera(double width, double height,double fov, double near, double far, double doubleorthoNear,double orthoFar )/*-{
 	return new $wnd.THREE.CombinedCamera( width, height, fov, near, far, orthoNear, orthoFar); 
@@ -681,19 +741,43 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.CubeCamera( near, far, cubeResolution ); 
 	}-*/;
 	
+	/**
+	 * @deprecated
+	 */
 	public static native final Animation Animation(SkinnedMesh root,String name)/*-{
 	return new $wnd.THREE.Animation(root,name);
 	}-*/;
+	/**
+	 * @deprecated
+	 */
 	public static native final Animation Animation(Object3D root,String name)/*-{
 	return new $wnd.THREE.Animation(root,name);
 	}-*/;
 	
+
+	//SkinnedMesh or Bone?
+	public static native final Animation Animation(Object3D root,AnimationData data)/*-{
+	return new $wnd.THREE.Animation(root,data);
+	}-*/;
+	
+	/**
+	 * @deprecated on r65
+	 */
 	public static native final AnimationMorphTarget AnimationMorphTarget(Object3D root,String name)/*-{
 	return new $wnd.THREE.AnimationMorphTarget(root,name);
 	}-*/;
 	
+	
+	/**
+	 * @deprecated
+	 * changed on r68
+	 */
 	public static native final KeyFrameAnimation KeyFrameAnimation(Object3D root,String name)/*-{
 	return new $wnd.THREE.KeyFrameAnimation(root,name);
+	}-*/;
+	
+	public static native final KeyFrameAnimation KeyFrameAnimation(AnimationData data)/*-{
+	return new $wnd.THREE.KeyFrameAnimation(data);
 	}-*/;
 	
 	public static native final Vector4 Vector4()/*-{
@@ -725,8 +809,60 @@ return new $wnd.THREE.ArrowHelper(size);
 	 * @return {@link AmbientLight}
 	 */
 	public static native final AmbientLight AmbientLight(int color)/*-{
-		return new $wnd.THREE.AmbientLight(color);
+	return new $wnd.THREE.AmbientLight(color);
 	}-*/;
+	public static final  AmbientLight AmbientLight(double color){
+	return AmbientLight((int)color);
+	}
+	
+	
+	
+	public static  final BoxGeometry BoxGeometry(double x,double y,double z,int xpart,int ypart,int zpart,Material[] material ){
+		JsArray<Material> arrays=(JsArray<Material>) JsArray.createArray();
+		for(Material m:material){
+			arrays.push(m);
+		}
+		
+		return Cube(x,y,z,xpart,ypart,zpart,arrays);
+	}
+	
+	public static  final BoxGeometry Cube(double x,double y,double z,int xpart,int ypart,int zpart,Material[] material ){
+		JsArray<Material> arrays=(JsArray<Material>) JsArray.createArray();
+		for(Material m:material){
+			arrays.push(m);
+		}
+		
+		return Cube(x,y,z,xpart,ypart,zpart,arrays);
+	
+	}
+	
+	public static native final BoxGeometry BoxGeometry(double x,double y,double z,int xpart,int ypart,int zpart,JsArray<Material> materials)/*-{
+	
+	
+    var ms= $wnd.eval("new Array()");
+    for (var i = 0; i < materials.length; i++) {
+		ms.push(materials[i]);
+        }
+        
+	return new $wnd.THREE.BoxGeometry( x, y, z ,xpart,ypart,zpart,ms);
+	}-*/;
+	
+	
+
+	
+	//I'm happy to fix array problem.
+	public static native final BoxGeometry Cube(double x,double y,double z,int xpart,int ypart,int zpart,JsArray<Material> materials)/*-{
+	
+	material = new $wnd.THREE.MeshBasicMaterial({color: 0xff0000, wireframe: false});
+    var ms=new $wnd.Array();
+    for (var i = 0; i < materials.length; i++) {
+		ms.push(materials[i]);
+        }
+        
+	return new $wnd.THREE.BoxGeometry( x, y, z ,xpart,ypart,zpart,ms);
+	}-*/;
+	
+	
 	
 	public static native final Geometry Geometry()/*-{
 	return new $wnd.THREE.Geometry();
@@ -779,7 +915,7 @@ return new $wnd.THREE.ArrowHelper(size);
 		}
 		return a;
 	}-*/;
-
+	
 	/**
 	 * Constructs a material with different materials for different faces of a mesh. Uses a nasty workaround for the
 	 * array, but MeshFaceMaterial is unusable without it (the "materials instanceof Array" check fails).
@@ -810,10 +946,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static  final ShaderMaterialBuilder ShaderMaterial(){
 		return ShaderMaterialBuilder.create();
 	}
-	
-	
-	
-	
+		
 	/**
 	 * @deprecated r49
 	 * @param vector3f
@@ -827,7 +960,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.Vector2(x,y);
 	}-*/;
 	public static native final Vector2 Vector2()/*-{
-	return new $wnd.THREE.Vector3(0,0);
+	return new $wnd.THREE.Vector2(0,0);
 	}-*/;
 	
 	public static native final Vector3 Vector3(double x,double y,double z)/*-{
@@ -838,16 +971,28 @@ return new $wnd.THREE.ArrowHelper(size);
 	}-*/;
 	
 	
-	
+	/**
+	 * @deprecated
+	 */
 	public static native final Particle Particle(Material material )/*-{
 	return new $wnd.THREE.Particle(material );
 	}-*/;
-	public static native final ParticleSystem ParticleSystem(Geometry geometry,Material material )/*-{
-	return new $wnd.THREE.ParticleSystem( geometry, material );
+	public static native final PointCloud PointCloud(Geometry geometry,Material material )/*-{
+	return new $wnd.THREE.PointCloud( geometry, material );
+	}-*/;
+
+	public static native final Mesh Mesh(Geometry geometry )/*-{
+	return new $wnd.THREE.Mesh( geometry );
 	}-*/;
 	
 	public static native final Mesh Mesh(Geometry geometry,Material material )/*-{
 	return new $wnd.THREE.Mesh( geometry, material );
+	}-*/;
+	public static native final Mesh Mesh(BufferGeometry geometry,Material material )/*-{
+	return new $wnd.THREE.Mesh( geometry, material );
+	}-*/;
+	public static native final Mesh Mesh(BufferGeometry geometry)/*-{
+	return new $wnd.THREE.Mesh( geometry);
 	}-*/;
 	public static native final SkinnedMesh SkinnedMesh(Geometry geometry,Material material )/*-{
 	return new $wnd.THREE.SkinnedMesh( geometry, material );
@@ -862,7 +1007,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static native final Line Line(Geometry geometry, Material material)/*-{
 		return new $wnd.THREE.Line(geometry, material);
 	}-*/;
-
+	
 	/**
 	 * A line or a series of lines.
 	 * @param geometry Vertices representing the line segment(s).
@@ -893,7 +1038,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.CanvasRenderer();
 	}-*/;
 	
-	public static native final WebGLRenderer WebGLRenderer(GWTRenderObject object)/*-{
+	public static native final WebGLRenderer WebGLRenderer(WebGLRendererParameter object)/*-{
 	return new $wnd.THREE.WebGLRenderer(object);
 	}-*/;
 	
@@ -903,20 +1048,13 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static native final Light SpotLight(int color)/*-{
 	return new $wnd.THREE.SpotLight(color);
 	}-*/;
-	public static native final DirectionalLight DirectionalLight(int color,int intensity)/*-{
-	return new $wnd.THREE.DirectionalLight(color,intensity);
-	}-*/;
-	public static native final DirectionalLight DirectionalLight(int color)/*-{
+
+	public static native final DirectionalLight DirectionalLight(double color)/*-{
 	return new $wnd.THREE.DirectionalLight(color);
 	}-*/;
-	public static  final DirectionalLight DirectionalLight(double color,int intensity){
-		return DirectionalLight(color,intensity);
-	}
-	public static  final DirectionalLight DirectionalLight(double color){
-		return DirectionalLight((int)color);
-	}
-	public static native final Projector Projector()/*-{
-	return new $wnd.THREE.Projector();
+	
+	public static native final DirectionalLight DirectionalLight(double color,double intensity)/*-{
+	return new $wnd.THREE.DirectionalLight(color,intensity);
 	}-*/;
 	
 	/**
@@ -937,7 +1075,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static native final OrbitControls OrbitControls(Object3D object)/*-{
 		return new $wnd.THREE.OrbitControls(object);
 	}-*/;
-
+	
 	/**
 	 * Constructs a new {@link TrackballControls} instance.
 	 * @param object object to move/rotate
@@ -958,24 +1096,9 @@ return new $wnd.THREE.ArrowHelper(size);
 		return new $wnd.THREE.TrackballControls(object);
 	}-*/;
 	
-	/*
-	public static final int FrontSide = 0;
-	public static final int BackSide = 1;
-	public static final int DoubleSide = 2;
 	
-	public static final int NoShading = 0;
-	public static final int FlatShading = 1;
-	public static final int SmoothShading = 2;
 
-	public static final int NoColors = 0;
-	public static final int FaceColors = 1;
-	public static final int VertexColors = 2;
 	
-	public static final int UVMapping =0;
-	public static final int LatitudeReflectionMapping =1;
-	public static final int CubeReflectionMapping =2;
-	public static final int SphericalReflectionMapping =3;
-	*/
 
 	/**
 	 * Connection type between vertices. Default is THREE.LineStrip.
@@ -993,12 +1116,16 @@ return new $wnd.THREE.ArrowHelper(size);
 		/**
 		 * THREE.LinePieces will draw a series of pairs of segments (first connected to the second, the third connected to the fourth, and so on and so forth).
 		 * @return LineType
-		 */
 		public static native final int LinePieces()/*-{
 			return $wnd.THREE.LinePieces;
 		}-*/;
 	}
 	
+	/**
+	 * @deprecated use direct
+	 * @author aki
+	 *
+	*/
 	public static final class Side{
 		public static native final int FrontSide()/*-{
 		return $wnd.THREE.FrontSide;
@@ -1012,6 +1139,11 @@ return new $wnd.THREE.ArrowHelper(size);
 		}-*/;
 		
 	}
+	/**
+	 * @deprecated use direct
+	 * @author aki
+	 *
+	 */
 	public static final class Shading{
 		public static native final int NoShading()/*-{
 		return $wnd.THREE.NoShading;
@@ -1056,6 +1188,11 @@ return new $wnd.THREE.ArrowHelper(size);
 		}-*/;
 	}
 	
+	/**
+	 * @deprecated use direct
+	 * @author aki
+	 *
+	 */
 	public static final class Blending{
 		public static native final int NoBlending()/*-{
 		return $wnd.THREE.NoBlending;
@@ -1077,7 +1214,11 @@ return new $wnd.THREE.ArrowHelper(size);
 		}-*/;
 	}
 	
-
+	/**
+	 * @deprecated use direct
+	 * @author aki
+	 *
+	 */
 	public static final class TextureConstants{
 		public static native final int MultiplyOperation()/*-{
 		return new $wnd.THREE.MultiplyOperation;
@@ -1089,6 +1230,12 @@ return new $wnd.THREE.ArrowHelper(size);
 		return  $wnd.THREE.AddOperation;
 		}-*/;
 	}
+	
+	/**
+	 * @deprecated use direct
+	 * @author aki
+	 *
+	 */
 	public static final class Colors{
 		public static native final int NoColors()/*-{
 		return $wnd.THREE.NoColors;
@@ -1101,23 +1248,41 @@ return new $wnd.THREE.ArrowHelper(size);
 		}-*/;
 	}
 
+	/**
+	 * @deprecated use direct
+	 * @author aki
+	 *
+	 */
 	public static final class MappingModes{
-		public static native final JavaScriptObject UVMapping()/*-{
+		public static native final int UVMapping()/*-{
 		return $wnd.THREE.UVMapping;
 		}-*/;
-		public static native final JavaScriptObject CubeReflectionMapping()/*-{
+		public static native final int CubeReflectionMapping()/*-{
 		return $wnd.THREE.CubeReflectionMapping;
 		}-*/;
-		public static native final JavaScriptObject CubeRefractionMapping()/*-{
+		public static native final int CubeRefractionMapping()/*-{
 		return $wnd.THREE.CubeRefractionMapping;
 		}-*/;
-		public static native final JavaScriptObject SphericalReflectionMapping()/*-{
+		
+		public static native final int EquirectangularReflectionMapping()/*-{
+		return $wnd.THREE.EquirectangularReflectionMapping;
+		}-*/;
+		
+		public static native final int EquirectangularRefractionMapping()/*-{
+		return $wnd.THREE.EquirectangularRefractionMapping;
+		}-*/;
+		
+		public static native final int SphericalReflectionMapping()/*-{
 		return $wnd.THREE.SphericalReflectionMapping;
 		}-*/;
-		public static native final JavaScriptObject SphericalRefractionMapping()/*-{
-		return $wnd.THREE.SphericalRefractionMapping;
-		}-*/;
+		
+		
 	}
+	/**
+	 * @deprecated use direct
+	 * @author aki
+	 *
+	 */
 	public static final class WrappingModes{
 		public static native final int RepeatWrapping()/*-{
 		return $wnd.THREE.RepeatWrapping;
@@ -1130,6 +1295,208 @@ return new $wnd.THREE.ArrowHelper(size);
 		}-*/;
 	}
 
+	/**
+	 * @deprecated use direct
+	 * @author aki
+	 *
+	 */
+	public static final class Filters{
+		public static native final int NearestFilter()/*-{
+		return $wnd.THREE.NearestFilter;
+		}-*/;
+		public static native final int NearestMipMapNearestFilter()/*-{
+		return $wnd.THREE.NearestMipMapNearestFilter;
+		}-*/;
+		public static native final int NearestMipMapLinearFilter()/*-{
+		return $wnd.THREE.NearestMipMapLinearFilter;
+		}-*/;
+		public static native final int LinearFilter()/*-{
+		return $wnd.THREE.LinearFilter;
+		}-*/;
+		public static native final int LinearMipMapNearestFilter()/*-{
+		return $wnd.THREE.LinearMipMapNearestFilter;
+		}-*/;
+		public static native final int LinearMipMapLinearFilter()/*-{
+		return $wnd.THREE.LinearMipMapLinearFilter;
+		}-*/;
+	}
+	
+
+	// GL STATE CONSTANTS
+
+	public static final int CullFaceNone = 0;
+	public static final int CullFaceBack = 1;
+	public static final int CullFaceFront = 2;
+	public static final int CullFaceFrontBack = 3;
+
+	public static final int FrontFaceDirectionCW = 0;
+	public static final int FrontFaceDirectionCCW = 1;
+
+	// SHADOWING TYPES
+
+	public static final int BasicShadowMap = 0;
+	public static final int PCFShadowMap = 1;
+	public static final int PCFSoftShadowMap = 2;
+
+	// MATERIAL CONSTANTS
+
+	// side
+
+	public static final int FrontSide = 0;
+	public static final int BackSide = 1;
+	public static final int DoubleSide = 2;
+
+	// shading
+
+	public static final int NoShading = 0;
+	public static final int FlatShading = 1;
+	public static final int SmoothShading = 2;
+
+	// colors
+
+	public static final int NoColors = 0;
+	public static final int FaceColors = 1;
+	public static final int VertexColors = 2;
+
+	// blending modes
+
+	public static final int NoBlending = 0;
+	public static final int NormalBlending = 1;
+	public static final int AdditiveBlending = 2;
+	public static final int SubtractiveBlending = 3;
+	public static final int MultiplyBlending = 4;
+	public static final int CustomBlending = 5;
+
+	// custom blending equations
+	// (numbers start from 100 not to clash with other
+	//  mappings to OpenGL constants defined in Texture.js)
+
+	public static final int AddEquation = 100;
+	public static final int SubtractEquation = 101;
+	public static final int ReverseSubtractEquation = 102;
+	public static final int MinEquation = 103;
+	public static final int MaxEquation = 104;
+
+	// custom blending destination factors
+
+	public static final int ZeroFactor = 200;
+	public static final int OneFactor = 201;
+	public static final int SrcColorFactor = 202;
+	public static final int OneMinusSrcColorFactor = 203;
+	public static final int SrcAlphaFactor = 204;
+	public static final int OneMinusSrcAlphaFactor = 205;
+	public static final int DstAlphaFactor = 206;
+	public static final int OneMinusDstAlphaFactor = 207;
+
+	// custom blending source factors
+
+	//public static final int ZeroFactor = 200;
+	//public static final int OneFactor = 201;
+	//public static final int SrcAlphaFactor = 204;
+	//public static final int OneMinusSrcAlphaFactor = 205;
+	//public static final int DstAlphaFactor = 206;
+	//public static final int OneMinusDstAlphaFactor = 207;
+	public static final int DstColorFactor = 208;
+	public static final int OneMinusDstColorFactor = 209;
+	public static final int SrcAlphaSaturateFactor = 210;
+
+
+	// TEXTURE CONSTANTS
+
+	public static final int MultiplyOperation = 0;
+	public static final int MixOperation = 1;
+	public static final int AddOperation = 2;
+
+	// Mapping modes
+
+	public static final int UVMapping = 300;
+
+	public static final int CubeReflectionMapping = 301;
+	public static final int CubeRefractionMapping = 302;
+
+	public static final int EquirectangularReflectionMapping = 303;
+	public static final int EquirectangularRefractionMapping = 304;
+
+	public static final int SphericalReflectionMapping = 305;
+
+	// Wrapping modes
+
+	public static final int RepeatWrapping = 1000;
+	public static final int ClampToEdgeWrapping = 1001;
+	public static final int MirroredRepeatWrapping = 1002;
+
+	// Filters
+
+	public static final int NearestFilter = 1003;
+	public static final int NearestMipMapNearestFilter = 1004;
+	public static final int NearestMipMapLinearFilter = 1005;
+	public static final int LinearFilter = 1006;
+	public static final int LinearMipMapNearestFilter = 1007;
+	public static final int LinearMipMapLinearFilter = 1008;
+
+	// Data types
+
+	public static final int UnsignedByteType = 1009;
+	public static final int ByteType = 1010;
+	public static final int ShortType = 1011;
+	public static final int UnsignedShortType = 1012;
+	public static final int IntType = 1013;
+	public static final int UnsignedIntType = 1014;
+	public static final int FloatType = 1015;
+
+	// Pixel types
+
+	//public static final int UnsignedByteType = 1009;
+	public static final int UnsignedShort4444Type = 1016;
+	public static final int UnsignedShort5551Type = 1017;
+	public static final int UnsignedShort565Type = 1018;
+
+	// Pixel formats
+
+	public static final int AlphaFormat = 1019;
+	public static final int RGBFormat = 1020;
+	public static final int RGBAFormat = 1021;
+	public static final int LuminanceFormat = 1022;
+	public static final int LuminanceAlphaFormat = 1023;
+	// public static final int RGBEFormat handled as public static final int RGBAFormat in shaders
+	public static final int RGBEFormat = RGBAFormat; //1024;
+
+	// DDS / ST3C Compressed texture formats
+
+	public static final int RGB_S3TC_DXT1_Format = 2001;
+	public static final int RGBA_S3TC_DXT1_Format = 2002;
+	public static final int RGBA_S3TC_DXT3_Format = 2003;
+	public static final int RGBA_S3TC_DXT5_Format = 2004;
+
+
+	// PVRTC compressed texture formats
+
+	public static final int RGB_PVRTC_4BPPV1_Format = 2100;
+	public static final int RGB_PVRTC_2BPPV1_Format = 2101;
+	public static final int RGBA_PVRTC_4BPPV1_Format = 2102;
+	public static final int RGBA_PVRTC_2BPPV1_Format = 2103;
+	
+	
+
+	public static final MOUSE MOUSE=new MOUSE();
+	public static final class MOUSE{
+		public static final int LEFT=0;
+		public static final int MIDDLE=1;
+		public static final int RIGHT=0;
+		public static native final int LEFT()/*-{
+		return $wnd.THREE.MOUSE.LEFT;
+		}-*/;
+		
+		public static native final int MIDDLE()/*-{
+		return $wnd.THREE.MOUSE.MIDDLE;
+		}-*/;
+		
+		public static native final int RIGHT()/*-{
+		return $wnd.THREE.MOUSE.RIGHT;
+		}-*/;
+		
+	}
+
 	public static native final MorphAnimMesh MorphAnimMesh(Geometry geometry,
 			Material material) /*-{
 	return new $wnd.THREE.MorphAnimMesh(geometry,material);
@@ -1140,4 +1507,97 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static native final Face3 Face3(double a, double b, double c) /*-{
 	return new $wnd.THREE.Face3(a,b,c);
 	}-*/;
+	
+	public static final native Skeleton Skeleton(JsArray<Bone> bones,JsArray<Matrix4> boneInverses,boolean useVertexTexture)/*-{
+	return new $wnd.THREE.Skeleton(bones,boneInverses,useVertexTexture);
+	}-*/;
+	
+	public static final native SkeletonHelper SkeletonHelper(Object3D object)/*-{
+	return new $wnd.THREE.SkeletonHelper(object);
+	}-*/;
+	
+	public static  native final CubeTexture CubeTexture()/*-{
+	return  new $wnd.THREE.CubeTexture([]);
+	}-*/;
+	public static  native final CubeTexture CubeTexture(JsArray<ImageElement> images,JavaScriptObject mapping, int wrapS,int  wrapT, int magFilter,int minFilter,int format,int type,int anisotropy)/*-{
+	return  new $wnd.THREE.CubeTexture(images,mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
+	}-*/;
+	
+	public static final native AudioListener AudioListener()/*-{
+	return new $wnd.THREE.AudioListener();
+	}-*/;
+	
+	public static final native Audio Audio(AudioListener listener)/*-{
+	return new $wnd.THREE.Audio(listener);
+	}-*/;
+	
+	public static  native final CompressedTextureLoader CompressedTextureLoader()/*-{
+	return  new $wnd.THREE.CompressedTextureLoader();
+	}-*/;
+	
+	public static  native final DodecahedronGeometry DodecahedronGeometry(double radius,int detail)/*-{
+	return  new $wnd.THREE.DodecahedronGeometry(radius, detail);
+	}-*/;
+	
+	public static final native Group Group()/*-{
+	return new $wnd.THREE.Group();
+	}-*/;
+	
+	public static  native final VideoTexture VideoTexture(VideoElement image,JavaScriptObject mapping, int wrapS,int  wrapT, int magFilter,int minFilter,int format,int type,int anisotropy)/*-{
+	return  new $wnd.THREE.VideoTexture(image,mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
+	}-*/;
+	
+	
+	public static native final MorphAnimation MorphAnimation(MorphAnimMesh mesh)/*-{
+	return new $wnd.THREE.MorphAnimation(mesh);
+	}-*/;
+	
+	public static native final MorphAnimation MorphAnimation(Mesh mesh)/*-{
+	return new $wnd.THREE.MorphAnimation(mesh);
+	}-*/;
+	
+	public static final native CylinderGeometry CylinderGeometry(double radiusTop,double  radiusBottom,double  height,int radialSegments,int heightSegments,boolean openEnded,double thetaStart,double thetaLength)/*-{
+	return new $wnd.THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded,thetaStart, thetaLength);
+	}-*/;
+	
+	public static final class Tapper{
+		public static final native JavaScriptObject NoTaper()/*-{
+		return $wnd.THREE.TubeGeometry.NoTaper;
+		}-*/;
+
+		public static final native JavaScriptObject SinusoidalTaper()/*-{
+		return $wnd.THREE.TubeGeometry.SinusoidalTaper;
+		}-*/;
+	}
+	/**
+	 * 
+	 * @param path
+	 * @param segments
+	 * @param radius
+	 * @param radialSegments
+	 * @param closed
+	 * @param tapper ,choice from Tapper class
+	 * @return
+	 */
+	public static final native TubeGeometry TubeGeometry(Path path,int segments,double radius,double radialSegments,boolean closed ,JavaScriptObject tapper)/*-{
+	return new $wnd.THREE.TubeGeometry(path, segments, radius, radialSegments, tapper );
+	}-*/;
+	
+	public static  native final BinaryTextureLoader BinaryTextureLoader()/*-{
+	return  new $wnd.THREE.BinaryTextureLoader();
+	}-*/;
+	
+	public static final native PlaneBufferGeometry PlaneBufferGeometry(double width,double height,int widthSegments,int heightSegments)/*-{
+	return new $wnd.THREE.PlaneBufferGeometry(width, height, widthSegments, heightSegments);
+	}-*/;
+	public static final native PlaneBufferGeometry PlaneBufferGeometry(double width,double height)/*-{
+	return new $wnd.THREE.PlaneBufferGeometry(width, height);
+	}-*/;
+	
+	
+	public static final native BufferAttribute BufferAttribute(JavaScriptObject array,int itemSize)/*-{
+	return new $wnd.THREE.BufferAttribute(array, itemSize);
+	}-*/;
+	
+
 }

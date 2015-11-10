@@ -63,6 +63,10 @@ public final native Box3 set(Vector3 min,Vector3 max)/*-{
 return this.set(min,max);
 }-*/;
 
+/**
+ * @deprecated
+ * removed on r68
+ */
 public final native void addPoint(Vector3 point)/*-{
 this.addPoint(point);
 }-*/;
@@ -72,11 +76,11 @@ return this.setFromPoints(points);
 }-*/;
 
 public final native Box3 setFromCenterAndSize(Vector3 center,Vector3 size)/*-{
-return this.setFromCenterAndSize();
+return this.setFromCenterAndSize(center,size);
 }-*/;
-/** i have no idea*/
+
 public final native Box3 setFromObject(Object3D object)/*-{
-return this.setFromObject();
+return this.setFromObject(object);
 }-*/;
 
 public final native Box3 copy(Box3 box)/*-{
@@ -107,7 +111,7 @@ public final native Box3 expandByVector(Vector3 vector)/*-{
 return this.expandByVector(vector);
 }-*/;
 
-public final native Object expandByScalar(double scalar)/*-{
+public final native Box2 expandByScalar(double scalar)/*-{
 return this.expandByScalar(scalar);
 }-*/;
 

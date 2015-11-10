@@ -109,7 +109,7 @@ public final native Vector3 intersectBox(Box3 box,Vector3 optionalTarget)/*-{
 return this.intersectBox(box,optionalTarget);
 }-*/;
 
-public final native Object intersectTriangle(Vector3 a,Vector3 b,Vector3 c,boolean backfaceCulling,Vector3 optionalTarget)/*-{
+public final native Vector3 intersectTriangle(Vector3 a,Vector3 b,Vector3 c,boolean backfaceCulling,Vector3 optionalTarget)/*-{
 return this.intersectTriangle();
 }-*/;
 
@@ -123,6 +123,32 @@ return this.equals(ray);
 
 public final native Ray clone()/*-{
 return this.clone();
+}-*/;
+
+/**
+ * @deprecated?
+ */
+public final native JsArray<Intersect> intersectScene(Scene scene)/*-{
+				return  this.intersectScene( scene );
+}-*/;
+
+/**
+ * @deprecated?
+ */
+public final native JsArray<Intersect> intersectObjects(JsArray<Object3D> objects)/*-{
+			return  this.intersectObjects( objects );
+}-*/;
+
+/**
+ * @deprecated?
+ */
+public final native JsArray<Intersect> intersectObject(Object3D object)/*-{
+			return  this.intersectObject( object );
+
+}-*/;
+
+public final native Vector3 intersectSphere (Sphere sphere,Vector3 optionalTarget)/*-{
+return this.intersectSphere(sphere,optionalTarget);
 }-*/;
 
 }

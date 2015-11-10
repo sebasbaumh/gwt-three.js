@@ -43,7 +43,11 @@ import com.akjava.gwt.three.client.js.core.Object3D;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 
-
+/**
+ * removed or renamed on r65?
+ * @author aki
+ *
+ */
 public class AnimationMorphTarget extends JavaScriptObject{
 	protected AnimationMorphTarget() {
 	}

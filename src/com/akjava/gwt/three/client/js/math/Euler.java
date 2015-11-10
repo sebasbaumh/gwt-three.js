@@ -58,6 +58,10 @@ public final native Euler set(double x,double y,double z,String order)/*-{
 return this.set(x,y,z,order);
 }-*/;
 
+public final native Euler set(double x,double y,double z)/*-{
+return this.set(x,y,z);
+}-*/;
+
 public final native Euler copy(Euler euler)/*-{
 return this.copy(euler);
 }-*/;
@@ -132,5 +136,14 @@ this.y+=y;
 public native final void gwtIncrementZ(double z)/*-{
 this.z+=z;
 }-*/;
+
+public final native Euler setFromRotationMatrix(Matrix4 m,String order,boolean update)/*-{
+return this.setFromRotationMatrix(m,order,update);
+}-*/;
+
+public final native Vector3 toVector3(Vector3 optionalResult)/*-{
+return toVector3(optionalResult);
+}-*/;
+
 
 }

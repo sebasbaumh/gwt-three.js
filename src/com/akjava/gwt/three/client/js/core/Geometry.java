@@ -37,11 +37,15 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.core;
 
+import com.akjava.gwt.three.client.gwt.JSParameter;
 import com.akjava.gwt.three.client.gwt.animation.AnimationBone;
 import com.akjava.gwt.three.client.gwt.animation.AnimationData;
 import com.akjava.gwt.three.client.gwt.core.BoundingBox;
 import com.akjava.gwt.three.client.gwt.core.MorphTarget;
 import com.akjava.gwt.three.client.js.math.*;
+import com.akjava.gwt.three.client.js.math.Color;
+import com.akjava.gwt.three.client.js.math.Matrix4;
+import com.akjava.gwt.three.client.js.math.Sphere;
 import com.akjava.gwt.three.client.js.objects.Mesh;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
@@ -73,6 +77,10 @@ this.computeBoundingSphere();
 public final native void computeFaceNormals()/*-{
  this.computeFaceNormals();
 }-*/;
+
+/**
+ * @deprecated no more exist after r67
+ */
 public final native void computeCentroids()/*-{
 this.computeFaceNormals();
 }-*/;
@@ -145,6 +153,11 @@ return this.tangentsNeedUpdate ;
 	public final native void setDynamic(boolean bool)/*-{
 		this.dynamic = bool;
 	}-*/;
+ 
+
+public final native boolean isDynamic()/*-{
+return this.dynamic;
+}-*/;
 
 public final native void applyMatrix(Matrix4 matrix)/*-{
 this.applyMatrix(matrix);
@@ -164,6 +177,9 @@ return this.animations;
 }-*/;
 /*
  * I'm not sure maybe this is for compatible,should youse 
+ */
+/**
+ * @deprecated maybe better to avoid
  */
 public final native AnimationData getAnimation()/*-{
 return this.animation;
@@ -310,11 +326,11 @@ this.boundingBox = boundingBox;
 }-*/;
 
 
-public final native Object getBoundingSphere()/*-{
+public final native Sphere getBoundingSphere()/*-{
 return this.boundingSphere;
 }-*/;
 
-public final native void setBoundingSphere(Object boundingSphere)/*-{
+public final native void setBoundingSphere(Sphere boundingSphere)/*-{
 this.boundingSphere = boundingSphere;
 }-*/;
 
@@ -417,5 +433,18 @@ this.computeMorphNormals();
 	public final native void dispose()/*-{
 		this.dispose();
 	}-*/;
+
+public  native final void mergeMesh(Mesh mesh)/*-{
+this.mergeMesh(mesh);
+}-*/;
+
+
+public  native final Geometry fromBufferGeometry(BufferGeometry geo)/*-{
+return this.fromBufferGeometry(geo);
+}-*/;
+
+public  native final JSParameter getParameter()/*-{
+return this.parameters;
+}-*/;
 
 }

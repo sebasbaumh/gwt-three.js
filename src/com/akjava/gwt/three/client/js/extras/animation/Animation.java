@@ -59,11 +59,17 @@ public final native void setIsPlaying(boolean isPlaying)/*-{
 this.isPlaying = isPlaying;
 }-*/;
 
-
+/**
+ * @deprecated
+ * on r68 dropped
+ */
 public final native boolean isIsPaused()/*-{
 return this.isPaused;
 }-*/;
-
+/**
+ * @deprecated
+ * on r68 dropped
+ */
 public final native void setIsPaused(boolean isPaused)/*-{
 this.isPaused = isPaused;
 }-*/;
@@ -102,10 +108,19 @@ public final native void setTarget(Vector3 target)/*-{
 this.target = target;
 }-*/;
 
+/**
+ * @deprecated no more support loop
+ * @param loop
+ * @param startTimeMS
+ */
 public final native void play(boolean loop,double startTimeMS)/*-{
 this.play(loop,startTimeMS);
 }-*/;
 
+/**
+ * @deprecated
+ * on r68 dropped
+ */
 public final native void pause()/*-{
 this.pause();
 }-*/;
@@ -138,9 +153,24 @@ return this.getPrevKeyWith(type,h,key);
 public native final void play()/*-{
 this.play();
 }-*/;
-public native final void play(int startTime)/*-{
+public native final void play(double startTime)/*-{
 this.play(startTime);
 }-*/;
 
+public native final void play(double startTime,double weight)/*-{
+this.play(startTime,weight);
+}-*/;
+
+public native final void resetBlendWeights()/*-{
+this.resetBlendWeights();
+}-*/;
+
+public final native double getWeight()/*-{
+return this.weight;
+}-*/;
+
+public final native void setWeight(double weight)/*-{
+this.weight = weight;
+}-*/;
 
 }

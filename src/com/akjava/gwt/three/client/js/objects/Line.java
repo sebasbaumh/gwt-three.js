@@ -1,7 +1,9 @@
 package com.akjava.gwt.three.client.js.objects;
 
+import com.akjava.gwt.three.client.gwt.core.Intersect;
 import com.akjava.gwt.three.client.js.core.*;
 import com.akjava.gwt.three.client.js.materials.Material;
+import com.google.gwt.core.client.JsArray;
 
 /**
  * A line or a series of lines.
@@ -46,22 +48,6 @@ public class Line extends Object3D
 	}-*/;
 
 	/**
-	 * Gets the connection type between vertices. Default is THREE.LineStrip.
-	 * @return connection type
-	 */
-	public final native int getType()/*-{
-		return this.type;
-	}-*/;
-
-	/**
-	 * Sets the connection type between vertices. Default is THREE.LineStrip.
-	 * @param type connection type
-	 */
-	public final native void setType(int type)/*-{
-		this.type = type;
-	}-*/;
-
-	/**
 	 * Clones this element.
 	 * @param object target element
 	 * @return clone
@@ -69,5 +55,18 @@ public class Line extends Object3D
 	public final native Line clone(Line object)/*-{
 		return this.clone(object);
 	}-*/;
+
+public final native int getMode()/*-{
+return this.mode;
+}-*/;
+
+public final native void setMode(int mode)/*-{
+this.mode = mode;
+}-*/;
+
+
+public final native void raycast(Raycaster raycaster,JsArray<Intersect> intersects)/*-{
+this.raycast(raycaster,intersects);
+}-*/;
 
 }

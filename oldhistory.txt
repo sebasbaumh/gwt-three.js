@@ -1,0 +1,436 @@
+*69
+THREE - Added type property to all relevant objects.Added MOUSE enum
+add:THREE.java
+public static final class MOUSE
+add:Object3D.java
+public final native String getType()
+
+
+Audio,AudioListener - Added.
+create:Audio.java
+create:AudioListener.java
+add:THREE.java
+public static final native AudioListener AudioListener()
+public static final native Audio Audio(AudioListener listener)
+
+BufferAttribute - Added clone()
+add:BufferAttribute.java
+public final  native BufferAttribute clone()
+
+Camera - Added getWorldDirection() method
+Object3D implement it
+
+CanvasRenderer - Moved to examples folder.
+move:CanvasRenderer.java to com.akjava.gwt.three.client.examples.renderers
+
+CompressedTextureLoader - Moved back from examples folder
+create:CompressedTextureLoader.java
+
+Geometry - Added fromBufferGeometry(),Moved makeGroups() method to WebGLRenderer
+add:WebGLRenderer.java
+public final native JSParameter makeGroups(Geometry geometry,boolean usesFaceMaterial)
+
+Group - Added. Use it instead of Object3D when possible
+create:Group.java
+
+Matrix3,Matrix4 - Simplified constructor
+deprecated:THREE.java
+public static final native Matrix4 Matrix4(double n11,double n12,double n13,double n14,double n21,double n22,double n23,double n24,double n31,double n32,double n33,double n34,double n41,double n42,double n43,double n44)
+public static final native Matrix3 Matrix3(double n11,double n12,double n13,double n21,double n22,double n23,double n31,double n32,double n33)
+
+Object3D - Added getWorld*
+add:Object3D.java
+public final native Vector3 getWorldPosition(Vector3 optionalTarget)
+public final native Quaternion getWorldQuaternion(Quaternion optionalTarget)
+public final native Euler getWorldRotation(Euler optionalTarget)
+public final native Vector3 getWorldScale(Vector3 optionalTarget)
+public final native Vector3 getWorldDirection(Vector3 optionalTarget)
+
+OrthographicCamera,PerspectiveCamera - Added zoom property
+add:OrthographicCamera.java,PerspectiveCamera.java
+public final native double getZoom()
+
+PlaneBufferGeometry - Added. PlaneGeometry relies on this one
+create:PlaneBufferGeometry.java
+
+Projector - Moved to examples folder.
+move:Projector.java to com.akjava.gwt.three.client.examples.renderers
+STOP SUPPORT THIS ON GWT SO FAR.
+
+Quaternion,Vector2,Vector3,Vector4 - Added offset parameter to fromArray() method,Added array and offset parameters to toArray() method.
+add:*.java
+public final native * fromArray(JsArrayNumber array,int offset)
+public final native JsArrayNumber toArray(JsArrayNumber array)
+public final native JsArrayNumber toArray(JsArrayNumber array,int offset)
+
+Vector3 -Added project() and unproject() methods. Previously Projector.*projectVector()
+add:Vector3.java
+public final native Vector3 project(Camera camera)
+public final native Vector3 unproject(Camera camera)
+
+VideoTexture - Added
+create:VideoTexture.java
+
+WebGLRenderer - *
+add:WebGLRenderer.java
+public final native void uploadTexture (Texture texture)
+
+*68
+Animation - Refactored skinning code
+deprecated:Animation.java
+public final native boolean isIsPaused()
+public final native void setIsPaused(boolean isPaused)
+
+AnimationHandler - Refactoring
+deprecated:AnimationHandler.java
+public final native Animation remove(String name)
+public static native final void removeFromUpdate(Animation data)
+public static native final void add(AnimationData data)
+public static native final void removeFromUpdate(Animation data)
+public static native final void addToUpdate(Animation data)
+add:AnimationHandler.java
+public static native final void stop(Animation data)
+public static native final void play(Animation data)
+public final native Animation init(String name)
+
+Bone - Refactored skinning code.
+deprecated:Bone.java
+public final native Matrix4 getSkinMatrix()
+public final native void setSkinMatrix(Matrix4 skinMatrix)
+public final native void update(Matrix4 parentSkinMatrix,boolean forceUpdate)
+
+Box3 - Removed addPoint
+deprecated:Box3.java
+public final native void addPoint(Vector3 point)
+
+BufferAttribute - Refactoring and simplification
+create:BufferAttribute.java
+
+BufferGeometry - Added fromGeometry method
+deprecated:BufferGeometry.java
+public final native void addAttribute(Object name,Object type,Object numItems,Object itemSize)
+add:BufferGeometry.java
+public final native BufferGeometry fromGeometry(Geometry geometry, JavaScriptObject settings)
+public final native void addDrawCall(int start,int count,int indexOffset)
+public final native void addAttribute(String name,BufferAttribute attribute)
+public final native BufferAttribute getAttribute(String name)
+
+CombinedCamera - Moved to examples
+move:CubeCamera.java to com.akjava.gwt.three.client.js.cameras
+move:CombinedCamera.java to com.akjava.gwt.three.client.examples.camera
+
+CubeTexture - Created
+create:CubeTexture.java
+
+GeometryUtils - Moved center method to Geometry.Moved remaining file to examples.
+move:GeometryUtils.java to com.akjava.gwt.three.client.examples.utils
+
+ImageUtils - Moved loadDDSTextue to DDSLoader in examples.
+deprecated:ImageUtils.java
+public static final native CompressedTexture loadDDSTexture(String url,JavaScriptObject mapping,ImageUtilsLoadHandler handler)
+
+KeyFrameAnimation - Refactored skinning code. 
+add:AnimationHandler
+public final native Animation init(AnimationData data)
+
+Line - Added raycast() method
+add:Line.java
+public final native void raycast(Raycaster raycaster,JsArray<Intersect> intersects)
+add:Intersect.java
+public final native double getDistance()
+
+LOD - Added raycast() method
+add:LOD.java
+public final native void raycast(Raycaster raycaster,JsArray<Intersect> intersects)
+
+Loader - Added Handlers to allow custom file loaders. 
+implementing THREE.Loader.Handlers is skipped(i have no idea how to handle regex-js-class on GWT/Java)
+
+Mesh - Added raycast() method
+add:Mesh.java
+public final native void raycast(Raycaster raycaster,JsArray<Intersect> intersects)
+
+MeshBasicMaterial,MeshLambertMaterial,MeshPhongMaterial - Added alphaMap property.
+add:MeshBasicMaterialParameter.java,MeshLambertMaterialParameter.java,MeshPhongMaterialParameter.java
+public final native MeshBasicMaterialParameter alphaMap(Texture alphaMap)
+
+MorphAnimMesh - Added interpolateTargets() method
+add:MorphAnimMesh.java
+public final native void interpolateTargets(int a,int b,double t)
+
+
+add:Object3D.java
+public static final native Vector3 getDefaultUp()
+public final native void traverseVisible(Object callback)
+deprecated:Object3D.java
+public final native void setRotation(Euler rotation)
+public final native void setQuaternion(Quaternion quaternion)
+public final native void setScale(Vector3 scale)
+public final native Object getDescendants(Object array)
+
+ParticleSystem - Renamed to PointCloud
+rename:ParticleSystem.java to PointCloud.java
+
+PointCloud - Added raycast() method.
+add:PointCloud.java
+public final native void raycast(Raycaster raycaster,JsArray<Intersect> intersects)
+
+ParticleSystemMaterial - Renamed to PointCloudMaterial
+rename:ParticleSystemMaterial.java to PointCloudMaterial.java
+
+Quaternion - Added dot method
+add:Quaternion.java
+public final native double dot(Vector4 vector)
+
+Ray - Added intersectSphere method
+add:Ray.java
+public final native Vector3 intersectSphere (Sphere sphere,Vector3 optionalTarget)
+
+SceneLoader - Moved to examples folder
+move:SceneLoader.java to com.akjava.gwt.three.client.examples.loaders
+
+Skeleton - Refactored skinning code
+add:THREE.java 
+public static final native Skeleton Skeleton(JsArray<Bone> bones,JsArray<Matrix4> boneInverses,boolean useVertexTexture)
+
+SkeletonHelper - Refactored skinning code
+add:SkeletonHelper.java
+public final native Object3D getRoot()
+
+SkinnedMesh - Refactored skinning code
+todo:SkinnedMesh.java
+
+Sprite - Added raycast() method.
+add:Sprite.java
+public final native void raycast(Raycaster raycaster,JsArray<Intersect> intersects)
+
+Texture - Added DEFAULT_IMAGE static property
+add:Texture.java
+public static final native Texture getDefaultImage()
+public static final native JavaScriptObject getDefaultMapping()
+
+WebGLRenderer - etc
+deprecated:WebGLRenderer
+public final native boolean isAutoUpdateObjects()
+public final native void setAutoUpdateObjects(boolean autoUpdateObjects)
+
+*67
+Animation - Implemented skeletal animation blending.
+Animation.java
+add:void play(double startTime,double weight)
+
+AnimationHandler - Make it possible to remove animationData.
+AnimationHandler.java
+add:public final native Animation remove(String name)
+
+Cache - Created class for caching files.
+create:Cache.java
+
+CanvasRenderer - etc
+seems no effect on Java.setViewport already support WebGLRenderer which CanvasRenderer extended.
+
+DirectionLightHelper
+seems no effect on Java.
+
+Face3 - Removed centroid. 
+deprecated:Face3.java
+public final native Vector3 getCentroid()
+public final native void setCentroid(Vector3 centroid)
+
+Geometry - Removed computeCentroids().
+deprecated:Geometry.java
+public final native void computeCentroids()
+add:Geometry.java
+public  native final void merge(Geometry geo,Matrix4 matrix,int materialIndexOffset)
+public  native final void merge(Geometry geo,Matrix4 matrix)
+public  native final void merge(Geometry geo)
+
+GeometryUtils -Removed triangulateQuads.Moved merge to Geometry.
+deprecated:GeometryUtils.java
+public static final native void triangulateQuads(Geometry geometry)
+public static native final void merge(...)
+
+ImageLoder - Implemented Cache
+add:ImageLoader.js
+public final native Cache getCache()
+
+Matrix3 - Rename multiplyVector3Array() to applyToVector3Array()
+deprecated:Matrix3.java
+public final native JsArrayNumber multiplyVector3Array(JsArrayNumber a)
+add:Matrix3.java
+public final native JsArrayNumber applyToVector3Array(JsArrayNumber a)
+public final native JsArrayNumber applyToVector3Array(JsArrayNumber a,int offset,int length)
+Added flattenToArrayOffset methods. 
+add:Matrix3.java
+public final native JsArrayNumber flattenToArrayOffset(JsArrayNumber a,int offset)
+
+Matrix4 - Rename multiplyVector3Array() to applyToVector3Array()
+deprecated:Matrix4.java
+public final native JsArrayNumber multiplyVector3Array(JsArrayNumber array)
+add:Matrix4.java
+public final native JsArrayNumber applyToVector3Array(JsArrayNumber a)
+public final native JsArrayNumber applyToVector3Array(JsArrayNumber a,int offset,int length)
+
+Skeleton - Created class to handle skeletons/bones
+create:Skelton.java
+
+add:SkinnedMesh.java
+public final native Skelton getSkelton()
+public final native void setSkelton(Skelton skelton)
+deprecated:SkinnedMesh.java
+public final native boolean isUseVertexTexture()
+public final native void setUseVertexTexture(boolean useVertexTexture)
+public final native JsArray<Bone> getBones()
+public final native void setBones(JsArray<Bone> bones)
+public final native JsArray getBoneMatrices()
+public final native void setBoneMatrices(JsArray boneMatrices)
+public final native Bone addBone(Bone bone)
+
+SkeletonHelper - Added class to visualise Skeletons.
+add:SkeletonHelper.java
+
+SVGRenderer - examples sot support yet.
+
+WebGLRenderer
+add:GWTRenderObject.java
+public  native final GWTRenderObject depth(boolean depth)
+public  native final GWTRenderObject stencil(boolean stencil)
+public  native final GWTRenderObject logarithmicDepthBuffer(boolean logarithmicDepthBuffer)
+
+*66
+BufferGeometry - Added computeOffsets and reorderBuffers methods.,Removed dynamic property.
+add:BufferGeometry.java
+public final native JsArray<JavaScriptObject> computeOffsets(int indexBufferSize)
+public final native void reorderBuffers(ArrayBuffer indexBuffer,ArrayBuffer indexMap,int vertexCount)
+remove:BufferGeometry.java
+public final native boolean isDynamic()
+public final native void setDynamic(boolean dynamic)
+
+Color - Support for new THREE.Color( r, g, b )
+add:THREE.java
+public static native final Color Color(int r,int g,int b)
+
+CubeGeometry - Renamed to BoxGeometry
+renamed:CubeGeometry.java -> BoxGeometry.java
+
+LOD - Added clone()
+add:LOD.java
+LOD clone(LOD object)
+
+Math - Added isPowerOfTwo()
+add:Math.java
+public static final native boolean isPowerOfTwo(double value)
+
+MeshPhongMaterial - Removed perPixel property
+remove:MeshPhongMaterial.java
+public final native boolean isPerPixel()
+public final native void setPerPixel(boolean perPixel)
+
+Vector2, Vector3 and Vector4 - Added clampScalar, floor, ceil, round and roundToZero methods
+add:Vector2.java,Vector3.java,Vector4.java
+public final native Vector* clampScalar(double minVal,double maxVal)
+public final native Vector* floor()
+public final native Vector* ceil()
+public final native Vector* round()
+public final native Vector* roundToZero()
+
+Skipped support on GWT
+Geometry2 - Started Geometry to Geometry2 transition
+Too big change and usually such kind changes would happen again.so I'm watching it.but any patch welcome
+
+This release's update does not affect on GWT
+Animation
+CanvasRenderer and SoftwareRenderer
+ExtrudeGeometry
+Path and Shape
+Projector 
+Raycaster
+
+
+*65
+Camera - remove getProjectionMatrixInverse & setProjectionMatrixInverse(Matrix4 projectionMatrixInverse)
+Camera.java
+
+EdgesHelper - created new class
+add:EdgesHelper.java
+add:THREE.java
+public static final native EdgesHelper EdgesHelper(Object3D object)
+public static final native EdgesHelper EdgesHelper(Object3D object,int hex)
+
+Matrix3 -Added fromArray and toArray methods.
+add:Matrix3.java
+public final native Matrix3 fromArray(JsArrayNumber array)
+public final native JsArrayNumber toArray()
+
+SpriteMaterial - Moved uvOffset and uvScale to texture.offset and texture.repeat
+remove:SpriteMaterial.java
+public final native Vector2 getUvOffset()
+public final native void setUvOffset(Vector2 uvOffset)
+public final native Vector2 getUvScale()
+public final native void setUvScale(Vector2 uvScale)
+
+
+WebGLRenderer - Removed physicallyBasedShading property.
+remove:WebGLRenderer.java
+public final native boolean isPhysicallyBasedShading()
+public final native void setPhysicallyBasedShading(boolean physicallyBasedShading)
+
+WireframeHelper - Added line color option
+add:THREE.java
+public static final native WireframeHelper WireframeHelper(Object3D object,int lineColor)
+
+This release's update does not affect on GWT
+BoundingBoxHelper
+BufferGeometry
+CanvasRenderer - maybe
+FaceNormalsHelper
+Geometry
+ImageUtils
+Loader
+Matrix4
+Object3D
+Projector - maybe
+Raycaster
+Scene
+Texture
+TorusGeometry
+VertexNormalsHelper
+VertexTangentsHelper
+
+*r64
+I checked all changed it via compare with each code.so skip changes which no effect on wrapper.
+but i didn't compare all the code.
+
+ArrowHelper - Added options for setting arrowhead size.
+add:THREE.java
+public static final native ArrowHelper ArrowHelper(Vector3 dir,Vector3 origin,double length,int hex,double headLength,double headWidth)
+add:ArrowHelper.java
+public final native void setLength(double length,double headLength,double headWidth)
+
+Box2 - Added optionalTarget to getParameter()
+add:Box2.java
+public final native Vector2 getParameter(Vector2 point,Vector2 optionalTarget)
+
+Box3 - Added optionalTarget to getParameter()
+add:Box3.java
+public final native Vector3 getParameter(Vector3 point,Vector3 optionalTarget)
+
+Color - Added optionalTarget to getHSL()
+add:Color.java
+public final native HSL getHSL(HSL hsl)
+
+Vector3 - get*FromMatrix to setFromMatrix*
+deprecate:Vector3.java
+public final native Vector3 getPositionFromMatrix(Matrix4 m)
+public final native Vector3 getScaleFromMatrix(Matrix4 m)
+public final native Vector3 getColumnFromMatrix(int index,Matrix4 matrix)
+add:Vector3.java
+public final native Vector3 setFromMatrixPosition(Matrix4 m)
+public final native Vector3 setFromMatrixScale(Matrix4 m)
+public final native Vector3 setFromMatrixColumn(int index,Matrix4 matrix)
+
+WebGLRenderer - Added clearColor, clearDepth and clearStencil methods.
+add:WebGLRenderer.java
+public final native void clearColor()
+public final native void clearDepth()
+public final native void clearStencil()

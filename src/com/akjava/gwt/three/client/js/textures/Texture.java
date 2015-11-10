@@ -82,7 +82,8 @@ public final native ImageElement getImage()/*-{
 return this.image;
 }-*/;
 
-public final native JsArray<ImageElement> getImages()/*-{
+//get image as array,it's possible
+public final native JsArray<ImageElement> getGwtImages()/*-{
 return this.image;
 }-*/;
 
@@ -248,7 +249,7 @@ public final native void setOnUpdate(JavaScriptObject onUpdate)/*-{
 this.onUpdate = onUpdate;
 }-*/;
 
-public final native Object clone(Texture texture)/*-{
+public final native Texture clone(Texture texture)/*-{
 return this.clone(texture);
 }-*/;
 
@@ -256,4 +257,11 @@ public final native void dispose()/*-{
 this.dispose();
 }-*/;
 
+public static final native Texture getDefaultImage()/*-{
+return $wnd.THREE.Texture.DEFAULT_IMAGE;
+}-*/;
+
+public static final native JavaScriptObject getDefaultMapping()/*-{
+return $wnd.THREE.Texture.DEFAULT_MAPPING;
+}-*/;
 }

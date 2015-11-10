@@ -37,8 +37,12 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.objects;
 
-import com.akjava.gwt.three.client.js.core.*;
+import com.akjava.gwt.three.client.gwt.core.Intersect;
+import com.akjava.gwt.three.client.js.core.Geometry;
+import com.akjava.gwt.three.client.js.core.Object3D;
+import com.akjava.gwt.three.client.js.core.Raycaster;
 import com.akjava.gwt.three.client.js.materials.Material;
+import com.google.gwt.core.client.*;
 
 /**
  * Base class for Mesh objects, such as MorphAnimMesh and SkinnedMesh.
@@ -52,7 +56,7 @@ public class Mesh extends Object3D
 	/**
 	 * Gets the geometry.
 	 * @return {@link Geometry}
-	 */
+ */
 	public final native Geometry getGeometry()/*-{
 		return this.geometry;
 	}-*/;
@@ -60,7 +64,7 @@ public class Mesh extends Object3D
 	/**
 	 * Sets the geometry.
 	 * @param geometry {@link Geometry}
-	 */
+ */
 	public final native void setGeometry(Geometry geometry)/*-{
 		this.geometry = geometry;
 	}-*/;
@@ -69,7 +73,7 @@ public class Mesh extends Object3D
 	 * Gets the material.
 	 * @return An instance of Material, defining the object's appearance. Default is a MeshBasicMaterial with wireframe
 	 *         mode enabled and randomised colour.
-	 */
+ */
 	public final native Material getMaterial()/*-{
 		return this.material;
 	}-*/;
@@ -78,14 +82,14 @@ public class Mesh extends Object3D
 	 * Sets the material.
 	 * @param material An instance of Material, defining the object's appearance. Default is a MeshBasicMaterial with
 	 *            wireframe mode enabled and randomised colour.
-	 */
+ */
 	public final native void setMaterial(Material material)/*-{
 		this.material = material;
 	}-*/;
 
 	/**
 	 * Updates the morphtargets to have no influence on the object.
-	 */
+ */
 	public final native void updateMorphTargets()/*-{
 		this.updateMorphTargets();
 	}-*/;
@@ -94,7 +98,7 @@ public class Mesh extends Object3D
 	 * Returns the index of a morph target defined by name.
 	 * @param name a morph target name
 	 * @return index
-	 */
+ */
 	public final native int getMorphTargetIndexByName(String name)/*-{
 		return this.getMorphTargetIndexByName(name);
 	}-*/;
@@ -103,7 +107,7 @@ public class Mesh extends Object3D
 	 * Clones this element.
 	 * @param object target mesh
 	 * @return clone
-	 */
+ */
 	public final native Mesh clone(Mesh object)/*-{
 		return this.clone(object);
 	}-*/;
@@ -113,8 +117,54 @@ public class Mesh extends Object3D
 	 * @param object target mesh
 	 * @param recursive clone recursively
 	 * @return clone
-	 */
+ */
 	public final native Mesh clone(Mesh object, boolean recursive)/*-{
 return this.clone(object,recursive);
 }-*/;
+ 
+
+public final native void raycast(Raycaster raycaster,JsArray<Intersect> intersects)/*-{
+this.raycast(raycaster,intersects);
+}-*/;
+
+
+
+
+
+public final  native int getMorphTargetBase()/*-{
+return this.morphTargetBase;
+}-*/;
+public final  native void setMorphTargetBase(int  param)/*-{
+this.morphTargetBase=param;
+}-*/;
+
+
+public final  native JsArrayInteger getMorphTargetForcedOrder()/*-{
+return this.morphTargetForcedOrder;
+}-*/;
+public final  native void setMorphTargetForcedOrder(JsArrayInteger  param)/*-{
+this.morphTargetForcedOrder=param;
+}-*/;
+
+
+public final  native JsArrayNumber getMorphTargetInfluences()/*-{
+return this.morphTargetInfluences;
+}-*/;
+public final  native void setMorphTargetInfluences(JsArrayNumber  param)/*-{
+this.morphTargetInfluences=param;
+}-*/;
+
+
+public final  native JavaScriptObject getMorphTargetDictionary()/*-{
+return this.morphTargetDictionary;
+}-*/;
+public final  native void setMorphTargetDictionary(JavaScriptObject  param)/*-{
+this.morphTargetDictionary=param;
+}-*/;
+
+//I'm not i see 'customDepthMaterial' only in ShadowMapPlugin.js,Cloth example
+public final native void setCustomDepthMaterial(Material customDepthMaterial)/*-{
+this.customDepthMaterial = customDepthMaterial;
+}-*/;
+
 }

@@ -112,7 +112,7 @@ public final native Vector2 addScalar(double s)/*-{
 return this.addScalar(s);
 }-*/;
 
-public final native Object sub(Vector2 v)/*-{
+public final native Vector2 sub(Vector2 v)/*-{
 return this.sub(v);
 }-*/;
 
@@ -180,7 +180,7 @@ public final native boolean equals(Vector2 v)/*-{
 return this.equals(v);
 }-*/;
 
-public final native Object fromArray(JsArrayNumber array)/*-{
+public final native Vector2 fromArray(JsArrayNumber array)/*-{
 return this.fromArray(array);
 }-*/;
 
@@ -210,6 +210,22 @@ return this.round();
 
 public final native Vector2 roundToZero()/*-{
 return this.roundToZero();
+}-*/;
+
+public final native Vector2 fromArray(JsArrayNumber array,int offset)/*-{
+return this.fromArray(array,offset);
+}-*/;
+
+public final native JsArrayNumber toArray(JsArrayNumber array)/*-{
+return this.toArray(array);
+}-*/;
+
+public final native JsArrayNumber toArray(JsArrayNumber array,int offset)/*-{
+return this.toArray(array,offset);
+}-*/;
+
+public final native Vector2 fromAttribute(JavaScriptObject attribute,int index,int offset)/*-{
+return this.fromAttribute(attribute,index,offset);
 }-*/;
 
 }

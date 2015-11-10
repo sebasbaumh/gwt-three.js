@@ -38,6 +38,10 @@ if(handler){
 }-*/;
 
 
+public static final  Texture loadTextureCube(JsArrayString array){
+	return loadTextureCube(array,null,null);
+}
+
 public static final native Texture loadTextureCube(JsArrayString array,JavaScriptObject mapping,ImageUtilsLoadHandler handler)/*-{
 if(handler){
 return $wnd.THREE.ImageUtils.loadTextureCube(array,mapping,function ( texture ) {
@@ -70,6 +74,9 @@ $wnd.THREE.ImageUtils.loadCompressedTextureCube(url,mapping,function ( texture )
 }-*/;
 
 
+/**
+ * @deprecated
+ */
 public static final native CompressedTexture loadDDSTexture(String url,JavaScriptObject mapping,ImageUtilsLoadHandler handler)/*-{
 	if(handler){
 $wnd.THREE.ImageUtils.loadDDSTexture(url,mapping,function ( texture ) {

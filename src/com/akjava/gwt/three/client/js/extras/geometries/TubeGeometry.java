@@ -83,12 +83,12 @@ return this.closed;
 
 
 
-public final native JsArray getGrid()/*-{
+public final native JsArray<JsArray<Vector3>> getGrid()/*-{
 return this.grid;
 }-*/;
 
 
-public final native Object getNumpoints()/*-{
+public final native int getNumpoints()/*-{
 return this.numpoints;
 }-*/;
 
@@ -121,6 +121,7 @@ return this.binormals;
 public final native void FrenetFrames(Path path,int segments,boolean closed)/*-{
 this.FrenetFrames(path,segments,closed);
 }-*/;
+
 
 
 }

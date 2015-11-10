@@ -39,6 +39,8 @@ package com.akjava.gwt.three.client.js.math;
 
 import com.akjava.gwt.three.client.js.THREE;
 import com.google.gwt.core.client.*;
+import com.akjava.gwt.three.client.js.cameras.Camera;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * 3D vector.
@@ -125,7 +127,7 @@ return this.addVectors(a,b);
 	 * @param a
 	 * @param b
 	 * @return this vector
-	 */
+ */
 	public final native Vector3 subVectors(Vector3 a, Vector3 b)/*-{
 		return this.subVectors(a, b);
 	}-*/;
@@ -363,6 +365,33 @@ return this.round();
 
 public final native Vector3 roundToZero()/*-{
 return this.roundToZero();
+}-*/;
+
+public final native Vector3 fromArray(JsArrayNumber array,int offset)/*-{
+return this.fromArray(array,offset);
+}-*/;
+
+public final native JsArrayNumber toArray(JsArrayNumber array)/*-{
+return this.toArray(array);
+}-*/;
+
+public final native JsArrayNumber toArray(JsArrayNumber array,int offset)/*-{
+return this.toArray(array,offset);
+}-*/;
+
+public final native Vector3 project(Camera camera)/*-{
+
+return this.project(camera);
+
+}-*/;
+public final native Vector3 unproject(Camera camera)/*-{
+
+return this.unproject(camera);
+
+}-*/;
+
+public final native Vector3 fromAttribute(JavaScriptObject attribute,int index,int offset)/*-{
+return this.fromAttribute(attribute,index,offset);
 }-*/;
 
 }

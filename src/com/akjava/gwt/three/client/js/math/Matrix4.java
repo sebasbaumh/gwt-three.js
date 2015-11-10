@@ -2,6 +2,7 @@ package com.akjava.gwt.three.client.js.math;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayNumber;
+import com.google.gwt.typedarrays.shared.Float32Array;
 
 public class Matrix4 extends JavaScriptObject {
 protected Matrix4(){}
@@ -97,8 +98,12 @@ return this.applyMatrix4(vector);
 //return this.multiplyVector4(vector);
 }-*/;
 
+/**
+ * @deprecated
+ * multiplyVector3Array() has been renamed. Use matrix.applyToVector3Array( array ) instead.
+ */
 public final native JsArrayNumber multiplyVector3Array(JsArrayNumber array)/*-{
-return this.multiplyVector3Array(array);
+return this.applyToVector3Array(array);
 }-*/;
 
 /**
@@ -283,4 +288,21 @@ return this.fromArray(array);
 public final native JsArrayNumber toArray()/*-{
 return this.toArray();
 }-*/;
+
+public final native JsArrayNumber applyToVector3Array(JsArrayNumber a)/*-{
+return this.applyToVector3Array(a);
+}-*/;
+
+public final native JsArrayNumber applyToVector3Array(JsArrayNumber a,int offset,int length)/*-{
+return this.applyToVector3Array(a,offset,length);
+}-*/;
+
+public native final Matrix4 extractBasis(Vector3 x,Vector3 y,Vector3 z)/*-{
+return this.extractBasis(x,y,z);
+}-*/;
+
+public final native Float32Array getElements()/*-{
+return this.elements;
+}-*/;
+
 }

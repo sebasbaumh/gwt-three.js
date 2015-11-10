@@ -37,6 +37,7 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.gwt.core;
 
+import com.akjava.gwt.three.client.js.core.Face3;
 import com.akjava.gwt.three.client.js.core.Object3D;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -66,4 +67,16 @@ public class Intersect extends JavaScriptObject
 		return this.point;
 	}-*/;
 
+
+public final native double getDistance()/*-{
+return this.distance;
+}-*/;
+
+public final native Face3 getFace()/*-{
+return this.face;
+}-*/;
+
+public final native int getFaceIndex()/*-{
+return this.faceIndex;
+}-*/;
 }

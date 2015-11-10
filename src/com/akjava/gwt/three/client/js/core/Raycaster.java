@@ -38,6 +38,7 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.core;
 
 import com.akjava.gwt.three.client.gwt.core.Intersect;
+import com.akjava.gwt.three.client.js.cameras.Camera;
 import com.akjava.gwt.three.client.js.math.Ray;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -150,9 +151,11 @@ public class Raycaster extends JavaScriptObject
 	 * returned sorted by distance, closest first.
 	 * @param objects The objects to check for intersection with the ray.
 	 * @return intersected objects
-	 */
 	public final native JsArray<Intersect> intersectObjects(JsArray<Object3D> objects)/*-{
 		return this.intersectObjects(objects);
 	}-*/;
-
+//both vector2 and vector3
+public final native void setFromCamera(Vector3 coords,Camera camera)/*-{
+this.setFromCamera(coords,camera);
+}-*/;
 }

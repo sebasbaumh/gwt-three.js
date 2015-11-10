@@ -79,6 +79,11 @@ public final class MeshBasicMaterialParameter extends JSParameter{
 	return this;
 	}-*/;
 	
+	public final native MeshBasicMaterialParameter alphaMap(Texture alphaMap)/*-{
+	this.alphaMap=alphaMap;
+	return this;
+	}-*/;
+	
 	public final native MeshBasicMaterialParameter combine(int combine)/*-{
 	this.combine=combine;
 	return this;
@@ -193,6 +198,13 @@ public final class MeshBasicMaterialParameter extends JSParameter{
 	}-*/;
 	
 	
+	public final native MeshBasicMaterialParameter vertexColors(int vertexColors)/*-{
+	this.vertexColors=vertexColors;
+	return this;
+	}-*/;
+	
+	
+	
 	
 	
 	public final native MeshBasicMaterialParameter polygonOffsetFactor(double polygonOffsetFactor)/*-{
@@ -208,12 +220,17 @@ public final class MeshBasicMaterialParameter extends JSParameter{
 	this.alphaTest=alphaTest;
 	return this;
 	}-*/;
-	public final native MeshBasicMaterialParameter overdraw(double overdraw)/*-{
+	public final native MeshBasicMaterialParameter overdraw(boolean overdraw)/*-{
 	this.overdraw=overdraw;
 	return this;
 	}-*/;
 	public final native MeshBasicMaterialParameter needsUpdate(boolean needsUpdate)/*-{
 	this.needsUpdate=needsUpdate;
+	return this;
+	}-*/;
+	
+	public final native MeshBasicMaterialParameter reflectivity(double reflectivity)/*-{
+	this.reflectivity=reflectivity;
 	return this;
 	}-*/;
 	

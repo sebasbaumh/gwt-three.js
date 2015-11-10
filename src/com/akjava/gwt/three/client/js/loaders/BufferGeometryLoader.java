@@ -38,7 +38,6 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.loaders;
 
 import com.akjava.gwt.three.client.js.core.BufferGeometry;
-import com.akjava.gwt.three.client.js.loaders.JSONLoader.JSONLoadHandler;
 import com.google.gwt.core.client.JavaScriptObject;
 
 
@@ -60,7 +59,7 @@ public class BufferGeometryLoader extends JavaScriptObject{
 //this.manager = manager;
 //}-*/;
 
-public final native void load(String url,JSONLoadHandler handler)/*-{
+public final native void load(String url,BufferGeometryLoadHandler handler)/*-{
 	this.load(url,function ( geometry ) {
 		handler.@com.akjava.gwt.three.client.js.loaders.BufferGeometryLoader$BufferGeometryLoadHandler::onLoad(Lcom/akjava/gwt/three/client/js/core/BufferGeometry;)(geometry);
 		});

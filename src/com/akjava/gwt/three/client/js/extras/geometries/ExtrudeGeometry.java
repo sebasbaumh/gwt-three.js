@@ -40,6 +40,7 @@ package com.akjava.gwt.three.client.js.extras.geometries;
 import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.extras.core.Shape;
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
 
 
 /**
@@ -49,10 +50,13 @@ public class ExtrudeGeometry extends Geometry{
 	protected ExtrudeGeometry() {
 	}
 	
-public final native Object addShape(Shape shape,JavaScriptObject options)/*-{
-return this.addShape(shape,options);
+public final native void addShape(Shape shape,JavaScriptObject options)/*-{
+this.addShape(shape,options);
 }-*/;
 
+public final native void addShapeList(JsArray<Shape> shapes,JavaScriptObject options)/*-{
+this.addShape(shapes,options);
+}-*/;
 
 
 }

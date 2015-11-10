@@ -37,13 +37,20 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.renderers;
 
+import com.akjava.gwt.three.client.gwt.JSParameter;
+import com.akjava.gwt.three.client.gwt.renderers.WebGLContext;
 import com.akjava.gwt.three.client.js.cameras.Camera;
+import com.akjava.gwt.three.client.js.core.Geometry;
+import com.akjava.gwt.three.client.js.materials.Material;
 import com.akjava.gwt.three.client.js.math.Color;
+import com.akjava.gwt.three.client.js.objects.Mesh;
 import com.akjava.gwt.three.client.js.scenes.Scene;
+import com.akjava.gwt.three.client.js.textures.Texture;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.user.client.ui.FocusWidget;
 
 /**
  * The WebGL renderer displays your beautifully crafted scenes using WebGL, if your device supports it. This renderer
@@ -60,16 +67,16 @@ public class WebGLRenderer extends JavaScriptObject
 	 * (if not provided already); you just need to add it to your page.
 	 * @return DOM element
 	 */
-	public native final Element getDomElement()/*-{
-		return this.domElement;
+	public  native final Element getDomElement()/*-{
+	return this.domElement;
 	}-*/;
-
+	
 	/**
 	 * Get the underlying WebGL context.
 	 * @return WebGL context.
 	 */
-	public final native JavaScriptObject getContext()/*-{
-		return this.context;
+	public final native WebGLContext getContext()/*-{
+	return this.context;
 	}-*/;
 	
 	public final native double getDevicePixelRatio()/*-{
@@ -124,11 +131,19 @@ public final native void setSortObjects(boolean sortObjects)/*-{
 this.sortObjects = sortObjects;
 }-*/;
 
-
+/**
+ * @deprecated
+ * 
+ * removed on r68
+ */
 public final native boolean isAutoUpdateObjects()/*-{
 return this.autoUpdateObjects;
 }-*/;
-
+/**
+ * @deprecated
+ * 
+ * removed on r68
+ */
 public final native void setAutoUpdateObjects(boolean autoUpdateObjects)/*-{
 this.autoUpdateObjects = autoUpdateObjects;
 }-*/;
@@ -305,7 +320,7 @@ return this.getPrecision;
 	public native final void setSize(int width, int height, boolean updateStyle)/*-{
 		this.setSize(width, height, updateStyle);
 	}-*/;
-
+	
 public final native void setViewport(double x,double y,double width,double height)/*-{
 this.setViewport(x,y,width,height);
 }-*/;
@@ -327,10 +342,19 @@ this.enableScissorTest(enable);
 		this.setClearColor(color, alpha);
 	}-*/;
 
+
+public final native void setClearColor(String color)/*-{
+this.setClearColor(color);
+}-*/;
+
+public final native void setClearColor(Color color)/*-{
+this.setClearColor(color);
+}-*/;
+
 	/**
 	 * Sets the color used to clear the scene.
 	 * @param color color
-	 */
+ */
 	public final native void setClearColor(int color)/*-{
 		this.setClearColor(color);
 	}-*/;
@@ -384,7 +408,7 @@ return this.updateShadowMap(scene,camera);
 	public native final void render(Scene scene, Camera camera)/*-{
 		this.render(scene, camera);
 	}-*/;
-
+	
 	/**
 	 * Render a scene using a camera. The render is done to the renderTarget (if specified) or to the canvas as usual.
 	 * If forceClear is true, the depth, stencil and color buffers will be cleared before rendering even if the
@@ -403,7 +427,7 @@ return this.updateShadowMap(scene,camera);
 	public  native final void clear()/*-{
 	this.clear();
 	}-*/;
-		
+	
 	public final native String gwtPngDataUrl ()/*-{
 	return this.domElement.toDataURL("image/png");
 	}-*/;
@@ -414,6 +438,80 @@ return this.updateShadowMap(scene,camera);
 	
 	public final native CanvasElement gwtCanvas ()/*-{
 	return this.domElement;
+	}-*/;
+	
+	/**
+	 * you should set this by yourself
+	 * @param type
+	 * @return
+	 */
+	public final native String gwtSetType (String type)/*-{
+	this.gwtType=type;
+}-*/;
+	
+	public final native String gwtGetType ()/*-{
+		return this.gwtType;
+	}-*/;
+	
+	
+	/**
+	 * this is just container.should rename it
+	 * @author aki
+	 *
+	 */
+	public static final class WebGLCanvas extends FocusWidget{
+		private WebGLRenderer renderer;
+		public WebGLRenderer getRenderer() {
+			return renderer;
+		}
+		public WebGLCanvas(WebGLRenderer renderer){
+		super(renderer.getDomElement());
+		this.renderer=renderer;
+		}
+		public void setClearColor(int hex){
+			//getElement().getStyle().setBackgroundColor("#"+Integer.toHexString(hex));
+			renderer.setClearColor(hex, 1);
+		}
+		
+		/*
+		 * just set this div's bg color
+		 */
+		public void setBackground(int hex){
+			getElement().getStyle().setBackgroundColor("#"+Integer.toHexString(hex));
+		}
+		
+	}
+	//TODO create group class
+	public final native JSParameter makeGroups(Geometry geometry,boolean usesFaceMaterial)/*-{
+	return this.makeGroups(geometry,usesFaceMaterial);
+	}-*/;
+	
+	public final native void uploadTexture (Texture texture)/*-{
+	return this.uploadTexture(texture);
+}-*/;
+	
+	public final native double getPixelRatio()/*-{
+	return this.getPixelRatio();
+	}-*/;
+	
+	public final native void setPixelRatio(double value)/*-{
+	this.setPixelRatio(value);
+	}-*/;
+	
+	public final native JavaScriptObject forceContextLoss()/*-{
+	return this.forceContextLoss();
+	}-*/;
+	
+	/**
+	 * 
+	 * @param geometryGroup,i have no idea,
+	 * @param object maybe mesh has geometry
+	 * @param hint maybe 
+	 * @param dispose
+	 * @param material
+	 */
+	public final native void setMeshBuffers(JavaScriptObject geometryGroup, Mesh object,int hint,boolean dispose,Material material)/*-{
+	this.setMeshBuffers(geometryGroup, object, hint, dispose, material);
 	}-*/;
 	
 }

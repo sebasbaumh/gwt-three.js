@@ -37,11 +37,13 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.core;
 
+import com.akjava.gwt.three.client.gwt.core.TraverseAncestorsListener;
 import com.akjava.gwt.three.client.js.math.Euler;
 import com.akjava.gwt.three.client.js.math.Matrix4;
 import com.akjava.gwt.three.client.js.math.Quaternion;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.google.gwt.core.client.JsArray;
+import com.google.gwt.json.client.JSONObject;
 
 /**
  * A 3d object, the underlying class for most three.js objects.
@@ -58,7 +60,7 @@ public class Object3D extends EventDispatcher{
 	public final native Vector3 getPosition()/*-{
 		return this.position;
 	}-*/;
-
+	
 	/**
 	 * Set current position.
 	 * @param vector position
@@ -81,8 +83,12 @@ public class Object3D extends EventDispatcher{
 	
 	public final native Euler getRotation()/*-{
 	return this.rotation;
-}-*/;
+	}-*/;
 	
+	/**
+	 * @deprecated
+	 * Made position, rotation, quaternion and scale properties immutable on r68
+	 */
 	public final native void setRotation(Euler rotation)/*-{
 	this.rotation=rotation;
 	}-*/;
@@ -91,6 +97,11 @@ public final void setScale(double x,double y,double z){
 	getScale().set(x,y,z);
 }
 
+
+/**
+ * @deprecated
+ * Made position, rotation, quaternion and scale properties immutable on r68
+ */
 public final native void setQuaternion(Quaternion quaternion)/*-{
  this.quaternion=q;
 }-*/;
@@ -154,6 +165,9 @@ public final native void updateMatrixWorld(boolean force)/*-{
 this.updateMatrixWorld(force);
 }-*/;
 
+public final native void updateMatrixWorld()/*-{
+this.updateMatrixWorld();
+}-*/;
 
 public final native int getId()/*-{
 return this.id;
@@ -166,7 +180,7 @@ public final boolean equals(Object3D object){
 public final native void setVisible(boolean bool)/*-{
 this.visible=bool;
 }-*/;
-public final native boolean getVisible()/*-{
+public final native boolean isVisible()/*-{
 return this.visible;
 }-*/;
 
@@ -225,15 +239,30 @@ this.up = up;
 	/**
 	 * Scales this object.
 	 * @param scale scale factor
-	 */
+
+
+
+
+/**
+ * @deprecated
+ * Made position, rotation, quaternion and scale properties immutable on r68
+ */
 	public final native void setScale(double scale)/*-{
 		this.scale.x = this.scale.y = this.scale.z = scale;
 	}-*/;
 
+/**
+ * @deprecated on r70
+ * @return
+ */
 public final native Object getRenderDepth()/*-{
 return this.renderDepth;
 }-*/;
 
+/**
+ * @deprecated removed on r70
+ * @param renderDepth
+ */
 public final native void setRenderDepth(Object renderDepth)/*-{
 this.renderDepth = renderDepth;
 }-*/;
@@ -302,7 +331,7 @@ public final native void setFrustumCulled(boolean frustumCulled)/*-{
 this.frustumCulled = frustumCulled;
 }-*/;
 
-
+//maybe any
 public final native Object getUserData()/*-{
 return this.userData;
 }-*/;
@@ -311,8 +340,8 @@ public final native void setUserData(Object userData)/*-{
 this.userData = userData;
 }-*/;
 
-public final native Object applyMatrix()/*-{
-return this.applyMatrix();
+public final native void applyMatrix()/*-{
+ this.applyMatrix();
 }-*/;
 
 public final native void setRotationFromAxisAngle(Object axis,Object angle)/*-{
@@ -405,12 +434,12 @@ this.setRotationFromQuaternion(q);
 		return this.translateZ(distance);
 	}-*/;
 
-public final native Object localToWorld(Object vector)/*-{
+public final native Vector3 localToWorld(Vector3 vector)/*-{
 return this.localToWorld(vector);
 }-*/;
 
-public final native Object worldToLocal()/*-{
-return this.worldToLocal();
+public final native Vector3 worldToLocal(Vector3 vector)/*-{
+return this.worldToLocal(vector);
 }-*/;
 
 	/**
@@ -420,6 +449,9 @@ return this.worldToLocal();
 	public final native void lookAt(Vector3 vector)/*-{
 		this.lookAt(vector);
 	}-*/;
+public final native Vector3 lookAt()/*-{
+return this.lookAt();
+}-*/;
 
 	/**
 	 * Traverse this {@link Object3D} and all children.
@@ -444,27 +476,30 @@ return this.worldToLocal();
 		public void process(Object3D o);
 	}
 
-public final native Object getObjectById(Object id,Object recursive)/*-{
+public final native Object3D getObjectById(int id,boolean recursive)/*-{
 return this.getObjectById(id,recursive);
 }-*/;
 
-public final native Object getObjectByName(Object name,Object recursive)/*-{
+public final native Object3D getObjectByName(String name,boolean recursive)/*-{
 return this.getObjectByName(name,recursive);
 }-*/;
 
+/**
+ * @deprecated use getObjectByName
+ */
 public final native Object getChildByName(Object name,Object recursive)/*-{
 return this.getChildByName(name,recursive);
 }-*/;
 
+/**
+ * @deprecated on r68
+ */
 public final native Object getDescendants(Object array)/*-{
 return this.getDescendants(array);
 }-*/;
 
 
 
-public final native void updateMatrixWorld(Object force)/*-{
-this.updateMatrixWorld(force);
-}-*/;
 
 	/**
 	 * Clones the object.
@@ -484,5 +519,53 @@ this.updateMatrixWorld(force);
 	public final native Object3D clone(Object3D object)/*-{
 		return this.clone(object);
 	}-*/;
+
+public static final native Vector3 getDefaultUp()/*-{
+return $wnd.THREE.Object3D.DefaultUp;
+}-*/;
+
+public final native void traverseVisible(Object callback)/*-{
+this.traverseVisible(callback);
+}-*/;
+
+
+public final native String getType()/*-{
+return this.type;
+}-*/;
+
+public final native JSONObject toJSON()/*-{
+return this.toJSON();
+}-*/;
+
+
+public final native Vector3 getWorldPosition(Vector3 optionalTarget)/*-{
+return this.getWorldPosition(optionalTarget);
+}-*/;
+public final native Quaternion getWorldQuaternion(Quaternion optionalTarget)/*-{
+return this.getWorldQuaternion(optionalTarget);
+}-*/;
+public final native Euler getWorldRotation(Euler optionalTarget)/*-{
+return this.getWorldRotation(optionalTarget);
+}-*/;
+public final native Vector3 getWorldScale(Vector3 optionalTarget)/*-{
+return this.getWorldScale(optionalTarget);
+}-*/;
+public final native Vector3 getWorldDirection(Vector3 optionalTarget)/*-{
+return this.getWorldDirection(optionalTarget);
+}-*/;
+
+//TODO test,difference value
+public final native Object3D getObjectByProperty(String name,Object value,boolean recursive)/*-{
+return this.getObjectByProperty(name,value,recursive);
+}-*/;
+
+
+public final native void traverseAncestors(TraverseAncestorsListener listener)/*-{
+this.traverseAncestors(
+function(event){
+	listener.@com.akjava.gwt.three.client.gwt.core.TraverseAncestorsListener::callback(Lcom/akjava/gwt/three/client/js/core/Object3D;)(event);
+}
+);
+}-*/;
 
 }

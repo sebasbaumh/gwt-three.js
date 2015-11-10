@@ -4,7 +4,6 @@ import com.akjava.gwt.three.client.gwt.JSONModelFile;
 import com.akjava.gwt.three.client.js.THREE;
 import com.akjava.gwt.three.client.js.cameras.Camera;
 import com.akjava.gwt.three.client.js.core.Geometry;
-import com.akjava.gwt.three.client.js.core.Projector;
 import com.akjava.gwt.three.client.js.loaders.JSONLoader;
 import com.akjava.gwt.three.client.js.loaders.JSONLoader.JSONLoadHandler;
 import com.akjava.gwt.three.client.js.materials.Material;
@@ -113,12 +112,11 @@ public class GWTThreeUtils {
         ( - pos.y + 1) * height / 2 ,0);
 	}-*/;
 	
-	private static final Projector projector=THREE.Projector();
 	
 	//for camera position & rotation 0,0,0,
 	public static Vector3 toWebGLXY(int mouseX,int mouseY,Camera camera,int width,int height){
 		Vector3 mouseXY=THREE.Vector3(mouseX-width/2, -(mouseY-height/2), 0);
-		Vector3 pj=projector.projectVector(mouseXY, camera);
+		Vector3 pj=mouseXY.project(camera);
 		return pj;
 	}
 	
@@ -252,4 +250,10 @@ public class GWTThreeUtils {
 		array.push(q.getW());
 		return array;
 	}
+	
+	public static final native double getWindowDevicePixelRatio()/*-{
+	return $wnd.devicePixelRatio;
+	}-*/;
+	
+	
 }

@@ -86,12 +86,16 @@ public final native void setTransparent(boolean transparent)/*-{
 this.transparent = transparent;
 }-*/;
 
-
-public final native Object getBlending()/*-{
+/**
+ * THREE.BLENDING
+ */
+public final native int getBlending()/*-{
 return this.blending;
 }-*/;
-
-public final native void setBlending(Object blending)/*-{
+/**
+ * THREE.BLENDING
+ */
+public final native void setBlending(int blending)/*-{
 this.blending = blending;
 }-*/;
 
@@ -232,4 +236,19 @@ public final native Color gwtGetColor()/*-{
 return this.color;
 }-*/;
 
+public final native void gwtSet(String name,double value)/*-{
+this[name]=value;
+}-*/;
+public final native void gwtSet(String name,String value)/*-{
+this[name]=value;
+}-*/;
+public final native void gwtSet(String name,boolean value)/*-{
+this[name]=value;
+}-*/;
+public final native void gwtSet(String name,JavaScriptObject value)/*-{
+this[name]=value;
+}-*/;
+public final native void gwtSet(String name,Color value)/*-{
+this[name]=value;
+}-*/;
 }
