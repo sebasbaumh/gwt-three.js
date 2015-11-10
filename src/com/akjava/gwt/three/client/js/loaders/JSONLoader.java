@@ -27,17 +27,4 @@ public class JSONLoader extends Loader{
 	public final native JavaScriptObject parse(JavaScriptObject json,String texturePath)/*-{
 	return this.parse(json,texturePath);
 	}-*/;
-	
-	/** @deprecated don't work anymore*/
-	//public final native void createModel(JavaScriptObject object,JSONLoadHandler handler,String texturepath)/*-{
-	//this.createModel(object,function ( geometry ) {
-	//	handler.@com.akjava.gwt.three.client.js.loaders.JSONLoader$JSONLoadHandler::loaded(Lcom/akjava/gwt/three/client/core/Geometry;)(geometry);
-	//	},texturepath);
-
-	//}-*/;
-	
-	
-
-	
-	
 }

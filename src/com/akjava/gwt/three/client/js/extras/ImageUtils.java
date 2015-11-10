@@ -73,21 +73,6 @@ $wnd.THREE.ImageUtils.loadCompressedTextureCube(url,mapping,function ( texture )
 }
 }-*/;
 
-
-/**
- * @deprecated
- */
-@Deprecated
-public static final native CompressedTexture loadDDSTexture(String url,JavaScriptObject mapping,ImageUtilsLoadHandler handler)/*-{
-	if(handler){
-$wnd.THREE.ImageUtils.loadDDSTexture(url,mapping,function ( texture ) {
-		handler.@com.akjava.gwt.three.client.js.extras.ImageUtils$ImageUtilsLoadHandler::onLoad(Lcom/google/gwt/core/client/JavaScriptObject;)(texture);
-		},onError);
-}else{
-	$wnd.THREE.ImageUtils.loadDDSTexture(url,mapping);
-}
-}-*/;
-
 /**
  * i have no idea
  * @param buffer

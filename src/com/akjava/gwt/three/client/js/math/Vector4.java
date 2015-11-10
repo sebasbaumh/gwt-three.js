@@ -81,17 +81,6 @@ public final native Vector4 add(Vector4 v)/*-{
 return this.add(v);
 }-*/;
 
-/**
- * @deprecated
- * @param v
- * @param w
- * @return
- */
-@Deprecated
-public final native Vector4 add(Vector4 v,Vector4 w)/*-{
-return this.add(v,w);
-}-*/;
-
 public final native Vector4 addScalar(double s)/*-{
 return this.addScalar(s);
 }-*/;
@@ -101,13 +90,6 @@ return this.addVectors(a,b);
 }-*/;
 public final native Vector4 sub(Vector4 v)/*-{
 return this.sub(v);
-}-*/;
-/**
- * @deprecated
- */
-@Deprecated
-public final native Vector4 sub(Vector4 v,Vector4 w)/*-{
-return this.sub(v,w);
 }-*/;
 
 public final native Vector4 subVectors(Vector4 a,Vector4 b)/*-{

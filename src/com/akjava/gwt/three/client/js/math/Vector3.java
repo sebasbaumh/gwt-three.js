@@ -244,35 +244,14 @@ return this.distanceToSquared(v);
 public final native Vector3 setFromMatrixPosition(Matrix4 m)/*-{
 return this.setFromMatrixPosition(m);
 }-*/;
-/**
- * @deprecated after r64
- * use setFromMatrixScale
- * @param m
- * @return
- */
-@Deprecated
-public final native Vector3 getScaleFromMatrix(Matrix4 m)/*-{
-return this.getScaleFromMatrix(m);
-}-*/;
 
 public final native Vector3 setFromMatrixScale(Matrix4 m)/*-{
 return this.setFromMatrixScale(m);
 }-*/;
 
-/**
- * @deprecated after r64
- * use setFromMatrixColumn
- * @param m
- * @return
- */
-@Deprecated
-public final native Vector3 getColumnFromMatrix(int index,Matrix4 matrix)/*-{
-return this.getColumnFromMatrix(index,matrix);
-}-*/;
 public final native Vector3 setFromMatrixColumn(int index,Matrix4 matrix)/*-{
 return this.setFromMatrixColumn(index,matrix);
 }-*/;
-
 
 public final native boolean equals(Vector3 v)/*-{
 return this.equals(v);

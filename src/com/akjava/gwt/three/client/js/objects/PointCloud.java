@@ -47,57 +47,20 @@ import com.google.gwt.core.client.JsArray;
 public class PointCloud extends Object3D{
 protected PointCloud(){}
 
-
-
-
 public final native void setGeometry(Object geometry)/*-{
 this.geometry = geometry;
 }-*/;
-
-
-
 
 public final native void setMaterial(Material material)/*-{
 this.material = material;
 }-*/;
 
-/**
- * @deprecated on r70
- * @param bool
- */
-@Deprecated
-public final native boolean isSortParticles()/*-{
-return this.sortParticles;
-}-*/;
-
-
-
-
-
-
 public final native PointCloud clone(PointCloud object)/*-{
 return this.clone(object);
 }-*/;
-/**
- * @deprecated on r70
- * @param bool
- */
-@Deprecated
-public native final void setSortParticles (boolean bool)/*-{
-this.sortParticles=bool;
-}-*/;
-
 
 public native final Geometry getGeometry ()/*-{
 return this.geometry;
-}-*/;
-
-/**
- * @deprecated
- */
-@Deprecated
-public native final JsArray<Material> materials ()/*-{
-return null;
 }-*/;
 
 public native final Material getMaterial()/*-{

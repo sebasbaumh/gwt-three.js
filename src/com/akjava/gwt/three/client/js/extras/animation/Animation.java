@@ -59,24 +59,6 @@ public final native void setIsPlaying(boolean isPlaying)/*-{
 this.isPlaying = isPlaying;
 }-*/;
 
-/**
- * @deprecated
- * on r68 dropped
- */
-@Deprecated
-public final native boolean isIsPaused()/*-{
-return this.isPaused;
-}-*/;
-/**
- * @deprecated
- * on r68 dropped
- */
-@Deprecated
-public final native void setIsPaused(boolean isPaused)/*-{
-this.isPaused = isPaused;
-}-*/;
-
-
 public final native boolean isLoop()/*-{
 return this.loop;
 }-*/;
@@ -84,7 +66,6 @@ return this.loop;
 public final native void setLoop(boolean loop)/*-{
 this.loop = loop;
 }-*/;
-
 
 public final native int getInterpolationType()/*-{
 return this.interpolationType;
@@ -99,34 +80,12 @@ public final native JsArrayNumber getPoints()/*-{
 return this.points;
 }-*/;
 
-
-
-
 public final native Vector3 getTarget()/*-{
 return this.target;
 }-*/;
 
 public final native void setTarget(Vector3 target)/*-{
 this.target = target;
-}-*/;
-
-/**
- * @deprecated no more support loop
- * @param loop
- * @param startTimeMS
- */
-@Deprecated
-public final native void play(boolean loop,double startTimeMS)/*-{
-this.play(loop,startTimeMS);
-}-*/;
-
-/**
- * @deprecated
- * on r68 dropped
- */
-@Deprecated
-public final native void pause()/*-{
-this.pause();
 }-*/;
 
 public final native void stop()/*-{

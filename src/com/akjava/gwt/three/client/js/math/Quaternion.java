@@ -55,16 +55,6 @@ public final native Quaternion multiplyQuaternions(Quaternion a,Quaternion b)/*-
 return this.multiplyQuaternions(a,b);
 }-*/;
 
-/**
- * @deprecated
- * @param vector
- * @return
- */
-@Deprecated
-public final native Object multiplyVector3(Vector3 vector)/*-{
-return this.multiplyVector3(vector);
-}-*/;
-
 public final native Quaternion slerp(Quaternion qb,double t)/*-{
 return this.slerp(qb,t);
 }-*/;
@@ -85,34 +75,9 @@ public final native Quaternion clone()/*-{
 return this.clone();
 }-*/;
 
-
-
-
-
-
-
-
 public static native final Quaternion slerp( Quaternion qa,Quaternion qb,Quaternion qm,double t)/*-{
 return $wnd.THREE.Quaternion.slerp( qa, qb, qm, t);
 }-*/;
-
-/**
- * @deprecated
- * @return
- */
-@Deprecated
-public native final Quaternion multiplySelf(Quaternion q)/*-{
-return this.multiply(q);
-}-*/;
-/**
- * @deprecated
- * @return
- */
-@Deprecated
-public native final Quaternion multiply(Quaternion q,Quaternion q2)/*-{
-return this.multiply(q,q2);
-}-*/;
-
 
 public native final double getX()/*-{
 return this.x;

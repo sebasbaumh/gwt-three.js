@@ -85,29 +85,9 @@ public class Object3D extends EventDispatcher{
 	return this.rotation;
 	}-*/;
 	
-	/**
-	 * @deprecated
-	 * Made position, rotation, quaternion and scale properties immutable on r68
-	 */
-	@Deprecated
-	public final native void setRotation(Euler rotation)/*-{
-	this.rotation=rotation;
-	}-*/;
-
 public final void setScale(double x,double y,double z){
 	getScale().set(x,y,z);
 }
-
-
-/**
- * @deprecated
- * Made position, rotation, quaternion and scale properties immutable on r68
- */
-@Deprecated
-public final native void setQuaternion(Quaternion quaternion)/*-{
- this.quaternion=q;
-}-*/;
-
 
 public final native Matrix4 getMatrix()/*-{
 return this.matrix;
@@ -238,41 +218,6 @@ this.up = up;
 		this.scale = scale;
 	}-*/;
 
-	/**
-	 * Scales this object.
-	 * @param scale scale factor
-
-
-
-
-/**
- * @deprecated
- * Made position, rotation, quaternion and scale properties immutable on r68
- */
-	@Deprecated
-	public final native void setScale(double scale)/*-{
-		this.scale.x = this.scale.y = this.scale.z = scale;
-	}-*/;
-
-/**
- * @deprecated on r70
- * @return
- */
-@Deprecated
-public final native Object getRenderDepth()/*-{
-return this.renderDepth;
-}-*/;
-
-/**
- * @deprecated removed on r70
- * @param renderDepth
- */
-@Deprecated
-public final native void setRenderDepth(Object renderDepth)/*-{
-this.renderDepth = renderDepth;
-}-*/;
-
-
 public final native boolean isRotationAutoUpdate()/*-{
 return this.rotationAutoUpdate;
 }-*/;
@@ -281,15 +226,9 @@ public final native void setRotationAutoUpdate(boolean rotationAutoUpdate)/*-{
 this.rotationAutoUpdate = rotationAutoUpdate;
 }-*/;
 
-
-
-
 public final native void setMatrix(Matrix4 matrix)/*-{
 this.matrix = matrix;
 }-*/;
-
-
-
 
 public final native void setMatrixWorld(Matrix4 matrixWorld)/*-{
 this.matrixWorld = matrixWorld;
@@ -488,25 +427,6 @@ return this.getObjectById(id,recursive);
 public final native Object3D getObjectByName(String name,boolean recursive)/*-{
 return this.getObjectByName(name,recursive);
 }-*/;
-
-/**
- * @deprecated use getObjectByName
- */
-@Deprecated
-public final native Object getChildByName(Object name,Object recursive)/*-{
-return this.getChildByName(name,recursive);
-}-*/;
-
-/**
- * @deprecated on r68
- */
-@Deprecated
-public final native Object getDescendants(Object array)/*-{
-return this.getDescendants(array);
-}-*/;
-
-
-
 
 	/**
 	 * Clones the object.

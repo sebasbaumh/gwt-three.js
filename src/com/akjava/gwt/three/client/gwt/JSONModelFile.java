@@ -221,67 +221,49 @@ public final void setGeometryUvs(JsArray<JsArray<JsArray<Vector2>>> uvss){
  * call setUvs first
  * @param faces
  */
-public final void setFaces(JsArray<Face3> faces){
-	boolean hasUv=getUvs().length()>0;
-	boolean hasNormal=getNormals().length()>0;
-	
-	JsArrayNumber nums=(JsArrayNumber) JavaScriptObject.createArray();
-	int faceIndex=0;
-	for(int i=0;i<faces.length();i++){
-		Face3 face=faces.get(i);
-		if(face.isFace4()){
-			int v=1;if(hasUv){v=8+1;}
-			if(hasNormal){v+=32;}
-			nums.push(v); // quad
-			nums.push(face.getA());
-			nums.push(face.getB());
-			nums.push(face.getC());
-			nums.push(face.getD());
-			
-			if(hasUv){//uv is same as vx
-				nums.push(faceIndex);
-				nums.push(faceIndex+1);
-				nums.push(faceIndex+2);
-				nums.push(faceIndex+3);
+	public final void setFaces(JsArray<Face3> faces)
+	{
+		boolean hasUv = getUvs().length() > 0;
+		boolean hasNormal = getNormals().length() > 0;
+
+		JsArrayNumber nums = (JsArrayNumber) JavaScriptObject.createArray();
+		int faceIndex = 0;
+		for (int i = 0; i < faces.length(); i++)
+		{
+			Face3 face = faces.get(i);
+			int v = 0;
+			if (hasUv)
+			{
+				v = 8 + 0;
 			}
-			
-			if(hasNormal){
-				nums.push(faceIndex);
-				nums.push(faceIndex+1);
-				nums.push(faceIndex+2);
-				nums.push(faceIndex+3);
+			if (hasNormal)
+			{
+				v += 32;
 			}
-			
-			faceIndex+=4;
-			
-		}else{
-			int v=0;if(hasUv){v=8+0;}
-			if(hasNormal){v+=32;}
 			nums.push(v); // triangle
 			nums.push(face.getA());
 			nums.push(face.getB());
 			nums.push(face.getC());
-			
-			if(hasUv){//uv is same as vx
+
+			if (hasUv)
+			{// uv is same as vx
 				nums.push(faceIndex);
-				nums.push(faceIndex+1);
-				nums.push(faceIndex+2);
+				nums.push(faceIndex + 1);
+				nums.push(faceIndex + 2);
 			}
-			
-			if(hasNormal){
+
+			if (hasNormal)
+			{
 				nums.push(faceIndex);
-				nums.push(faceIndex+1);
-				nums.push(faceIndex+2);
+				nums.push(faceIndex + 1);
+				nums.push(faceIndex + 2);
 			}
-			
-			faceIndex+=3;
+
+			faceIndex += 3;
+
 		}
-		
+		setFaces(nums);
 	}
-	setFaces(nums);
-}
-
-
 
 public native final void setMetaData(MetaData meta)/*-{
 this["metadata"]=meta;

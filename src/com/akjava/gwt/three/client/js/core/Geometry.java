@@ -38,7 +38,6 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.core;
 
 import com.akjava.gwt.three.client.gwt.JSParameter;
-import com.akjava.gwt.three.client.gwt.animation.AnimationBone;
 import com.akjava.gwt.three.client.gwt.animation.AnimationData;
 import com.akjava.gwt.three.client.gwt.core.BoundingBox;
 import com.akjava.gwt.three.client.gwt.core.MorphTarget;
@@ -76,14 +75,6 @@ this.computeBoundingSphere();
 
 public final native void computeFaceNormals()/*-{
  this.computeFaceNormals();
-}-*/;
-
-/**
- * @deprecated no more exist after r67
- */
-@Deprecated
-public final native void computeCentroids()/*-{
-this.computeFaceNormals();
 }-*/;
 
 public final native void computeVertexNormals()/*-{
@@ -175,43 +166,6 @@ return this.morphTargets;
 
 public final native JsArray<AnimationData> getAnimations()/*-{
 return this.animations;
-}-*/;
-/*
- * I'm not sure maybe this is for compatible,should youse 
- */
-/**
- * @deprecated maybe better to avoid
- */
-@Deprecated
-public final native AnimationData getAnimation()/*-{
-return this.animation;
-}-*/;
-public final native JsArray<AnimationBone> getBones()/*-{
-return this.bones;
-}-*/;
-
-
-public final native void setBones(JsArray<AnimationBone> bones)/*-{
-this.bones=bones;
-}-*/;
-
-//dont't call after meshed geometry
-/**
- @deprecated
- */
-@Deprecated
-public final native JsArrayNumber getSkinIndicesAsRaw()/*-{
-return this.skinIndices;
-}-*/;
-
-
-//dont't call after meshed geometry
-/**
-@deprecated
-*/
-@Deprecated
-public final native JsArrayNumber getSkinWeightAsRaw()/*-{
-return this.skinWeights;
 }-*/;
 
 //dont't call after meshed geometry

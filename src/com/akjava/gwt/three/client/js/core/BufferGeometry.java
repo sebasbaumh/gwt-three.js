@@ -128,19 +128,9 @@ public final native void setMorphTargets(JsArray<JavaScriptObject> morphTargets)
 this.morphTargets = morphTargets;
 }-*/;
 
-/**
- * @deprecated
- * it's gone
- */
-@Deprecated
-public final native void addAttribute(Object name,Object type,Object numItems,Object itemSize)/*-{
-this.addAttribute(name,type,numItems,itemSize);
-}-*/;
-
 public final native void addDrawCall(int start,int count,int indexOffset)/*-{
 this.addDrawCall(start,count,indexOffset);
 }-*/;
-
 
 public final native void addAttribute(String name,BufferAttribute attribute)/*-{
 this.addAttribute(name,attribute);

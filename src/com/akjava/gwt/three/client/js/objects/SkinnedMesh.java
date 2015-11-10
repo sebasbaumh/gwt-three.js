@@ -1,7 +1,6 @@
 package com.akjava.gwt.three.client.js.objects;
 
 import com.akjava.gwt.three.client.js.math.Matrix4;
-import com.google.gwt.core.client.JsArray;
 
 public class SkinnedMesh extends Mesh{
 protected SkinnedMesh(){}
@@ -15,27 +14,6 @@ public final native void setSkeleton(Skeleton skelton)/*-{
 this.skeleton=skelton;
 }-*/;
 
-/**
- * 
- * @deprecated
- * use getSkelton()
- */
-@Deprecated
-public final native boolean isUseVertexTexture()/*-{
-return this.skelton.useVertexTexture;
-}-*/;
-
-/**
- * 
- * @deprecated
- * use getSkelton()
- */
-@Deprecated
-public final native void setUseVertexTexture(boolean useVertexTexture)/*-{
-this.skelton.useVertexTexture = useVertexTexture;
-}-*/;
-
-
 public final native Matrix4 getIdentityMatrix()/*-{
 return this.identityMatrix;
 }-*/;
@@ -43,37 +21,6 @@ return this.identityMatrix;
 public final native void setIdentityMatrix(Matrix4 identityMatrix)/*-{
 this.identityMatrix = identityMatrix;
 }-*/;
-
-/**
- * 
- * @deprecated
- * use getSkelton()
- */
-@Deprecated
-public final native JsArray<Bone> getBones()/*-{
-return this.skelton.bones;
-}-*/;
-/**
- * 
- * @deprecated
- * use getSkelton()
- */
-@Deprecated
-public final native void setBones(JsArray<Bone> bones)/*-{
-this.skelton.bones = bones;
-}-*/;
-
-/**
- * 
- * @deprecated
- * use getSkelton()
- */
-@Deprecated
-public final native Bone addBone(Bone bone)/*-{
-return this.skelton.addBone(bone);
-}-*/;
-
-
 
 public final native void pose()/*-{
 this.pose();

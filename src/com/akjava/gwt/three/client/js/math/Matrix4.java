@@ -19,16 +19,6 @@ public final native Matrix4 copy(Matrix4 m)/*-{
 return this.copy(m);
 }-*/;
 
-/**
- * @deprecated
- * @param m
- * @return
- */
-@Deprecated
-public final native Matrix4 extractPosition(Object m)/*-{
-return this.extractPosition(m);
-}-*/;
-
 public final native Matrix4 copyPosition(Matrix4 m)/*-{
 return this.copyPosition(m);
 }-*/;
@@ -46,32 +36,12 @@ public final native Matrix4 makeRotationFromEuler(Euler euler)/*-{
 return this.makeRotationFromEuler(euler);
 }-*/;
 
-/**
- * @deprecated
- * @param vec
- * @param order
- */
-@Deprecated
-public native final void setRotationFromEuler(Vector3 vec,String order)/*-{
-this.setRotationFromEuler(vec,order);
-}-*/;
-
-
 public final native Matrix4 makeRotationFromQuaternion(Quaternion q)/*-{
 return this.makeRotationFromQuaternion(q);
 }-*/;
 
 public native final Matrix4 lookAt(Vector3 eye,Vector3 center,Vector3 up)/*-{
 return this.lookAt(eye,center,up);
-}-*/;
-
-/**
- * @deprecated
- * @return
- */
-@Deprecated
-public native final Matrix4 multiply(Matrix4 a,Matrix4 b)/*-{
-return this.multiply(a,b);
 }-*/;
 
 public native final Matrix4 multiply(Matrix4 a)/*-{
@@ -88,43 +58,6 @@ return this.multiplyToArray(a,b,r);
 
 public final native Matrix4 multiplyScalar(double s)/*-{
 return this.multiplyScalar(s);
-}-*/;
-
-
-
-/**
- * @deprecated use applyMatrix4
- * @return
- */
-@Deprecated
-public final native Object multiplyVector4(Vector4 vector)/*-{
-return this.applyMatrix4(vector);
-//return this.multiplyVector4(vector);
-}-*/;
-
-/**
- * @deprecated
- * multiplyVector3Array() has been renamed. Use matrix.applyToVector3Array( array ) instead.
- */
-@Deprecated
-public final native JsArrayNumber multiplyVector3Array(JsArrayNumber array)/*-{
-return this.applyToVector3Array(array);
-}-*/;
-
-/**
- * @deprecated
- */
-@Deprecated
-public final native void rotateAxis(Vector3 v)/*-{
-this.rotateAxis(v);
-}-*/;
-
-/**
- * @deprecated
- */
-@Deprecated
-public final native Vector4 crossVector(Vector4 vector)/*-{
-return this.crossVector(vector);
 }-*/;
 
 public final native double determinant()/*-{
@@ -151,16 +84,6 @@ public final native Matrix4  clone()/*-{
 return this.clone();
 }-*/;
 
-/**
- * @deprecated
- * @return
- */
-//value is shared usually got a problem
-//return THREE.Matrix4.__v1.set( this.n14, this.n24, this.n34 );
-@Deprecated
-public native final Vector3 getPosition()/*-{
-return this.getPosition().clone();
-}-*/;
 public native final Vector3 getColumnX()/*-{
 return this.getColumnX().clone();
 }-*/;
@@ -170,7 +93,6 @@ return this.getColumnY().clone();
 public native final Vector3 getColumnZ()/*-{
 return this.getColumnZ().clone();
 }-*/;
-
 
 public native final Matrix4 makeRotationX(double v)/*-{
 return this.makeRotationX(v);
@@ -182,65 +104,12 @@ public native final Matrix4 makeRotationZ(double v)/*-{
 return this.makeRotationZ(v);
 }-*/;
 
-
-/**
- * @deprecated use multiply
- */
-@Deprecated
-public native final Matrix4 multiplySelf(Matrix4 b)/*-{
-return this.multiply(this,b);
-}-*/;
-
-/**
- * @deprecated must use makeRotationFromQuaternion
- * MAKE clear all postion data.
- */
-
-@Deprecated
-public native final Matrix4 setRotationFromQuaternion(Quaternion q)/*-{
-return this.setRotationFromQuaternion(q);
-}-*/;
-
-
 public native final Matrix4 getInverse(Matrix4 b)/*-{
 return this.getInverse(b);
 }-*/;
 
 public native final Matrix4 getInverse(Matrix4 b,boolean throwOnInvertible)/*-{
 return this.getInverse(b,throwOnInvertible);
-}-*/;
-
-/**
- * @deprecated
- * @param thera
- */
-@Deprecated
-public native final void setRotationX(double thera)/*-{
-this.setRotationX(thera);
-}-*/;
-/**
- * @deprecated
- * @param thera
- */
-@Deprecated
-public native final void setRotationY(double thera)/*-{
-this.setRotationY(thera);
-}-*/;
-/**
- * @deprecated
- * @param thera
- */
-@Deprecated
-public native final void setRotationZ(double thera)/*-{
-this.setRotationZ(thera);
-}-*/;
-/**
- * @deprecated
- * @param thera
- */
-@Deprecated
-public native final void setTranslation(double x,double y,double z)/*-{
-this.makeTranslation(x,y,z);
 }-*/;
 
 public final native Matrix4 scale(double v)/*-{
@@ -254,8 +123,6 @@ return this.getMaxScaleOnAxis();
 public final native Matrix4 makeTranslation(double x,double y,double z)/*-{
 return this.makeTranslation(x,y,z);
 }-*/;
-
-
 
 public final native Matrix4 makeRotationAxis(Vector3 axis,double angle)/*-{
 return this.makeRotationAxis(axis,angle);

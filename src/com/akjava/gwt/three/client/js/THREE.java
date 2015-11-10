@@ -57,7 +57,6 @@ import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.core.Object3D;
 import com.akjava.gwt.three.client.js.core.Raycaster;
 import com.akjava.gwt.three.client.js.extras.animation.Animation;
-import com.akjava.gwt.three.client.js.extras.animation.AnimationMorphTarget;
 import com.akjava.gwt.three.client.js.extras.animation.KeyFrameAnimation;
 import com.akjava.gwt.three.client.js.extras.animation.MorphAnimation;
 import com.akjava.gwt.three.client.js.extras.audio.Audio;
@@ -484,24 +483,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.Plane(normal,constant);
 	}-*/;
 	
-
-	/**
-	 * @deprecated
-	 * on r69 ,use set()
-	 */
-	@Deprecated
-	public static final native Matrix4 Matrix4(double n11,double n12,double n13,double n14,double n21,double n22,double n23,double n24,double n31,double n32,double n33,double n34,double n41,double n42,double n43,double n44)/*-{
-	return new $wnd.THREE.Matrix4(n11,n12,n13,n14,n21,n22,n23,n24,n31,n32,n33,n34,n41,n42,n43,n44);
-	}-*/;
-	
-	/**
-	 * @deprecated
-	 * on r69 ,use set()
-	 */
-	@Deprecated
-	public static final native Matrix3 Matrix3(double n11,double n12,double n13,double n21,double n22,double n23,double n31,double n32,double n33)/*-{
-	return new $wnd.THREE.Matrix3(n11,n12,n13,n21,n22,n23,n31,n32,n33);
-	}-*/;
 	public static final native Matrix3 Matrix3()/*-{
 	return new $wnd.THREE.Matrix3();
 	}-*/;
@@ -735,45 +716,11 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.CubeCamera( near, far, cubeResolution ); 
 	}-*/;
 	
-	/**
-	 * @deprecated
-	 */
-	@Deprecated
-	public static native final Animation Animation(SkinnedMesh root,String name)/*-{
-	return new $wnd.THREE.Animation(root,name);
-	}-*/;
-	/**
-	 * @deprecated
-	 */
-	@Deprecated
-	public static native final Animation Animation(Object3D root,String name)/*-{
-	return new $wnd.THREE.Animation(root,name);
-	}-*/;
-	
-
 	//SkinnedMesh or Bone?
 	public static native final Animation Animation(Object3D root,AnimationData data)/*-{
 	return new $wnd.THREE.Animation(root,data);
 	}-*/;
-	
-	/**
-	 * @deprecated on r65
-	 */
-	@Deprecated
-	public static native final AnimationMorphTarget AnimationMorphTarget(Object3D root,String name)/*-{
-	return new $wnd.THREE.AnimationMorphTarget(root,name);
-	}-*/;
-	
-	
-	/**
-	 * @deprecated
-	 * changed on r68
-	 */
-	@Deprecated
-	public static native final KeyFrameAnimation KeyFrameAnimation(Object3D root,String name)/*-{
-	return new $wnd.THREE.KeyFrameAnimation(root,name);
-	}-*/;
-	
+		
 	public static native final KeyFrameAnimation KeyFrameAnimation(AnimationData data)/*-{
 	return new $wnd.THREE.KeyFrameAnimation(data);
 	}-*/;
@@ -784,7 +731,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	public static native final Vector4 Vector4(double x,double y,double z,double w)/*-{
 	return new $wnd.THREE.Vector4(x,y,z,w);
 	}-*/;
-
 	
 	public static native final Matrix4 Matrix4()/*-{
 	return new $wnd.THREE.Matrix4();
@@ -1068,6 +1014,7 @@ return new $wnd.THREE.ArrowHelper(size);
 		/**
 		 * THREE.LinePieces will draw a series of pairs of segments (first connected to the second, the third connected to the fourth, and so on and so forth).
 		 * @return LineType
+		 */
 		public static native final int LinePieces()/*-{
 			return $wnd.THREE.LinePieces;
 		}-*/;

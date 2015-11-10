@@ -57,24 +57,6 @@ return this.identity();
 public final native Matrix3 copy(Matrix3 m)/*-{
 return this.copy(m);
 }-*/;
-/**
- * @deprecated
- * @param vector
- * @return
- */
-@Deprecated
-public final native Matrix3 multiplyVector3(Vector3 vector)/*-{
-return this.multiplyVector3(vector);
-}-*/;
-
-/**
- * @deprecated
- * multiplyVector3Array() has been renamed. Use matrix.applyToVector3Array( array ) instead.
- */
-@Deprecated
-public final native JsArrayNumber multiplyVector3Array(JsArrayNumber a)/*-{
-return this.applyToVector3Array(a);
-}-*/;
 
 public final native JsArrayNumber applyToVector3Array(JsArrayNumber a)/*-{
 return this.applyToVector3Array(a);

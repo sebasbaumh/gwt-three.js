@@ -40,22 +40,11 @@ package com.akjava.gwt.three.client.js.extras.helpers;
 import com.akjava.gwt.three.client.js.core.Object3D;
 import com.akjava.gwt.three.client.js.materials.LineBasicMaterial;
 import com.akjava.gwt.three.client.js.objects.Line;
-import com.akjava.gwt.three.client.js.objects.Skeleton;
 
 
 public class SkeletonHelper extends Line{
 	protected SkeletonHelper() {
 	}
-
-/**
- * @deprecated
- * removed on r68
- * @return
- */
-@Deprecated
-public final native Skeleton getSkeleton()/*-{
-return this.skeleton;
-}-*/;
 
 public final native Object3D getRoot()/*-{
 return this.root;

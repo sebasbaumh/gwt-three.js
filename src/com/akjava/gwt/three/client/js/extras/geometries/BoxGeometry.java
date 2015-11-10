@@ -1,8 +1,6 @@
 package com.akjava.gwt.three.client.js.extras.geometries;
 
 import com.akjava.gwt.three.client.js.core.Geometry;
-import com.akjava.gwt.three.client.js.materials.Material;
-import com.google.gwt.core.client.JsArray;
 
 public class BoxGeometry extends Geometry{
 protected BoxGeometry(){}
@@ -35,23 +33,6 @@ return this.heightSegments;
 
 public final native int getDepthSegments()/*-{
 return this.depthSegments;
-}-*/;
-
-/**
- * @deprecated
- * @return
- */
-@Deprecated
-public final native JsArray<Material> getMaterials()/*-{	
-return null;
-}-*/;
-
-/**
- * @deprecated
- */
-@Deprecated
-public final native void setMaterials(Material material)/*-{	
-this.materials=[material];
 }-*/;
 
 }

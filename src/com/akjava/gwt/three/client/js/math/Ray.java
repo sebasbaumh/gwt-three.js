@@ -37,11 +37,7 @@ THE SOFTWARE.
  */
 package com.akjava.gwt.three.client.js.math;
 
-import com.akjava.gwt.three.client.gwt.core.Intersect;
-import com.akjava.gwt.three.client.js.core.Object3D;
-import com.akjava.gwt.three.client.js.scenes.Scene;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 
 public class Ray extends JavaScriptObject{
 protected Ray(){}
@@ -123,28 +119,6 @@ return this.equals(ray);
 
 public final native Ray clone()/*-{
 return this.clone();
-}-*/;
-
-/**
- * @deprecated?
- */
-public final native JsArray<Intersect> intersectScene(Scene scene)/*-{
-				return  this.intersectScene( scene );
-}-*/;
-
-/**
- * @deprecated?
- */
-public final native JsArray<Intersect> intersectObjects(JsArray<Object3D> objects)/*-{
-			return  this.intersectObjects( objects );
-}-*/;
-
-/**
- * @deprecated?
- */
-public final native JsArray<Intersect> intersectObject(Object3D object)/*-{
-			return  this.intersectObject( object );
-
 }-*/;
 
 public final native Vector3 intersectSphere (Sphere sphere,Vector3 optionalTarget)/*-{
