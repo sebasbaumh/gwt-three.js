@@ -30,7 +30,7 @@ return copy;
 }-*/;
 
 public final static ModelMaterials createDefault(){
-	ModelMaterials m=(ModelMaterials) ModelMaterials.createObject();
+	ModelMaterials m=(ModelMaterials) JavaScriptObject.createObject();
 	m.setDbgColor(15658734);
 	m.setDbgIndex(0);
 	m.setDbgName("default");

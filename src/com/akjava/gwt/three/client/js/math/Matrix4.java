@@ -24,6 +24,7 @@ return this.copy(m);
  * @param m
  * @return
  */
+@Deprecated
 public final native Matrix4 extractPosition(Object m)/*-{
 return this.extractPosition(m);
 }-*/;
@@ -50,6 +51,7 @@ return this.makeRotationFromEuler(euler);
  * @param vec
  * @param order
  */
+@Deprecated
 public native final void setRotationFromEuler(Vector3 vec,String order)/*-{
 this.setRotationFromEuler(vec,order);
 }-*/;
@@ -67,6 +69,7 @@ return this.lookAt(eye,center,up);
  * @deprecated
  * @return
  */
+@Deprecated
 public native final Matrix4 multiply(Matrix4 a,Matrix4 b)/*-{
 return this.multiply(a,b);
 }-*/;
@@ -93,6 +96,7 @@ return this.multiplyScalar(s);
  * @deprecated use applyMatrix4
  * @return
  */
+@Deprecated
 public final native Object multiplyVector4(Vector4 vector)/*-{
 return this.applyMatrix4(vector);
 //return this.multiplyVector4(vector);
@@ -102,6 +106,7 @@ return this.applyMatrix4(vector);
  * @deprecated
  * multiplyVector3Array() has been renamed. Use matrix.applyToVector3Array( array ) instead.
  */
+@Deprecated
 public final native JsArrayNumber multiplyVector3Array(JsArrayNumber array)/*-{
 return this.applyToVector3Array(array);
 }-*/;
@@ -109,6 +114,7 @@ return this.applyToVector3Array(array);
 /**
  * @deprecated
  */
+@Deprecated
 public final native void rotateAxis(Vector3 v)/*-{
 this.rotateAxis(v);
 }-*/;
@@ -116,6 +122,7 @@ this.rotateAxis(v);
 /**
  * @deprecated
  */
+@Deprecated
 public final native Vector4 crossVector(Vector4 vector)/*-{
 return this.crossVector(vector);
 }-*/;
@@ -150,6 +157,7 @@ return this.clone();
  */
 //value is shared usually got a problem
 //return THREE.Matrix4.__v1.set( this.n14, this.n24, this.n34 );
+@Deprecated
 public native final Vector3 getPosition()/*-{
 return this.getPosition().clone();
 }-*/;
@@ -178,6 +186,7 @@ return this.makeRotationZ(v);
 /**
  * @deprecated use multiply
  */
+@Deprecated
 public native final Matrix4 multiplySelf(Matrix4 b)/*-{
 return this.multiply(this,b);
 }-*/;
@@ -187,6 +196,7 @@ return this.multiply(this,b);
  * MAKE clear all postion data.
  */
 
+@Deprecated
 public native final Matrix4 setRotationFromQuaternion(Quaternion q)/*-{
 return this.setRotationFromQuaternion(q);
 }-*/;
@@ -201,20 +211,10 @@ return this.getInverse(b,throwOnInvertible);
 }-*/;
 
 /**
- * @deprecated use Vector3's applyProjection
- * @return
- */
-public native final Vector3 multiplyVector3(Vector3 vec)/*-{
-return vec.applyProjection(this);
-//return this.multiplyVector3(vec);
-}-*/;
-
-
-
-/**
  * @deprecated
  * @param thera
  */
+@Deprecated
 public native final void setRotationX(double thera)/*-{
 this.setRotationX(thera);
 }-*/;
@@ -222,6 +222,7 @@ this.setRotationX(thera);
  * @deprecated
  * @param thera
  */
+@Deprecated
 public native final void setRotationY(double thera)/*-{
 this.setRotationY(thera);
 }-*/;
@@ -229,6 +230,7 @@ this.setRotationY(thera);
  * @deprecated
  * @param thera
  */
+@Deprecated
 public native final void setRotationZ(double thera)/*-{
 this.setRotationZ(thera);
 }-*/;
@@ -236,6 +238,7 @@ this.setRotationZ(thera);
  * @deprecated
  * @param thera
  */
+@Deprecated
 public native final void setTranslation(double x,double y,double z)/*-{
 this.makeTranslation(x,y,z);
 }-*/;

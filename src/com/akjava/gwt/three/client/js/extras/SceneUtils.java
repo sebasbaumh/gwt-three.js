@@ -1,6 +1,5 @@
 package com.akjava.gwt.three.client.js.extras;
 
-import com.akjava.gwt.three.client.js.THREE;
 import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.core.Object3D;
 import com.akjava.gwt.three.client.js.materials.Material;
@@ -28,6 +27,7 @@ public class SceneUtils {
 	 * @param scene
 	 * @param parent
 	 */
+	@Deprecated
 	public static native final void detach(Object3D child,Scene scene,Object3D parent)/*-{
 	return $wnd.THREE.SceneUtils.detach(child,parent,scene);
 	}-*/;
@@ -37,6 +37,7 @@ public class SceneUtils {
 	 * @param scene
 	 * @param parent
 	 */
+	@Deprecated
 	public static native final void attach(Object3D child,Scene scene,Object3D parent)/*-{
 	return $wnd.THREE.SceneUtils.attach(child,parent,scene);
 	}-*/;

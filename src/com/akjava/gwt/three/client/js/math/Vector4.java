@@ -41,7 +41,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayNumber;
 
 public class Vector4 extends JavaScriptObject{
-	protected Vector4(){};
+	protected Vector4(){}
 	
 
 
@@ -87,6 +87,7 @@ return this.add(v);
  * @param w
  * @return
  */
+@Deprecated
 public final native Vector4 add(Vector4 v,Vector4 w)/*-{
 return this.add(v,w);
 }-*/;
@@ -104,6 +105,7 @@ return this.sub(v);
 /**
  * @deprecated
  */
+@Deprecated
 public final native Vector4 sub(Vector4 v,Vector4 w)/*-{
 return this.sub(v,w);
 }-*/;

@@ -377,41 +377,63 @@ public static Vector4 findNearSpecial(List<NameAndVector3> nameAndPositions,Vect
 
 
 
-public static void autoWeight(Geometry geometry,JsArray<AnimationBone> bones,List<List<Vector3>> endSites,int mode,JsArray<Vector4> bodyIndices,JsArray<Vector4> bodyWeight){
-	List<NameAndVector3> nameAndPositions=boneToNameAndPosition(bones,endSites);
-	for(int i=0;i<geometry.vertices().length();i++){
-		Vector4 ret=null;
-		if(mode==MODE_NearSingleBone){
-		ret=findNearSingleBone(nameAndPositions,geometry.vertices().get(i),bones);
-		}else if(mode==MODE_NearSpecial){
-			ret=findNearSpecial(nameAndPositions,geometry.vertices().get(i),bones,i);	
-		}else if(mode==MODE_NearAgressive){
-			ret=findNearBoneAggresive(nameAndPositions,geometry.vertices().get(i),bones);	
-		}else if(mode==MODE_NearParentAndChildren){
-			ret=findNearBoneParentAndChildren(nameAndPositions,geometry.vertices().get(i),bones,2);	
-		}else if(mode==MODE_NearParentAndChildrenAgressive){
-			ret=findNearBoneParentAndChildren(nameAndPositions,geometry.vertices().get(i),bones,3);	
-		}else if(mode==MODE_MODE_Start_And_Half_ParentAndChildrenAgressive){
-			ret=findNearBoneStartAndHalfParentAndChildren(nameAndPositions,geometry.vertices().get(i),bones,3);	
-		}else if(mode==MODE_FROM_GEOMETRY){
-			ret=fromGeometry(geometry,i);	
-		}else if(mode==MODE_ROOT_ALL){
-			ret=THREE.Vector4(0,0,1,0);	
-		}else{
-			Window.alert("null mode");
-		}
-		
-		//now support only 2 bones
-		Vector4 v4=THREE.Vector4();
-		v4.set(ret.getX(), ret.getY(), 0, 0);
-		bodyIndices.push(v4);
-		
-		Vector4 v4w=THREE.Vector4();
-		v4w.set(ret.getZ(), ret.getW(), 0, 0);
-		bodyWeight.push(v4w);
+	public static void autoWeight(Geometry geometry, JsArray<AnimationBone> bones, List<List<Vector3>> endSites,
+			int mode, JsArray<Vector4> bodyIndices, JsArray<Vector4> bodyWeight)
+	{
+		List<NameAndVector3> nameAndPositions = boneToNameAndPosition(bones, endSites);
+		for (int i = 0; i < geometry.vertices().length(); i++)
+		{
+			Vector4 ret = null;
+			if (mode == MODE_NearSingleBone)
+			{
+				ret = findNearSingleBone(nameAndPositions, geometry.vertices().get(i), bones);
+			}
+			else if (mode == MODE_NearSpecial)
+			{
+				ret = findNearSpecial(nameAndPositions, geometry.vertices().get(i), bones, i);
+			}
+			else if (mode == MODE_NearAgressive)
+			{
+				ret = findNearBoneAggresive(nameAndPositions, geometry.vertices().get(i), bones);
+			}
+			else if (mode == MODE_NearParentAndChildren)
+			{
+				ret = findNearBoneParentAndChildren(nameAndPositions, geometry.vertices().get(i), bones, 2);
+			}
+			else if (mode == MODE_NearParentAndChildrenAgressive)
+			{
+				ret = findNearBoneParentAndChildren(nameAndPositions, geometry.vertices().get(i), bones, 3);
+			}
+			else if (mode == MODE_MODE_Start_And_Half_ParentAndChildrenAgressive)
+			{
+				ret = findNearBoneStartAndHalfParentAndChildren(nameAndPositions, geometry.vertices().get(i), bones, 3);
+			}
+			else if (mode == MODE_FROM_GEOMETRY)
+			{
+				ret = fromGeometry(geometry, i);
+			}
+			else if (mode == MODE_ROOT_ALL)
+			{
+				ret = THREE.Vector4(0, 0, 1, 0);
+			}
+			else
+			{
+				Window.alert("null mode");
+			}
+
+			if (ret != null)
+			{
+				// now support only 2 bones
+				Vector4 v4 = THREE.Vector4();
+				v4.set(ret.getX(), ret.getY(), 0, 0);
+				bodyIndices.push(v4);
+
+				Vector4 v4w = THREE.Vector4();
+				v4w.set(ret.getZ(), ret.getW(), 0, 0);
+				bodyWeight.push(v4w);
+			}
 		}
 	}
-
 
   public static boolean isHasIndex(Vector4 v4,int target){
 	return v4.getX()==target || v4.getY()==target;  
@@ -517,7 +539,7 @@ public static void autoWeight(Geometry geometry,JsArray<AnimationBone> bones,Lis
 		for(int i=0;i<bones.length();i++){
 			AnimationBone bone=bones.get(i);
 			
-			Vector3 pos=AnimationBone.jsArrayToVector3(bone.getPos());
+			Vector3 pos=bone.getPosVector();
 			String parentName=null;
 			//add start
 			//add center

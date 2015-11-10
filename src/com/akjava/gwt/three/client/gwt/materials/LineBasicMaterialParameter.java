@@ -38,6 +38,7 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.gwt.materials;
 
 import com.akjava.gwt.three.client.gwt.JSParameter;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * can't overwrite.copy this as base
@@ -47,7 +48,7 @@ import com.akjava.gwt.three.client.gwt.JSParameter;
 public final class LineBasicMaterialParameter extends JSParameter{
 	protected LineBasicMaterialParameter(){}
 	public final static LineBasicMaterialParameter create(){
-		return (LineBasicMaterialParameter) LineBasicMaterialParameter.createObject();
+		return (LineBasicMaterialParameter) JavaScriptObject.createObject();
 	}
 	public final LineBasicMaterialParameter color(int r,int g,int b){
 		int c=(0xff & r)<<16| (0xff & g)<<8|(0xff & b);

@@ -46,14 +46,6 @@ import com.google.gwt.dom.client.ImageElement;
 public class Texture extends EventDispatcher{
 protected Texture(){}
 
-/**
- * @deprecated
- * @return
- */
-public final native int getGWTImageWidth()/*-{
-return this.image.width;
-}-*/;
-
 
 public final native int getId()/*-{
 return this.id;

@@ -15,6 +15,7 @@ public class DShaderUtils {
  * @author aki
  *
  */
+@Deprecated
 public static  class DShader extends JavaScriptObject{
 	protected DShader(){}
 	
@@ -39,6 +40,7 @@ public static  class DShader extends JavaScriptObject{
  * @author aki
  *
  */
+@Deprecated
 public static class DUniforms extends JavaScriptObject{
 	protected DUniforms(){}
 	

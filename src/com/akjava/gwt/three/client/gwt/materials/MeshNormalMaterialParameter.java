@@ -38,6 +38,7 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.gwt.materials;
 
 import com.akjava.gwt.three.client.gwt.JSParameter;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * @author aki
@@ -53,7 +54,7 @@ import com.akjava.gwt.three.client.gwt.JSParameter;
 public final class MeshNormalMaterialParameter extends JSParameter{
 	protected MeshNormalMaterialParameter(){}
 	public final static MeshNormalMaterialParameter create(){
-		return (MeshNormalMaterialParameter) MeshNormalMaterialParameter.createObject();
+		return (MeshNormalMaterialParameter) JavaScriptObject.createObject();
 	}
 	
 	public final native MeshNormalMaterialParameter shading(int shading)/*-{

@@ -44,11 +44,6 @@ import com.akjava.gwt.three.client.examples.modifiers.SubdivisionModifier;
 import com.akjava.gwt.three.client.examples.renderers.CSS3DRenderer;
 import com.akjava.gwt.three.client.gwt.animation.AnimationData;
 import com.akjava.gwt.three.client.gwt.renderers.WebGLRendererParameter;
-import com.akjava.gwt.three.client.java.LineBasicMaterialBuilder;
-import com.akjava.gwt.three.client.java.MeshBasicMaterialBuilder;
-import com.akjava.gwt.three.client.java.MeshLambertMaterialBuilder;
-import com.akjava.gwt.three.client.java.ParticleBasicMaterialBuilder;
-import com.akjava.gwt.three.client.java.ShaderMaterialBuilder;
 import com.akjava.gwt.three.client.js.cameras.Camera;
 import com.akjava.gwt.three.client.js.cameras.CubeCamera;
 import com.akjava.gwt.three.client.js.cameras.OrthographicCamera;
@@ -61,7 +56,6 @@ import com.akjava.gwt.three.client.js.core.Face3;
 import com.akjava.gwt.three.client.js.core.Geometry;
 import com.akjava.gwt.three.client.js.core.Object3D;
 import com.akjava.gwt.three.client.js.core.Raycaster;
-import com.akjava.gwt.three.client.js.extras.ImageUtils;
 import com.akjava.gwt.three.client.js.extras.animation.Animation;
 import com.akjava.gwt.three.client.js.extras.animation.AnimationMorphTarget;
 import com.akjava.gwt.three.client.js.extras.animation.KeyFrameAnimation;
@@ -172,14 +166,12 @@ import com.akjava.gwt.three.client.js.math.Triangle;
 import com.akjava.gwt.three.client.js.math.Vector2;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.akjava.gwt.three.client.js.math.Vector4;
-import com.akjava.gwt.three.client.js.math.Vertex;
 import com.akjava.gwt.three.client.js.objects.Bone;
 import com.akjava.gwt.three.client.js.objects.Group;
 import com.akjava.gwt.three.client.js.objects.LOD;
 import com.akjava.gwt.three.client.js.objects.Line;
 import com.akjava.gwt.three.client.js.objects.Mesh;
 import com.akjava.gwt.three.client.js.objects.MorphAnimMesh;
-import com.akjava.gwt.three.client.js.objects.Particle;
 import com.akjava.gwt.three.client.js.objects.PointCloud;
 import com.akjava.gwt.three.client.js.objects.Skeleton;
 import com.akjava.gwt.three.client.js.objects.SkinnedMesh;
@@ -497,6 +489,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	 * @deprecated
 	 * on r69 ,use set()
 	 */
+	@Deprecated
 	public static final native Matrix4 Matrix4(double n11,double n12,double n13,double n14,double n21,double n22,double n23,double n24,double n31,double n32,double n33,double n34,double n41,double n42,double n43,double n44)/*-{
 	return new $wnd.THREE.Matrix4(n11,n12,n13,n14,n21,n22,n23,n24,n31,n32,n33,n34,n41,n42,n43,n44);
 	}-*/;
@@ -505,6 +498,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	 * @deprecated
 	 * on r69 ,use set()
 	 */
+	@Deprecated
 	public static final native Matrix3 Matrix3(double n11,double n12,double n13,double n21,double n22,double n23,double n31,double n32,double n33)/*-{
 	return new $wnd.THREE.Matrix3(n11,n12,n13,n21,n22,n23,n31,n32,n33);
 	}-*/;
@@ -744,12 +738,14 @@ return new $wnd.THREE.ArrowHelper(size);
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
 	public static native final Animation Animation(SkinnedMesh root,String name)/*-{
 	return new $wnd.THREE.Animation(root,name);
 	}-*/;
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
 	public static native final Animation Animation(Object3D root,String name)/*-{
 	return new $wnd.THREE.Animation(root,name);
 	}-*/;
@@ -763,6 +759,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	/**
 	 * @deprecated on r65
 	 */
+	@Deprecated
 	public static native final AnimationMorphTarget AnimationMorphTarget(Object3D root,String name)/*-{
 	return new $wnd.THREE.AnimationMorphTarget(root,name);
 	}-*/;
@@ -772,6 +769,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	 * @deprecated
 	 * changed on r68
 	 */
+	@Deprecated
 	public static native final KeyFrameAnimation KeyFrameAnimation(Object3D root,String name)/*-{
 	return new $wnd.THREE.KeyFrameAnimation(root,name);
 	}-*/;
@@ -818,7 +816,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	
 	
 	public static  final BoxGeometry BoxGeometry(double x,double y,double z,int xpart,int ypart,int zpart,Material[] material ){
-		JsArray<Material> arrays=(JsArray<Material>) JsArray.createArray();
+		JsArray<Material> arrays=JavaScriptObject.createArray().cast();
 		for(Material m:material){
 			arrays.push(m);
 		}
@@ -827,7 +825,7 @@ return new $wnd.THREE.ArrowHelper(size);
 	}
 	
 	public static  final BoxGeometry Cube(double x,double y,double z,int xpart,int ypart,int zpart,Material[] material ){
-		JsArray<Material> arrays=(JsArray<Material>) JsArray.createArray();
+		JsArray<Material> arrays=JavaScriptObject.createArray().cast();
 		for(Material m:material){
 			arrays.push(m);
 		}
@@ -889,19 +887,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	return new $wnd.THREE.CylinderGeometry( topRad,botRad,height,radSegs );
 	}-*/;
 	
-
-	
-	public static  final MeshBasicMaterialBuilder MeshBasicMaterial(){
-		return MeshBasicMaterialBuilder.create();
-	}
-	public static  final MeshLambertMaterialBuilder MeshLambertMaterial(){
-		return MeshLambertMaterialBuilder.create();
-	}
-	public static  final ParticleBasicMaterialBuilder ParticleBasicMaterial(){
-		return ParticleBasicMaterialBuilder.create();
-	}
-	
-	
 	/**
 	 * This is a helper function to avoid issues with the way arrays are created. It's a nasty workaround, but
 	 * MeshFaceMaterial for instance is unusable without it (the "materials instanceof Array" check fails).
@@ -930,32 +915,6 @@ return new $wnd.THREE.ArrowHelper(size);
 		return new $wnd.THREE.MeshFaceMaterial(a);
 	}-*/;
 	
-	/**
-	 * @deprecated use LineBasicMaterialParameter.create()
-	 * @return
-	 */
-	public static  final LineBasicMaterialBuilder LineBasicMaterial(){
-		return LineBasicMaterialBuilder.create();
-	}
-	
-	
-
-	
-	
-	
-	public static  final ShaderMaterialBuilder ShaderMaterial(){
-		return ShaderMaterialBuilder.create();
-	}
-		
-	/**
-	 * @deprecated r49
-	 * @param vector3f
-	 * @return
-	 */
-	public static native final Vertex Vertex(Vector3 vector3f )/*-{
-	return new $wnd.THREE.Vertex( vector3f);
-	}-*/;
-	
 	public static native final Vector2 Vector2(double x,double y)/*-{
 	return new $wnd.THREE.Vector2(x,y);
 	}-*/;
@@ -964,19 +923,12 @@ return new $wnd.THREE.ArrowHelper(size);
 	}-*/;
 	
 	public static native final Vector3 Vector3(double x,double y,double z)/*-{
-	return new $wnd.THREE.Vector3( x,y,z);
+	return new $wnd.THREE.Vector3(x,y,z);
 	}-*/;
 	public static native final Vector3 Vector3()/*-{
 	return new $wnd.THREE.Vector3(0,0,0);
 	}-*/;
 	
-	
-	/**
-	 * @deprecated
-	 */
-	public static native final Particle Particle(Material material )/*-{
-	return new $wnd.THREE.Particle(material );
-	}-*/;
 	public static native final PointCloud PointCloud(Geometry geometry,Material material )/*-{
 	return new $wnd.THREE.PointCloud( geometry, material );
 	}-*/;
@@ -1122,7 +1074,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	}
 	
 	/**
-	 * @deprecated use direct
 	 * @author aki
 	 *
 	*/
@@ -1140,7 +1091,6 @@ return new $wnd.THREE.ArrowHelper(size);
 		
 	}
 	/**
-	 * @deprecated use direct
 	 * @author aki
 	 *
 	 */
@@ -1189,7 +1139,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	}
 	
 	/**
-	 * @deprecated use direct
 	 * @author aki
 	 *
 	 */
@@ -1215,7 +1164,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	}
 	
 	/**
-	 * @deprecated use direct
 	 * @author aki
 	 *
 	 */
@@ -1232,7 +1180,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	}
 	
 	/**
-	 * @deprecated use direct
 	 * @author aki
 	 *
 	 */
@@ -1249,7 +1196,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	}
 
 	/**
-	 * @deprecated use direct
 	 * @author aki
 	 *
 	 */
@@ -1279,7 +1225,6 @@ return new $wnd.THREE.ArrowHelper(size);
 		
 	}
 	/**
-	 * @deprecated use direct
 	 * @author aki
 	 *
 	 */
@@ -1296,7 +1241,6 @@ return new $wnd.THREE.ArrowHelper(size);
 	}
 
 	/**
-	 * @deprecated use direct
 	 * @author aki
 	 *
 	 */

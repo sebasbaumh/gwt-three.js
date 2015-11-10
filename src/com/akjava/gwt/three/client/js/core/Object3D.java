@@ -89,6 +89,7 @@ public class Object3D extends EventDispatcher{
 	 * @deprecated
 	 * Made position, rotation, quaternion and scale properties immutable on r68
 	 */
+	@Deprecated
 	public final native void setRotation(Euler rotation)/*-{
 	this.rotation=rotation;
 	}-*/;
@@ -102,6 +103,7 @@ public final void setScale(double x,double y,double z){
  * @deprecated
  * Made position, rotation, quaternion and scale properties immutable on r68
  */
+@Deprecated
 public final native void setQuaternion(Quaternion quaternion)/*-{
  this.quaternion=q;
 }-*/;
@@ -247,6 +249,7 @@ this.up = up;
  * @deprecated
  * Made position, rotation, quaternion and scale properties immutable on r68
  */
+	@Deprecated
 	public final native void setScale(double scale)/*-{
 		this.scale.x = this.scale.y = this.scale.z = scale;
 	}-*/;
@@ -255,6 +258,7 @@ this.up = up;
  * @deprecated on r70
  * @return
  */
+@Deprecated
 public final native Object getRenderDepth()/*-{
 return this.renderDepth;
 }-*/;
@@ -263,6 +267,7 @@ return this.renderDepth;
  * @deprecated removed on r70
  * @param renderDepth
  */
+@Deprecated
 public final native void setRenderDepth(Object renderDepth)/*-{
 this.renderDepth = renderDepth;
 }-*/;
@@ -487,6 +492,7 @@ return this.getObjectByName(name,recursive);
 /**
  * @deprecated use getObjectByName
  */
+@Deprecated
 public final native Object getChildByName(Object name,Object recursive)/*-{
 return this.getChildByName(name,recursive);
 }-*/;
@@ -494,6 +500,7 @@ return this.getChildByName(name,recursive);
 /**
  * @deprecated on r68
  */
+@Deprecated
 public final native Object getDescendants(Object array)/*-{
 return this.getDescendants(array);
 }-*/;

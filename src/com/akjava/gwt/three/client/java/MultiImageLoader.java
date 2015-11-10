@@ -31,7 +31,7 @@ private List<String> remains;
 		}
 		for(String name:lists.keySet()){
 			String path=lists.get(name);
-			Image img=new Image(lists.get(name));
+			Image img=new Image(path);
 			img.setVisible(false);
 			RootPanel.get().add(img);
 			img.addLoadHandler(new Loaded(img,name));

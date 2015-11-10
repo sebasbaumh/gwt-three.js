@@ -16,7 +16,7 @@ public class WebGLRendererParameter extends JavaScriptObject{
 	
 	public static WebGLRendererParameter create(){
 		
-		return (WebGLRendererParameter) WebGLRendererParameter.createObject();
+		return (WebGLRendererParameter) JavaScriptObject.createObject();
 	}
 	
 	public  native final WebGLRendererParameter canvas(CanvasElement canvas)/*-{

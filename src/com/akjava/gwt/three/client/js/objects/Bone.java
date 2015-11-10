@@ -61,6 +61,7 @@ this.skin = skin;
  * removed on r68
  * @return
  */
+@Deprecated
 public final native Matrix4 getSkinMatrix()/*-{
 return this.skinMatrix;
 }-*/;
@@ -70,6 +71,7 @@ return this.skinMatrix;
  * removed on r68
  * @return
  */
+@Deprecated
 public final native void setSkinMatrix(Matrix4 skinMatrix)/*-{
 this.skinMatrix = skinMatrix;
 }-*/;
@@ -79,6 +81,7 @@ this.skinMatrix = skinMatrix;
  * removed on r68
  * @return
  */
+@Deprecated
 public final native void update(Matrix4 parentSkinMatrix,boolean forceUpdate)/*-{
 this.update(parentSkinMatrix,forceUpdate);
 }-*/;

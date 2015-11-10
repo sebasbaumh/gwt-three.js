@@ -6,6 +6,7 @@ package com.akjava.gwt.three.client.java;
  */
 import com.akjava.gwt.lib.client.LogUtils;
 import com.akjava.gwt.three.client.gwt.core.Intersect;
+import com.akjava.gwt.three.client.gwt.materials.MeshBasicMaterialParameter;
 import com.akjava.gwt.three.client.java.utils.GWTThreeUtils;
 import com.akjava.gwt.three.client.js.THREE;
 import com.akjava.gwt.three.client.js.cameras.Camera;
@@ -27,7 +28,7 @@ public Mesh getMouseCatchPlane() {
 
 public GWTDragObjectControler(Scene scene){
 	//maybe should black&transparent like js-sample
-	mouseCatchPlane=THREE.Mesh(THREE.PlaneBufferGeometry(2000, 2000, 10, 10), THREE.MeshBasicMaterial().color(0x00ffff).wireFrame().build());
+	mouseCatchPlane=THREE.Mesh(THREE.PlaneBufferGeometry(2000, 2000, 10, 10), THREE.MeshBasicMaterial(MeshBasicMaterialParameter.create().color(0x00ffff).wireframe(true)));
 	mouseCatchPlane.setVisible(false);
 	scene.add(mouseCatchPlane);
 }
@@ -35,6 +36,7 @@ public GWTDragObjectControler(Scene scene){
 /**
  * @deprecated no more support projector
  */
+@Deprecated
 public GWTDragObjectControler(Scene scene,JavaScriptObject projector){
 	this(scene);
 }
@@ -140,7 +142,7 @@ public Vector3 moveSelectionPosition(int mouseX,int mouseY,int screenWidth, int 
 		log+="parentRot:"+ThreeLog.get(GWTThreeUtils.radiantToDegree(rotation));
 		rotM.getInverse(GWTThreeUtils.rotationToMatrix4(rotation));
 		
-		rotM.multiplyVector3(newPos);
+		newPos.applyProjection(rotM);
 		
 		//Vector3 parentRotation=THREE.Vector3();
 		

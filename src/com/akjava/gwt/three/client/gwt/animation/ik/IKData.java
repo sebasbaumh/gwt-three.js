@@ -49,7 +49,7 @@ public class IKData  {
 		this.name = name;
 	}
 	private String lastBoneName;
-	private List<String> bones=new ArrayList<String>();;
+	private List<String> bones=new ArrayList<String>();
 	private Vector3 targetPos=THREE.Vector3();
 	private int iteration=11;
 }

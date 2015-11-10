@@ -39,6 +39,7 @@ package com.akjava.gwt.three.client.gwt.materials;
 
 import com.akjava.gwt.three.client.gwt.JSParameter;
 import com.akjava.gwt.three.client.js.textures.Texture;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
 
@@ -48,7 +49,7 @@ import com.akjava.gwt.three.client.js.textures.Texture;
 public final class MeshBasicMaterialParameter extends JSParameter{
 	protected MeshBasicMaterialParameter(){}
 	public final static MeshBasicMaterialParameter create(){
-		return (MeshBasicMaterialParameter) MeshBasicMaterialParameter.createObject();
+		return (MeshBasicMaterialParameter) JavaScriptObject.createObject();
 	}
 	
 	public final MeshBasicMaterialParameter color(int r,int g,int b){

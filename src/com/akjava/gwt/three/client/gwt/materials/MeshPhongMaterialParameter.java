@@ -55,7 +55,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 public final class MeshPhongMaterialParameter extends JSParameter{
 	protected MeshPhongMaterialParameter(){}
 	public final static MeshPhongMaterialParameter create(){
-		return (MeshPhongMaterialParameter) MeshPhongMaterialParameter.createObject();
+		return (MeshPhongMaterialParameter) JavaScriptObject.createObject();
 	}
 	public final MeshPhongMaterialParameter color(int r,int g,int b){
 		int c=(0xff & r)<<16| (0xff & g)<<8|(0xff & b);

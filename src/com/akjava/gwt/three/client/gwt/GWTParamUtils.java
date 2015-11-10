@@ -8,6 +8,7 @@ import com.akjava.gwt.three.client.gwt.materials.MeshPhongMaterialParameter;
 import com.akjava.gwt.three.client.gwt.materials.ShaderMaterialParameter;
 import com.akjava.gwt.three.client.gwt.renderers.WebGLRenderTargetParameter;
 import com.akjava.gwt.three.client.gwt.renderers.WebGLRendererParameter;
+import com.google.gwt.core.client.JavaScriptObject;
 
 //TODO support more?
 public class GWTParamUtils {
@@ -34,11 +35,11 @@ public static ShaderMaterialParameter ShaderMaterial(){
 }
 
 public static MorphTarget MorphTarget() {
-	return MorphTarget.createObject().cast();
+	return JavaScriptObject.createObject().cast();
 }
 
 public static Offset Offset() {
-	return Offset.createObject().cast();
+	return JavaScriptObject.createObject().cast();
 }
 
 public static WebGLRenderTargetParameter WebGLRenderTarget(){

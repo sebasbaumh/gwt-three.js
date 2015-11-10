@@ -67,33 +67,31 @@ public class AnimationBone extends JavaScriptObject{
 	public native final void setPos(double x,double y,double z)/*-{
 	this['pos']=[x,y,z];
 	}-*/;
+	
 	public native final void setPos(JsArrayNumber array)/*-{
 	this['pos']=array;
 	}-*/;
 	
-	/**
-	 * @deprecated
-	 * @param array
-	 * @return
-	 */
-	public static final Vector3 jsArrayToVector3(JsArrayNumber array){
-		return THREE.Vector3(array.get(0),array.get(1), array.get(2));
-	}
-
-	/**
-	 * @deprecated
-	 * @param array
-	 * @return
-	 */
-	public static final Quaternion jsArrayToQuaternion(JsArrayNumber array){
-		return THREE.Quaternion(array.get(0),array.get(1), array.get(2),array.get(3));
-	}
 	/*
 	 * sometime it's empty
 	 */
 	public native final JsArrayNumber getPos()/*-{
 	return this['pos'];
 	}-*/;
+	
+	/**
+	 * Get pos as a {@link Vector3}.
+	 * @return {@link Vector3} on success, else null
+	 */
+	public final Vector3 getPosVector()
+	{
+		JsArrayNumber a = getPos();
+		if (a != null)
+		{
+			return THREE.Vector3(a.get(0), a.get(1), a.get(2));
+		}
+		return null;
+	}
 	
 	public native final void setScl(JsArrayNumber array)/*-{
 	this['scl']=array;

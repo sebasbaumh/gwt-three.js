@@ -39,6 +39,7 @@ package com.akjava.gwt.three.client.gwt.materials;
 
 import com.akjava.gwt.three.client.gwt.JSParameter;
 import com.akjava.gwt.three.client.js.textures.Texture;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * can't overwrite.copy this as base
@@ -48,7 +49,7 @@ import com.akjava.gwt.three.client.js.textures.Texture;
 public final class PointCloudMaterialParameter extends JSParameter{
 	protected PointCloudMaterialParameter(){}
 	public final static PointCloudMaterialParameter create(){
-		return (PointCloudMaterialParameter) PointCloudMaterialParameter.createObject();
+		return (PointCloudMaterialParameter) JavaScriptObject.createObject();
 	}
 	public final PointCloudMaterialParameter color(int r,int g,int b){
 		int c=(0xff & r)<<16| (0xff & g)<<8|(0xff & b);

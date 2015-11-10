@@ -1,6 +1,7 @@
 package com.akjava.gwt.three.client.java.utils;
 
 import com.akjava.gwt.three.client.gwt.JSONModelFile;
+import com.akjava.gwt.three.client.gwt.materials.MeshLambertMaterialParameter;
 import com.akjava.gwt.three.client.js.THREE;
 import com.akjava.gwt.three.client.js.cameras.Camera;
 import com.akjava.gwt.three.client.js.core.Geometry;
@@ -42,7 +43,7 @@ public class GWTThreeUtils {
 		
 		//LogUtils.log(newobject.getJavaScriptObject());
 		
-		handler.loaded((Geometry) newobject.get("geometry").isObject().getJavaScriptObject(),(JsArray<Material>)newobject.get("materials").isArray().getJavaScriptObject());
+		handler.loaded((Geometry) newobject.get("geometry").isObject().getJavaScriptObject(),newobject.get("materials").isArray().getJavaScriptObject().<JsArray<Material>>cast());
 	}
 	public static void loadJsonModel(JSONModelFile modelformat,JSONLoadHandler handler){
 		loadJsonModel(modelformat,handler,null);
@@ -121,7 +122,7 @@ public class GWTThreeUtils {
 	}
 	
 	public static Mesh createSimpleBox(Vector3 position,double size,int color){
-		Mesh mesh=THREE.Mesh(THREE.BoxGeometry(size, size, size), THREE.MeshLambertMaterial().color(color).build());
+		Mesh mesh=THREE.Mesh(THREE.BoxGeometry(size, size, size), THREE.MeshLambertMaterial(MeshLambertMaterialParameter.create().color(color)));
 		mesh.setPosition(position);
 		return mesh;
 	}
@@ -224,7 +225,7 @@ public class GWTThreeUtils {
 	}
 	
 	public static final JsArrayNumber clone(JsArrayNumber array){
-		JsArrayNumber cloned=(JsArrayNumber) JsArrayNumber.createArray();
+		JsArrayNumber cloned=(JsArrayNumber) JavaScriptObject.createArray();
 		for(int i=0;i<array.length();i++){
 			cloned.push(array.get(i));
 		}
@@ -236,14 +237,14 @@ public class GWTThreeUtils {
 	}
 	
 	public static final JsArrayNumber createJsArray(double x,double y,double z){
-		JsArrayNumber array=(JsArrayNumber) JsArrayNumber.createArray();
+		JsArrayNumber array=(JsArrayNumber) JavaScriptObject.createArray();
 		array.push(x);
 		array.push(y);
 		array.push(z);
 		return array;
 	}
 	public static final JsArrayNumber quaternionToJsArray(Quaternion q){
-		JsArrayNumber array=(JsArrayNumber) JsArrayNumber.createArray();
+		JsArrayNumber array=(JsArrayNumber) JavaScriptObject.createArray();
 		array.push(q.getX());
 		array.push(q.getY());
 		array.push(q.getZ());

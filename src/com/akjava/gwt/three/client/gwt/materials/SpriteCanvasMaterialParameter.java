@@ -48,7 +48,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 public final class SpriteCanvasMaterialParameter extends JSParameter{
 	protected SpriteCanvasMaterialParameter(){}
 	public final static SpriteCanvasMaterialParameter create(){
-		return (SpriteCanvasMaterialParameter) SpriteCanvasMaterialParameter.createObject();
+		return (SpriteCanvasMaterialParameter) JavaScriptObject.createObject();
 	}
 	
 	public final PointCloudMaterialParameter color(int r,int g,int b){

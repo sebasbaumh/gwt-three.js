@@ -57,6 +57,7 @@ this.c=c;
  * @deprecated
  * @param d
  */
+@Deprecated
 public native final void setD(int d)/*-{
 this.d=d;
 }-*/;
@@ -113,7 +114,6 @@ return this.vertexTangents;
 
 /**
  * maybe vector3
- * @return
  */
 public final native void setVertexTangents(JsArray<Vector3> vertexTangents)/*-{
 this.vertexTangents = vertexTangents;
@@ -131,6 +131,7 @@ this.materialIndex = materialIndex;
 /**
  * @deprecated no more exist after r67
  */
+@Deprecated
 public final native Vector3 getCentroid()/*-{
 return this.centroid;
 }-*/;
@@ -139,6 +140,7 @@ return this.centroid;
  * @deprecated no more exist after r67
  * @param centroid
  */
+@Deprecated
 public final native void setCentroid(Vector3 centroid)/*-{
 this.centroid = centroid;
 }-*/;

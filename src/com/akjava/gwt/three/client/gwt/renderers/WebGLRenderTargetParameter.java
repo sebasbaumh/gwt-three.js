@@ -8,7 +8,7 @@ public class WebGLRenderTargetParameter extends JavaScriptObject{
 	
 public static WebGLRenderTargetParameter create(){
 		
-		return (WebGLRenderTargetParameter) WebGLRenderTargetParameter.createObject();
+		return (WebGLRenderTargetParameter) JavaScriptObject.createObject();
 	}
 
 

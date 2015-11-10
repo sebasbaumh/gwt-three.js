@@ -47,7 +47,6 @@ import com.akjava.gwt.three.client.js.objects.Mesh;
 import com.akjava.gwt.three.client.js.scenes.Scene;
 import com.akjava.gwt.three.client.js.textures.Texture;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.FocusWidget;
@@ -131,23 +130,6 @@ public final native void setSortObjects(boolean sortObjects)/*-{
 this.sortObjects = sortObjects;
 }-*/;
 
-/**
- * @deprecated
- * 
- * removed on r68
- */
-public final native boolean isAutoUpdateObjects()/*-{
-return this.autoUpdateObjects;
-}-*/;
-/**
- * @deprecated
- * 
- * removed on r68
- */
-public final native void setAutoUpdateObjects(boolean autoUpdateObjects)/*-{
-this.autoUpdateObjects = autoUpdateObjects;
-}-*/;
-
 //**physically based shading
 public final native boolean isGammaInput()/*-{
 return this.gammaInput;
@@ -166,10 +148,6 @@ public final native void setGammaOutput(boolean gammaOutput)/*-{
 this.gammaOutput = gammaOutput;
 }-*/;
 
-
-
-	
-
 //**shadow map
 
 public final native boolean isShadowMapEnabled()/*-{
@@ -180,16 +158,6 @@ public final native void setShadowMapEnabled(boolean shadowMapEnabled)/*-{
 this.shadowMapEnabled = shadowMapEnabled;
 }-*/;
 
-
-public final native boolean isShadowMapAutoUpdate()/*-{
-return this.shadowMapAutoUpdate;
-}-*/;
-
-public final native void setShadowMapAutoUpdate(boolean shadowMapAutoUpdate)/*-{
-this.shadowMapAutoUpdate = shadowMapAutoUpdate;
-}-*/;
-
-
 public final native int getShadowMapType()/*-{
 return this.shadowMapType;
 }-*/;
@@ -197,7 +165,6 @@ return this.shadowMapType;
 public final native void setShadowMapType(int shadowMapType)/*-{
 this.shadowMapType = shadowMapType;
 }-*/;
-
 
 public final native int getShadowMapCullFace()/*-{
 return this.shadowMapCullFace;
@@ -225,7 +192,6 @@ public final native void setShadowMapCascade(boolean shadowMapCascade)/*-{
 this.shadowMapCascade = shadowMapCascade;
 }-*/;
 
-
 //**morphs
 public final native double getMaxMorphTargets()/*-{
 return this.maxMorphTargets;
@@ -251,24 +217,6 @@ return this.autoScaleCubemaps;
 
 public final native void setAutoScaleCubemaps(boolean autoScaleCubemaps)/*-{
 this.autoScaleCubemaps = autoScaleCubemaps;
-}-*/;
-
-
-public final native JsArray getRenderPluginsPre()/*-{
-return this.renderPluginsPre;
-}-*/;
-
-public final native void setRenderPluginsPre(JsArray renderPluginsPre)/*-{
-this.renderPluginsPre = renderPluginsPre;
-}-*/;
-
-
-public final native JsArray getRenderPluginsPost()/*-{
-return this.renderPluginsPost;
-}-*/;
-
-public final native void setRenderPluginsPost(JsArray renderPluginsPost)/*-{
-this.renderPluginsPost = renderPluginsPost;
 }-*/;
 
 //TODO implement it
@@ -439,21 +387,7 @@ return this.updateShadowMap(scene,camera);
 	public final native CanvasElement gwtCanvas ()/*-{
 	return this.domElement;
 	}-*/;
-	
-	/**
-	 * you should set this by yourself
-	 * @param type
-	 * @return
-	 */
-	public final native String gwtSetType (String type)/*-{
-	this.gwtType=type;
-}-*/;
-	
-	public final native String gwtGetType ()/*-{
-		return this.gwtType;
-	}-*/;
-	
-	
+		
 	/**
 	 * this is just container.should rename it
 	 * @author aki
@@ -504,7 +438,7 @@ return this.updateShadowMap(scene,camera);
 	
 	/**
 	 * 
-	 * @param geometryGroup,i have no idea,
+	 * @param geometryGroup i have no idea,
 	 * @param object maybe mesh has geometry
 	 * @param hint maybe 
 	 * @param dispose

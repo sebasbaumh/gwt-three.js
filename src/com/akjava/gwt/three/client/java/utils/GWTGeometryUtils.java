@@ -1,7 +1,6 @@
 package com.akjava.gwt.three.client.java.utils;
 
 import com.akjava.gwt.lib.client.LogUtils;
-import com.akjava.gwt.three.client.examples.utils.GeometryUtils;
 import com.akjava.gwt.three.client.gwt.core.MorphTarget;
 import com.akjava.gwt.three.client.gwt.materials.LineBasicMaterialParameter;
 import com.akjava.gwt.three.client.js.THREE;
@@ -46,7 +45,7 @@ public class GWTGeometryUtils {
 	
 	public final static  Line createLineMesh(Vector3 from,Vector3 to,int color,double lineWidth){
 		return THREE.Line(GWTGeometryUtils.createLineGeometry(from, to),
-				THREE.LineBasicMaterial().color(color).linewidth(lineWidth).build());
+				THREE.LineBasicMaterial(LineBasicMaterialParameter.create().color(color).lineWidth(lineWidth)));
 	}
 	
 	public final static  Geometry clonePlusWeights(Geometry geo){
@@ -59,20 +58,7 @@ public class GWTGeometryUtils {
 		}
 		return cloned;
 	}
-	public final static  Geometry mergeGeometryPlusWeights(Geometry geo1,Geometry geo2){
-		
-		GeometryUtils.merge(geo1, geo2);
-		
-		for(int i=0;i<geo2.getSkinIndices().length();i++){
-			geo1.getSkinIndices().push(geo2.getSkinIndices().get(i));
-		}
-		
-		for(int i=0;i<geo2.getSkinWeight().length();i++){
-			geo1.getSkinWeight().push(geo2.getSkinWeight().get(i));
-		}
-				
-		return geo1;
-	}
+
 /**
  * somehow Blender 2.65 Exporter make  all zero "skinIndices" & skinWeights,this geometry not sweat for skin
  * use this for avoid that.

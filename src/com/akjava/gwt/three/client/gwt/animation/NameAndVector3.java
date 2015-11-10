@@ -1,5 +1,7 @@
 package com.akjava.gwt.three.client.gwt.animation;
 
+import java.util.Objects;
+
 import com.akjava.gwt.three.client.js.THREE;
 import com.akjava.gwt.three.client.js.math.Vector3;
 
@@ -42,45 +44,40 @@ public String toString(){
 	return name+","+index+","+position;
 }
 
-@Override
-public boolean equals(Object object){
-	NameAndVector3 target=null;
-	if(object instanceof NameAndVector3){
-		target=(NameAndVector3)object;
-	}else{
-		return false;
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = prime + Integer.hashCode(this.index);
+		result = prime * result + Objects.hashCode(this.name);
+		return prime * result + Objects.hashCode(this.position);
 	}
-	if(name==null){
-	if(target.getName()!=null){
-		return false;
-	}
-	}else{
-	if(!name.equals(target.getName())){
-		return false;
-	}
-	}
-	
-	if(index!=target.getIndex()){
-		return false;
-	}
-	if(index!=target.getIndex()){
-		return false;
-	}
-	if(position==null){
-		if(target.getVector3()!=null){
-			return false;
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+		{
+			return true;
 		}
-	}else{
-		if(target.getVector3()==null){
-			return false;
-		}else{
-			if(position.getX()!=target.getVector3().getX() || position.getY()!=target.getVector3().getY() ||position.getZ()!=target.getVector3().getZ()){
+		if (obj instanceof NameAndVector3)
+		{
+			NameAndVector3 other = (NameAndVector3) obj;
+			if ((this.index != other.index) || !Objects.equals(this.name, other.name)||((this.position==null)&&(other.position!=null)))
+			{
 				return false;
 			}
+			return this.position.equals(other.position);
 		}
+		return false;
 	}
-	
-	return true;
-}
 
 }

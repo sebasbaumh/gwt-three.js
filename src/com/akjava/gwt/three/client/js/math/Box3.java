@@ -67,6 +67,7 @@ return this.set(min,max);
  * @deprecated
  * removed on r68
  */
+@Deprecated
 public final native void addPoint(Vector3 point)/*-{
 this.addPoint(point);
 }-*/;

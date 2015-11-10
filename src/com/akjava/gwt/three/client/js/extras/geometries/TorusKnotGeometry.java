@@ -38,7 +38,7 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.extras.geometries;
 
 import com.akjava.gwt.three.client.js.core.Geometry;
-import com.google.gwt.core.client.JsArray;
+import com.google.gwt.core.client.*;
 
 
 public class TorusKnotGeometry extends Geometry{
@@ -95,7 +95,7 @@ return this.heightScale;
  * i have no idea
  * @return
  */
-public final native JsArray getGrid()/*-{
+public final native JsArray<JavaScriptObject> getGrid()/*-{
 return this.grid;
 }-*/;
 

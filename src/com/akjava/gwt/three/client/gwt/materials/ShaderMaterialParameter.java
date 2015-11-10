@@ -40,7 +40,6 @@ package com.akjava.gwt.three.client.gwt.materials;
 import com.akjava.gwt.three.client.gwt.JSParameter;
 import com.akjava.gwt.three.client.gwt.extras.Defines;
 import com.akjava.gwt.three.client.gwt.extras.Uniforms;
-import com.akjava.gwt.three.client.java.ShaderMaterialBuilder;
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
@@ -51,7 +50,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 public final class ShaderMaterialParameter extends JSParameter{
 	protected ShaderMaterialParameter(){}
 	public final static ShaderMaterialParameter create(){
-		return (ShaderMaterialParameter) ShaderMaterialParameter.createObject();
+		return (ShaderMaterialParameter) JavaScriptObject.createObject();
 	}
 	public final native ShaderMaterialParameter fragmentShader(String fragmentShader)/*-{
 	this.fragmentShader=fragmentShader;

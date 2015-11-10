@@ -65,6 +65,7 @@ this.material = material;
  * @deprecated on r70
  * @param bool
  */
+@Deprecated
 public final native boolean isSortParticles()/*-{
 return this.sortParticles;
 }-*/;
@@ -81,6 +82,7 @@ return this.clone(object);
  * @deprecated on r70
  * @param bool
  */
+@Deprecated
 public native final void setSortParticles (boolean bool)/*-{
 this.sortParticles=bool;
 }-*/;
@@ -93,6 +95,7 @@ return this.geometry;
 /**
  * @deprecated
  */
+@Deprecated
 public native final JsArray<Material> materials ()/*-{
 return null;
 }-*/;

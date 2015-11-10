@@ -14,6 +14,7 @@ public class AnimationHandler {
 	 * @deprecated
 	 * on r68 dropped
 	 */
+	@Deprecated
 	public final native Animation remove(String name)/*-{
 	return $wnd.THREE.AnimationHandler.remove(name);
 	}-*/;
@@ -22,6 +23,7 @@ public class AnimationHandler {
 	 * @deprecated
 	 * on r68 changed
 	 */
+	@Deprecated
 	public final native Animation get(String name)/*-{
 	return $wnd.THREE.AnimationHandler.get(name);
 	}-*/;
@@ -44,6 +46,7 @@ public class AnimationHandler {
 	 * @deprecated
 	 * on r68 dropped
 	 */
+	@Deprecated
 	public static native final void add(AnimationData data)/*-{
 	return $wnd.THREE.AnimationHandler.add(data);
 	}-*/;
@@ -51,6 +54,7 @@ public class AnimationHandler {
 	 * @deprecated
 	 * on r68 renamed
 	 */
+	@Deprecated
 	public static native final void removeFromUpdate(Animation data)/*-{
 	return $wnd.THREE.AnimationHandler.stop(data);
 	}-*/;
@@ -58,6 +62,7 @@ public class AnimationHandler {
 	 * @deprecated
 	 * on r68 renamed
 	 */
+	@Deprecated
 	public static native final void addToUpdate(Animation data)/*-{
 	return $wnd.THREE.AnimationHandler.play(data);
 	}-*/;

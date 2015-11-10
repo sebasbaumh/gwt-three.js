@@ -60,6 +60,7 @@ return this.multiplyQuaternions(a,b);
  * @param vector
  * @return
  */
+@Deprecated
 public final native Object multiplyVector3(Vector3 vector)/*-{
 return this.multiplyVector3(vector);
 }-*/;
@@ -99,6 +100,7 @@ return $wnd.THREE.Quaternion.slerp( qa, qb, qm, t);
  * @deprecated
  * @return
  */
+@Deprecated
 public native final Quaternion multiplySelf(Quaternion q)/*-{
 return this.multiply(q);
 }-*/;
@@ -106,6 +108,7 @@ return this.multiply(q);
  * @deprecated
  * @return
  */
+@Deprecated
 public native final Quaternion multiply(Quaternion q,Quaternion q2)/*-{
 return this.multiply(q,q2);
 }-*/;

@@ -3,11 +3,12 @@ package com.akjava.gwt.three.client.examples.js;
 import com.akjava.gwt.three.client.gwt.JSParameter;
 import com.akjava.gwt.three.client.js.math.Vector3;
 import com.akjava.gwt.three.client.js.textures.Texture;
+import com.google.gwt.core.client.JavaScriptObject;
 
 public class WaterParameter  extends JSParameter {
 	protected WaterParameter(){}
 	public final static WaterParameter create(){
-		return (WaterParameter) WaterParameter.createObject();
+		return (WaterParameter) JavaScriptObject.createObject();
 	}
 	
 	public final native WaterParameter textureWidth(int width)/*-{

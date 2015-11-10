@@ -41,14 +41,15 @@ return this.depthSegments;
  * @deprecated
  * @return
  */
+@Deprecated
 public final native JsArray<Material> getMaterials()/*-{	
 return null;
 }-*/;
 
 /**
  * @deprecated
- * @return
  */
+@Deprecated
 public final native void setMaterials(Material material)/*-{	
 this.materials=[material];
 }-*/;

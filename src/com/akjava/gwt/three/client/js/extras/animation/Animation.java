@@ -63,6 +63,7 @@ this.isPlaying = isPlaying;
  * @deprecated
  * on r68 dropped
  */
+@Deprecated
 public final native boolean isIsPaused()/*-{
 return this.isPaused;
 }-*/;
@@ -70,6 +71,7 @@ return this.isPaused;
  * @deprecated
  * on r68 dropped
  */
+@Deprecated
 public final native void setIsPaused(boolean isPaused)/*-{
 this.isPaused = isPaused;
 }-*/;
@@ -113,6 +115,7 @@ this.target = target;
  * @param loop
  * @param startTimeMS
  */
+@Deprecated
 public final native void play(boolean loop,double startTimeMS)/*-{
 this.play(loop,startTimeMS);
 }-*/;
@@ -121,6 +124,7 @@ this.play(loop,startTimeMS);
  * @deprecated
  * on r68 dropped
  */
+@Deprecated
 public final native void pause()/*-{
 this.pause();
 }-*/;

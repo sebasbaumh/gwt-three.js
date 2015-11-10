@@ -38,6 +38,7 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.gwt.materials;
 
 import com.akjava.gwt.three.client.gwt.JSParameter;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
 
@@ -47,7 +48,7 @@ import com.akjava.gwt.three.client.gwt.JSParameter;
 public final class MeshDepthfMaterialParameter extends JSParameter{
 	protected MeshDepthfMaterialParameter(){}
 	public final static MeshDepthfMaterialParameter create(){
-		return (MeshDepthfMaterialParameter) MeshDepthfMaterialParameter.createObject();
+		return (MeshDepthfMaterialParameter) JavaScriptObject.createObject();
 	}
 	
 	public final native MeshDepthfMaterialParameter wireframe(boolean wireframe)/*-{

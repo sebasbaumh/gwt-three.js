@@ -12,7 +12,7 @@ import com.google.gwt.core.client.JavaScriptObject;
  */
 public  class Uniforms extends JavaScriptObject{
 	public final static Uniforms create(){
-		return (Uniforms) Uniforms.createObject();
+		return (Uniforms) JavaScriptObject.createObject();
 	}
 	
 	protected Uniforms(){}

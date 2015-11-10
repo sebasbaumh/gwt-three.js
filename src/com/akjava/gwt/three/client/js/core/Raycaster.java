@@ -151,9 +151,11 @@ public class Raycaster extends JavaScriptObject
 	 * returned sorted by distance, closest first.
 	 * @param objects The objects to check for intersection with the ray.
 	 * @return intersected objects
+	 */
 	public final native JsArray<Intersect> intersectObjects(JsArray<Object3D> objects)/*-{
 		return this.intersectObjects(objects);
 	}-*/;
+
 //both vector2 and vector3
 public final native void setFromCamera(Vector3 coords,Camera camera)/*-{
 this.setFromCamera(coords,camera);

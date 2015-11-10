@@ -2,7 +2,6 @@ package com.akjava.gwt.three.client.java.ui;
 
 import java.util.List;
 
-import com.akjava.gwt.three.client.gwt.math.*;
 import com.akjava.gwt.three.client.java.GWTSpline;
 import com.akjava.gwt.three.client.js.math.Vector2;
 

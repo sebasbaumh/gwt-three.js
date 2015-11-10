@@ -118,14 +118,13 @@ this.hasTangents = hasTangents;
  * i have no idea what is it type?
  * @return
  */
-public final native JsArray getMorphTargets()/*-{
+public final native JsArray<JavaScriptObject> getMorphTargets()/*-{
 return this.morphTargets;
 }-*/;
 /**
  * i have no idea what is it type?
- * @return
  */
-public final native void setMorphTargets(JsArray morphTargets)/*-{
+public final native void setMorphTargets(JsArray<JavaScriptObject> morphTargets)/*-{
 this.morphTargets = morphTargets;
 }-*/;
 
@@ -133,6 +132,7 @@ this.morphTargets = morphTargets;
  * @deprecated
  * it's gone
  */
+@Deprecated
 public final native void addAttribute(Object name,Object type,Object numItems,Object itemSize)/*-{
 this.addAttribute(name,type,numItems,itemSize);
 }-*/;

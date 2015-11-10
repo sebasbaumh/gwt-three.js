@@ -39,7 +39,6 @@ package com.akjava.gwt.three.client.examples.renderers;
 
 import com.akjava.gwt.three.client.gwt.core.Intersect;
 import com.akjava.gwt.three.client.js.cameras.Camera;
-import com.akjava.gwt.three.client.js.math.*;
 import com.akjava.gwt.three.client.js.core.Object3D;
 import com.akjava.gwt.three.client.js.core.Raycaster;
 import com.akjava.gwt.three.client.js.math.Ray;
@@ -58,6 +57,7 @@ import com.google.gwt.core.client.JsArray;
  *
  * Projects points between spaces.
  */
+@Deprecated
 public class Projector extends JavaScriptObject
 {
 	protected Projector()
@@ -68,6 +68,7 @@ public class Projector extends JavaScriptObject
  * temporaly fixed ,now just pick from scene.child() array,not recursive
  * @deprecated no more scene support
  */
+@Deprecated
 public final native JsArray<Intersect> gwtPickIntersects(int mx,int my,int sw,int sh,Camera camera,Scene scene)/*-{	
 	var vector = new $wnd.THREE.Vector3( ( mx / sw ) * 2 - 1, - ( my / sh ) * 2 + 1, 0.5 );
 				vector.unproject(camera );
@@ -81,6 +82,7 @@ public final native JsArray<Intersect> gwtPickIntersects(int mx,int my,int sw,in
  * @deprecated no more scene support r49
  * emporaly fixed ,now  just pick from scene.child() array,not recursive
  */
+@Deprecated
 public final native JsArray<Intersect> gwtPickIntersects(int mx,int my,int sw,int sh,Camera camera,Vector3 position,Scene scene)/*-{
 
 var vector = new $wnd.THREE.Vector3( ( mx / sw ) * 2 - 1, - ( my / sh ) * 2 + 1, 0.5 );

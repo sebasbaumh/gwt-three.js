@@ -38,6 +38,7 @@ THE SOFTWARE.
 package com.akjava.gwt.three.client.js.materials;
 
 import com.akjava.gwt.three.client.gwt.JSParameter;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * can't overwrite.copy this as base
@@ -47,7 +48,7 @@ import com.akjava.gwt.three.client.gwt.JSParameter;
 public final class MaterialParameter extends JSParameter{
 	protected MaterialParameter(){}
 	public final static MaterialParameter create(){
-		return (MaterialParameter) MaterialParameter.createObject();
+		return JavaScriptObject.createObject().cast();
 	}
 	
 	public final native MaterialParameter side(int side)/*-{

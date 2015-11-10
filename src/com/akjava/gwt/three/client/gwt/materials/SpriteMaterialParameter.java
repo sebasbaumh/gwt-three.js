@@ -39,6 +39,7 @@ package com.akjava.gwt.three.client.gwt.materials;
 
 import com.akjava.gwt.three.client.gwt.JSParameter;
 import com.akjava.gwt.three.client.js.math.Vector2;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * can't overwrite.copy this as base
@@ -48,7 +49,7 @@ import com.akjava.gwt.three.client.js.math.Vector2;
 public final class SpriteMaterialParameter extends JSParameter{
 	protected SpriteMaterialParameter(){}
 	public final static SpriteMaterialParameter create(){
-		return (SpriteMaterialParameter) SpriteMaterialParameter.createObject();
+		return (SpriteMaterialParameter) JavaScriptObject.createObject();
 	}
 	
 	public final PointCloudMaterialParameter color(int r,int g,int b){

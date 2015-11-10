@@ -11,6 +11,7 @@ public class GeometryUtils {
 	 * @deprecated
 	 * moved to geometry on r68
 	 */
+	@Deprecated
 	public static native final void center(Geometry geo)/*-{
 	return geo.center();
 	}-*/;
@@ -20,6 +21,7 @@ public class GeometryUtils {
 	 * @param geo
 	 * @return
 	 */
+	@Deprecated
 	public static native final Geometry clone(Geometry geo)/*-{
 	return geo.clone();
 	}-*/;
@@ -29,6 +31,7 @@ public class GeometryUtils {
 	 * moved to Geometry on r67
 	 * @param geometry
 	 */
+	@Deprecated
 	public static native final void merge(Geometry geo,Geometry geo2,int materialIndexOffset)/*-{
 	return $wnd.THREE.GeometryUtils.merge(geo,geo2,materialIndexOffset);
 	}-*/;
@@ -37,14 +40,7 @@ public class GeometryUtils {
 	 * moved to Geometry on r67
 	 * @param geometry
 	 */
-	public static native final void merge(Geometry geo,Geometry geo2)/*-{
-	return $wnd.THREE.GeometryUtils.merge(geo,geo2);
-	}-*/;
-	/**
-	 * @deprecated
-	 * moved to Geometry on r67
-	 * @param geometry
-	 */
+	@Deprecated
 	public static native final void merge(Geometry geo,Mesh mesh,int materialIndexOffset)/*-{
 	return $wnd.THREE.GeometryUtils.merge(geo,mesh,materialIndexOffset);
 	}-*/;
@@ -53,6 +49,7 @@ public class GeometryUtils {
 	 * moved to Geometry on r67
 	 * @param geometry
 	 */
+	@Deprecated
 	public static native final void merge(Geometry geo,Mesh mesh)/*-{
 	return $wnd.THREE.GeometryUtils.merge(geo,mesh);
 	}-*/;

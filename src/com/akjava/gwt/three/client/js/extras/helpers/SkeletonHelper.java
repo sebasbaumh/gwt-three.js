@@ -52,6 +52,7 @@ public class SkeletonHelper extends Line{
  * removed on r68
  * @return
  */
+@Deprecated
 public final native Skeleton getSkeleton()/*-{
 return this.skeleton;
 }-*/;

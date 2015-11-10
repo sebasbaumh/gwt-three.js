@@ -15,6 +15,7 @@ return this.cameraElement;
  * @deprecated dont useless?
  * @param camera
  */
+@Deprecated
 public  native final void removeCameraElement(Camera camera)/*-{
 return this.cameraElement.removeChild(camera);
 }-*/;
@@ -30,6 +31,7 @@ public final void gwtClear(){
  * @deprecated algoritum broken,use java version
  * @param camera
  */
+@Deprecated
 public  native final void clearCameraElement()/*-{
 var nodes=this.cameraElement.childNodes();
 for(var i=0;i<nodes.length();i++){

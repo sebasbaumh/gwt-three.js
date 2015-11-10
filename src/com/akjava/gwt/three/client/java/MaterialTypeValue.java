@@ -26,12 +26,33 @@ public  class MaterialTypeValue{
 		public void setLabel(String label) {
 			this.label = label;
 		}
+
+		/*
+		 * (non-Javadoc)
+		 * @see java.lang.Object#hashCode()
+		 */
 		@Override
-		public boolean equals(Object obj) {
-			if(obj instanceof MaterialTypeValue){
-				return ((MaterialTypeValue)obj).getValue()==getValue();
-			}
-			return super.equals(obj);
+		public int hashCode()
+		{
+			return Integer.hashCode(this.value);
 		}
-		
+
+		/*
+		 * (non-Javadoc)
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj)
+		{
+			if (this == obj)
+			{
+				return true;
+			}
+			if (obj instanceof MaterialTypeValue)
+			{
+				MaterialTypeValue other = (MaterialTypeValue) obj;
+				return (this.value == other.value);
+			}
+			return false;
+		}
 	}

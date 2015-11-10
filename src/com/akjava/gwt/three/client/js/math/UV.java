@@ -6,6 +6,7 @@ import com.google.gwt.core.client.JavaScriptObject;
  * @author aki
  *
  */
+@Deprecated
 public class UV extends JavaScriptObject{
 protected UV(){}
 

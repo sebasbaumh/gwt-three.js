@@ -20,6 +20,7 @@ this.skeleton=skelton;
  * @deprecated
  * use getSkelton()
  */
+@Deprecated
 public final native boolean isUseVertexTexture()/*-{
 return this.skelton.useVertexTexture;
 }-*/;
@@ -29,6 +30,7 @@ return this.skelton.useVertexTexture;
  * @deprecated
  * use getSkelton()
  */
+@Deprecated
 public final native void setUseVertexTexture(boolean useVertexTexture)/*-{
 this.skelton.useVertexTexture = useVertexTexture;
 }-*/;
@@ -47,6 +49,7 @@ this.identityMatrix = identityMatrix;
  * @deprecated
  * use getSkelton()
  */
+@Deprecated
 public final native JsArray<Bone> getBones()/*-{
 return this.skelton.bones;
 }-*/;
@@ -55,6 +58,7 @@ return this.skelton.bones;
  * @deprecated
  * use getSkelton()
  */
+@Deprecated
 public final native void setBones(JsArray<Bone> bones)/*-{
 this.skelton.bones = bones;
 }-*/;
@@ -64,28 +68,7 @@ this.skelton.bones = bones;
  * @deprecated
  * use getSkelton()
  */
-//TODO support float32array
-public final native JsArray getBoneMatrices()/*-{
-return this.skelton.boneMatrices;
-}-*/;
-
-/**
- * 
- * @deprecated
- * use getSkelton()
- */
-//TODO support float32array
-public final native void setBoneMatrices(JsArray boneMatrices)/*-{
-this.skelton.boneMatrices = boneMatrices;
-}-*/;
-
-
-
-/**
- * 
- * @deprecated
- * use getSkelton()
- */
+@Deprecated
 public final native Bone addBone(Bone bone)/*-{
 return this.skelton.addBone(bone);
 }-*/;

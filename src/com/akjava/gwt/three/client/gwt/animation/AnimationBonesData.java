@@ -68,7 +68,7 @@ public class AnimationBonesData {
 		List<Vector3> positions=new ArrayList<Vector3>();
 		for(int i=0;i<bones.length();i++){
 			AnimationBone bone=bones.get(i);
-			Vector3 bpos=AnimationBone.jsArrayToVector3(bone.getPos());
+			Vector3 bpos=bone.getPosVector();
 			
 			if(bone.getParent()!=-1){
 				Vector3 parentPos=positions.get(bone.getParent());
@@ -85,12 +85,8 @@ public class AnimationBonesData {
 		List<Vector3> positions=new ArrayList<Vector3>();
 		for(int i=0;i<bones.length();i++){
 			AnimationBone bone=bones.get(i);
-			Vector3 bpos=AnimationBone.jsArrayToVector3(bone.getPos());
-			
-			
-			
+			Vector3 bpos=bone.getPosVector();
 			positions.add(bpos);
-			
 		}
 		return positions;
 		
@@ -110,20 +106,14 @@ public class AnimationBonesData {
 		return getBonePosition(getBoneIndex(name),endSite);
 	}
 	
-	
 	public Vector3 getParentAngles(int index){
 		List<Integer> path=bonePath.get(index);
-		
 		Vector3 angle=THREE.Vector3();
-		
-		
-		Matrix4 matrix=THREE.Matrix4();
 		for(int j=0;j<path.size()-1;j++){//last is boneself
 			angle.add(bonesMatrixs.get(path.get(j)).getAngle());
 		}
 		return angle;
 	}
-	
 	
 	public List<Integer> getBonePath(int index){
 		return bonePath.get(index);
@@ -170,7 +160,7 @@ public class AnimationBonesData {
 			Matrix4 mx=bonesMatrixs.get(path.get(j)).getMatrix();
 			matrix.multiplyMatrices(matrix, mx);
 		}
-		matrix.multiplyVector3(pos);
+		pos.applyProjection(matrix);
 		return pos;
 	}
 	

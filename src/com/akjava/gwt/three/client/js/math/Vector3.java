@@ -250,6 +250,7 @@ return this.setFromMatrixPosition(m);
  * @param m
  * @return
  */
+@Deprecated
 public final native Vector3 getScaleFromMatrix(Matrix4 m)/*-{
 return this.getScaleFromMatrix(m);
 }-*/;
@@ -264,6 +265,7 @@ return this.setFromMatrixScale(m);
  * @param m
  * @return
  */
+@Deprecated
 public final native Vector3 getColumnFromMatrix(int index,Matrix4 matrix)/*-{
 return this.getColumnFromMatrix(index,matrix);
 }-*/;
@@ -308,8 +310,6 @@ public final native Vector3 reflect(Vector3 vector)/*-{
 return this.reflect(vector);
 }-*/;
 	
-
-
 public native final void gwtIncrementX(double x)/*-{
 this.x+=x;
 }-*/;
@@ -334,18 +334,6 @@ public  final synchronized Vector3 getRotationFromMatrix(Matrix4 matrix,String o
 	set(dummy_euler.getX(),dummy_euler.getY(), dummy_euler.getZ());
 	return this;
 }
-/**
- * @deprecated
- * @param matrix
- * @return
- */
-//public native final Vector3 getRotationFromMatrix(Matrix4 matrix)/*-{
-//return this.setEulerFromRotationMatrix(matrix,'XYZ');
-//}-*/;
-
-//public native final Vector3 setEulerFromRotationMatrix(Matrix4 matrix,String order)/*-{
-//return this.setEulerFromRotationMatrix(matrix,order);
-//}-*/;
 
 public final native Vector3 clampScalar(double minVal,double maxVal)/*-{
 return this.clampScalar(minVal,maxVal);
@@ -380,14 +368,11 @@ return this.toArray(array,offset);
 }-*/;
 
 public final native Vector3 project(Camera camera)/*-{
-
 return this.project(camera);
-
 }-*/;
+
 public final native Vector3 unproject(Camera camera)/*-{
-
 return this.unproject(camera);
-
 }-*/;
 
 public final native Vector3 fromAttribute(JavaScriptObject attribute,int index,int offset)/*-{

@@ -8,7 +8,7 @@ import com.akjava.gwt.three.client.js.math.Vector3;
 
 public class CDDIK {
 
-	public Matrix4  doStep(Vector3 lastJointPos,Vector3 jointPos,Matrix4 jointRot,Vector3 targetPos){
+	public static Matrix4  doStep(Vector3 lastJointPos,Vector3 jointPos,Matrix4 jointRot,Vector3 targetPos){
 		
 		Vector3 jointVector=lastJointPos.clone().sub(jointPos).normalize();
 		
@@ -38,7 +38,7 @@ public class CDDIK {
 	
 	
 	//support root rotation
-public Matrix4  getStepAngleMatrix(Vector3 parentAngle,Vector3 lastJointPos,Vector3 jointPos,Matrix4 jointRot,Vector3 targetPos){
+public static Matrix4  getStepAngleMatrix(Vector3 parentAngle,Vector3 lastJointPos,Vector3 jointPos,Matrix4 jointRot,Vector3 targetPos){
 		Vector3 parentVec=parentAngle.clone().negate();
 		
 		Matrix4 mx=GWTThreeUtils.degitRotationToMatrix4(parentVec.getX(),parentVec.getY(), parentVec.getZ());
@@ -87,7 +87,7 @@ public Matrix4  getStepAngleMatrix(Vector3 parentAngle,Vector3 lastJointPos,Vect
 	}
 
 	
-public Matrix4  getStepAngleMatrix(Vector3 lastJointPos,Vector3 jointPos,Matrix4 jointRot,Vector3 targetPos){
+public static Matrix4  getStepAngleMatrix(Vector3 lastJointPos,Vector3 jointPos,Matrix4 jointRot,Vector3 targetPos){
 		
 		Vector3 jointVector=lastJointPos.clone().sub(jointPos).normalize();
 		

@@ -81,6 +81,7 @@ public final native void computeFaceNormals()/*-{
 /**
  * @deprecated no more exist after r67
  */
+@Deprecated
 public final native void computeCentroids()/*-{
 this.computeFaceNormals();
 }-*/;
@@ -181,6 +182,7 @@ return this.animations;
 /**
  * @deprecated maybe better to avoid
  */
+@Deprecated
 public final native AnimationData getAnimation()/*-{
 return this.animation;
 }-*/;
@@ -197,6 +199,7 @@ this.bones=bones;
 /**
  @deprecated
  */
+@Deprecated
 public final native JsArrayNumber getSkinIndicesAsRaw()/*-{
 return this.skinIndices;
 }-*/;
@@ -206,6 +209,7 @@ return this.skinIndices;
 /**
 @deprecated
 */
+@Deprecated
 public final native JsArrayNumber getSkinWeightAsRaw()/*-{
 return this.skinWeights;
 }-*/;

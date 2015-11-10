@@ -31,12 +31,34 @@ public  class BlendingValue{
 		public void setLabel(String label) {
 			this.label = label;
 		}
-		@Override
-		public boolean equals(Object obj) {
-			if(obj instanceof BlendingValue){
-				return ((BlendingValue)obj).getValue()==getValue();
-			}
-			return super.equals(obj);
+		
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode()
+	{
+		return Integer.hashCode(this.value);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+		{
+			return true;
 		}
+		if (obj instanceof BlendingValue)
+		{
+			BlendingValue other = (BlendingValue) obj;
+			return (this.value == other.value);
+		}
+		return false;
+	}
 		
 	}
